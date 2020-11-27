@@ -1,0 +1,10 @@
+{
+	"name": "maris_psi",
+	"version": "0.0.0",
+	"author": "Aron Derenyi",
+	"scripts": {
+		"build-client": "npm run build --prefix client",
+		"start-server": "npm run start --prefix server",
+		"start": "npm run build-client && npm run start-server"
+	}
+}

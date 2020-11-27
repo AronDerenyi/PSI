@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"module": "es6",
+		"target": "es2017",
+		"moduleResolution": "node",
+
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"strict": false,
+		"allowJs": true,
+
+		"sourceMap": true,
+		"baseUrl": "..",
+		"types": [
+			"webpack-env"
+		],
+		"paths": {
+			"src/*": [
+				"app/src/*"
+			],
+			"res/*": [
+				"app/res/*"
+			]
+		}
+	},
+	"include": [
+		"app/**/*.ts",
+		"app/**/*.vue"
+	],
+	"exclude": [
+		"../node_modules"
+	]
+}

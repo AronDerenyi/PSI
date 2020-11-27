@@ -1,0 +1,16 @@
+# WebStorm
+.idea
+
+# Node
+npm-debug.log
+.env
+
+# Client
+client/node_modules
+client/dist
+
+# Server
+server/node_modules
+
+# MacOS
+.DS_Store
