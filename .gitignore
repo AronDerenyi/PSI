@@ -2,13 +2,13 @@
 .idea
 
 # Node
-client/node_modules
-server/node_modules
+Client/node_modules
+Server/node_modules
 npm-debug.log
 .env
 
 # Build
-client/dist
+Client/dist
 
 # MacOS
 .DS_Store
