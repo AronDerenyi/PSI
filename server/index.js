@@ -9,7 +9,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
 app.use(bodyParser.json({extended: true, limit: '5mb'}));
-app.use(express.static('../client/dist'));
+app.use(express.static('dist'));
 
 // Starting the server
 
