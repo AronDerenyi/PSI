@@ -7,9 +7,10 @@
 	},
 	"dependencies": {
 		"express": "latest",
-		"body-parser": "latest"
+		"body-parser": "latest",
+		"express-session": "latest"
 	},
 	"scripts": {
-		"start": "node index.js"
+		"start": "node app/src/index.js"
 	}
 }
