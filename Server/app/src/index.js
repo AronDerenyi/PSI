@@ -25,6 +25,40 @@ app.use(bodyParser.json({extended: true, limit: '5mb'}));
 
 app.use(express.static('../Client/dist'));
 
+// Getting the middleware
+
+const initializeSession = require('./middleware/InitializeSession');
+const validateSession = require('./middleware/ValidateSession');
+const validateState = require('./middleware/ValidateState');
+const updateResults = require('./middleware/UpdateResults');
+const updateState = require('./middleware/UpdateState');
+const resetSession = require('./middleware/ResetSession');
+const returnStateParameters = require('./middleware/ReturnStateParameters');
+
+// Setting up the routes
+
+app.get(
+	"/api/test",
+	initializeSession,
+	returnStateParameters
+);
+
+app.post(
+	"/api/test",
+	validateSession,
+	validateState,
+	updateResults,
+	updateState,
+	returnStateParameters
+);
+
+app.put(
+	"/api/reset",
+	resetSession,
+	initializeSession,
+	returnStateParameters
+);
+
 // Starting the Server
 
 app.listen(process.env.PORT || 80);
