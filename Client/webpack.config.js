@@ -4,11 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
-	mode: /*"development"*/ "production",
-	// optimization: {
-	// 	usedExports: true,
-	// },
-	// devtool: "source-map",
+	mode: "development" /*"production"*/,
+	devtool: "source-map",
 	node: {
 		__dirname: false,
 		__filename: false
