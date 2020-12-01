@@ -1,16 +1,19 @@
 <template>
-	<h1>Info Text</h1>
+	<div>
+		<h1>Info Text</h1>
+		<button @click="$emit('result')">next</button>
+	</div>
 </template>
 
 <script lang="ts">
-	import {Vue, Component} from "vue-property-decorator";
-	import {InfoTextModel} from "src/viewmodel/InfoTextModel";
+import {Vue, Component} from "vue-property-decorator";
+import {InfoTextModel} from "src/viewmodel/InfoTextModel";
 
-	@Component
-	export default class InfoText extends Vue {
+@Component
+export default class InfoText extends Vue {
 
-		private viewModel = new InfoTextModel()
-	};
+	private viewModel = new InfoTextModel()
+};
 </script>
 
 <style scoped>

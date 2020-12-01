@@ -1,16 +1,19 @@
 <template>
-	<h1>Info Video</h1>
+	<div>
+		<h1>Info Video</h1>
+		<button @click="$emit('result')">next</button>
+	</div>
 </template>
 
 <script lang="ts">
-	import {Vue, Component} from "vue-property-decorator";
-	import {InfoVideoModel} from "src/viewmodel/InfoVideoModel";
+import {Vue, Component} from "vue-property-decorator";
+import {InfoVideoModel} from "src/viewmodel/InfoVideoModel";
 
-	@Component
-	export default class InfoVideo extends Vue {
+@Component
+export default class InfoVideo extends Vue {
 
-		private viewModel = new InfoVideoModel()
-	};
+	private viewModel = new InfoVideoModel()
+};
 </script>
 
 <style scoped>
