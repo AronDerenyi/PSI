@@ -56,7 +56,11 @@ export class AppModel {
 	private navigateToInfoImage() {
 		Vue.set(this, 'id', 'infi')
 		Vue.set(this, 'type', 'info_image')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Text Title",
+			src: "Some image source",
+			waitingTime: 10000
+		})
 	}
 
 	private navigateToInfoVideo() {
