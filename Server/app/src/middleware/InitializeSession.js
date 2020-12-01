@@ -1,8 +1,8 @@
-module.exports = function (req, res, next) {
+module.exports = (test) => (req, res, next) => {
 	const session = req.session
 
 	if (!session.stateId || !session.results) {
-		session.stateId = ""
+		session.stateId = test.start
 		session.results = {}
 	}
 

@@ -1,9 +1,10 @@
-module.exports = function (req, res) {
+module.exports = (test) => (req, res) => {
 	const stateId = req.session.stateId
+	const state = test.states[stateId]
 
 	res.json({
 		id: stateId,
-		type: "",
-		parameters: {}
+		type: state.type,
+		parameters: state.parameters
 	}).end();
 };
