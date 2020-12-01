@@ -9,18 +9,11 @@ export class InfoTextModel {
 		elapsedTime: number
 	}
 
-	private readonly startTime: number
+	private readonly startTime = Date.now()
 
 	constructor(parameters: any) {
-		if (typeof parameters.title === 'string') {
-			this.title = parameters.title
-		}
-
-		if (typeof parameters.text === 'string') {
-			this.text = parameters.text
-		}
-
-		this.startTime = Date.now()
+		if (typeof parameters.title === 'string') this.title = parameters.title
+		if (typeof parameters.text === 'string') this.text = parameters.text
 	}
 
 	next() {

@@ -4,6 +4,7 @@ export class InputOptionsModel {
 
 	readonly title: string = null
 	readonly optionNames: { readonly [index: number]: string }
+
 	readonly result: {
 		selected: string,
 		elapsedTime: number,
@@ -23,14 +24,11 @@ export class InputOptionsModel {
 		readonly selected: string
 	}[] = []
 
-	private readonly startTime: number
-	private internalSelectedOption: number = -1
+	private readonly startTime = Date.now()
+	private internalSelectedOption = -1
 
 	constructor(parameters: any) {
-		if (typeof parameters.title === 'string') {
-			this.title = parameters.title
-		}
-
+		if (typeof parameters.title === 'string') this.title = parameters.title
 		if (Array.isArray(parameters.options)) {
 			parameters.options.forEach((option: any) => {
 				if (
@@ -46,8 +44,6 @@ export class InputOptionsModel {
 		}
 
 		this.optionNames = this.options.map(option => option.name)
-
-		this.startTime = Date.now()
 	}
 
 	get selectedOption() {
