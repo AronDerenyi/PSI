@@ -2,11 +2,17 @@ import Vue from "vue"
 
 export class InputOptionsModel {
 
-	readonly optionNames: { readonly [index: number]: string } = null
-	readonly optionCount: number = null
-	selectedOption: number = null
+	readonly title: string = null
 
-	readonly result: { readonly selected: string } = null
+	readonly optionNames: { readonly [index: number]: string }
+	readonly optionCount: number
+	selectedOption: number = -1
+
+	get showNext(): boolean {
+		return this.selectedOption >= 0 && this.selectedOption < this.optionCount
+	}
+
+	readonly result: { readonly selected: string }
 
 	private readonly options: {
 		id: string,
@@ -14,6 +20,10 @@ export class InputOptionsModel {
 	}[] = []
 
 	constructor(parameters: any) {
+		if (typeof parameters.title === 'string') {
+			this.title = parameters.title
+		}
+
 		if (Array.isArray(parameters.options)) {
 			parameters.options.forEach((option: any) => {
 				if (
@@ -34,7 +44,7 @@ export class InputOptionsModel {
 
 	next() {
 		Vue.set(this, "result", {
-			selected: this.options[this.selectedOption - 1].id
+			selected: this.options[this.selectedOption].id
 		})
 	}
 }

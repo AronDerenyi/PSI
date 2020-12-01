@@ -1,11 +1,13 @@
 <template>
 	<div>
-		<h1>Input Options</h1>
-		<div v-for="option in viewModel.optionCount" :key="option">
-			<input type="radio" :id="option" :value="option" v-model="viewModel.selectedOption"/>
-			<label :for="option">{{ viewModel.optionNames[option - 1] }}</label>
-		</div>
-		<button @click="viewModel.next()">Folytatás</button>
+		<h1>{{ viewModel.title }}</h1>
+
+		<label v-for="(optionName, optionIndex) of viewModel.optionNames" :key="optionIndex">
+			<input type="radio" :value="optionIndex" v-model="viewModel.selectedOption"/>
+			<p>{{ optionName }}</p>
+		</label>
+
+		<button v-if="viewModel.showNext" @click="viewModel.next()">Folytatás</button>
 	</div>
 </template>
 
@@ -32,11 +34,11 @@ input[type=radio] {
 	display: none
 }
 
-input[type=radio]:checked + label {
+input[type=radio]:checked + p {
 	color: red
 }
 
-input[type=radio]:checked + label::after {
+input[type=radio]:checked + p::after {
 	content: "✓";
 }
 </style>

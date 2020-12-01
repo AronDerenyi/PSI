@@ -66,6 +66,7 @@ export class AppModel {
 		Vue.set(this, 'id', 'inpo')
 		Vue.set(this, 'type', 'input_options')
 		Vue.set(this, 'parameters', {
+			title: "Options Title",
 			options: [
 				{id: "a", name: "Option A"},
 				{id: "b", name: "Option B"},
