@@ -32,9 +32,14 @@ const State = require('./test/State')
 
 const test = new Test(
 	{
-		'a': new State('type_a', {}, 'b'),
-		'b': new State('type_a', {}, 'c'),
-		'c': new State('type_b', {})
+		'inft': new State('info_text', {}, 'infi'),
+		'infi': new State('info_image', {}, 'infv'),
+		'infv': new State('info_video', {}, 'inpo'),
+		'inpo': new State('input_options', {}, 'inpt'),
+		'inpt': new State('input_text', {}, 'inps'),
+		'inps': new State('input_slider', {}, 'lik'),
+		'lik': new State('likert', {}, 'osg'),
+		'osg': new State('osgood', {})
 	},
 	'a'
 )
