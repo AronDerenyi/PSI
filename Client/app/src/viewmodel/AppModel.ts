@@ -65,7 +65,14 @@ export class AppModel {
 	private navigateToInputOptions() {
 		Vue.set(this, 'id', 'inpo')
 		Vue.set(this, 'type', 'input_options')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			options: [
+				{id: "a", name: "Option A"},
+				{id: "b", name: "Option B"},
+				{id: "c", name: "Option C"},
+				{id: "d", name: "Option D"}
+			]
+		})
 	}
 
 	private navigateToInputText() {
