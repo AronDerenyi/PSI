@@ -23,7 +23,7 @@ export default class InputOptions extends Vue {
 	private viewModel = new InputOptionsModel(this.parameters)
 
 	@Watch('viewModel.result')
-	private onResult(result: { readonly selected: string }) {
+	private onResult(result: any) {
 		this.$emit('result', result)
 	}
 };

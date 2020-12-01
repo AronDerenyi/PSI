@@ -11,6 +11,7 @@ export class AppModel {
 	}
 
 	onResult(result: any) {
+		if (result) console.log(JSON.parse(JSON.stringify(result)))
 		this.next()
 	}
 

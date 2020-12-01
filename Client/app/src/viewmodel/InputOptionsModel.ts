@@ -3,21 +3,28 @@ import Vue from "vue"
 export class InputOptionsModel {
 
 	readonly title: string = null
-
 	readonly optionNames: { readonly [index: number]: string }
-	readonly optionCount: number
-	selectedOption: number = -1
-
-	get showNext(): boolean {
-		return this.selectedOption >= 0 && this.selectedOption < this.optionCount
+	readonly result: {
+		selected: string,
+		elapsedTime: number,
+		events: {
+			time: number,
+			selected: string
+		}[]
 	}
-
-	readonly result: { readonly selected: string }
 
 	private readonly options: {
 		id: string,
 		name: string
 	}[] = []
+
+	private readonly events: {
+		readonly time: number,
+		readonly selected: string
+	}[] = []
+
+	private readonly startTime: number
+	private internalSelectedOption: number = -1
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') {
@@ -39,12 +46,34 @@ export class InputOptionsModel {
 		}
 
 		this.optionNames = this.options.map(option => option.name)
-		this.optionCount = this.options.length
+
+		this.startTime = Date.now()
+	}
+
+	get selectedOption() {
+		return this.internalSelectedOption
+	}
+
+	set selectedOption(selectedOption) {
+		this.internalSelectedOption = selectedOption
+		this.events.push({
+			time: Date.now() - this.startTime,
+			selected: this.options[selectedOption].id
+		})
+	}
+
+	get showNext(): boolean {
+		return this.internalSelectedOption >= 0 && this.internalSelectedOption < this.options.length
 	}
 
 	next() {
 		Vue.set(this, "result", {
-			selected: this.options[this.selectedOption].id
+			selected: this.options[this.internalSelectedOption].id,
+			elapsedTime: Date.now() - this.startTime,
+			events: this.events.map(event => ({
+				time: event.time,
+				selected: event.selected
+			}))
 		})
 	}
 }

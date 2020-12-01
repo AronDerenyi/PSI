@@ -5,7 +5,9 @@ export class InfoTextModel {
 	readonly title: string
 	readonly text: string
 
-	readonly result: { time: number }
+	readonly result: {
+		elapsedTime: number
+	}
 
 	private readonly startTime: number
 
@@ -23,7 +25,7 @@ export class InfoTextModel {
 
 	next() {
 		Vue.set(this, "result", {
-			time: Date.now() - this.startTime
+			elapsedTime: Date.now() - this.startTime
 		})
 	}
 }
