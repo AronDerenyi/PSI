@@ -26,12 +26,12 @@ export default class App extends Vue {
 
 	get screen(): typeof Vue {
 		switch (this.viewModel.type) {
-			case 'info-text': return InfoText
-			case 'info-image': return InfoImage
-			case 'info-video': return InfoVideo
-			case 'input-options': return InputOptions
-			case 'input-text': return InputText
-			case 'input-slider': return InputSlider
+			case 'info_text': return InfoText
+			case 'info_image': return InfoImage
+			case 'info_video': return InfoVideo
+			case 'input_options': return InputOptions
+			case 'input_text': return InputText
+			case 'input_slider': return InputSlider
 			case 'likert': return Likert
 			case 'osgood': return Osgood
 			default: return null
