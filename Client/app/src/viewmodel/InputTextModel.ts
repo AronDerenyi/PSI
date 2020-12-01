@@ -1,2 +1,2 @@
-export class InputSliderModel {
+export class InputTextModel {
 }

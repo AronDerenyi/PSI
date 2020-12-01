@@ -1,2 +1,2 @@
-export class LikertModel {
+export class OsgoodModel {
 }

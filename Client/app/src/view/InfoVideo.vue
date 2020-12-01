@@ -1,15 +1,15 @@
 <template>
-	<h1>{{viewModel.title}}</h1>
+	<h1>Info Video</h1>
 </template>
 
 <script lang="ts">
 	import {Vue, Component} from "vue-property-decorator";
-	import {AppModel} from "../viewmodel/AppModel";
+	import {InfoVideoModel} from "src/viewmodel/InfoVideoModel";
 
 	@Component
-	export default class InfoImage extends Vue {
+	export default class InfoVideo extends Vue {
 
-		private viewModel = new AppModel()
+		private viewModel = new InfoVideoModel()
 	};
 </script>
 

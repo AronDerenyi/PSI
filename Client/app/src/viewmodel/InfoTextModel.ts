@@ -1,2 +1,2 @@
-export class InfoImageModel {
+export class InfoTextModel {
 }

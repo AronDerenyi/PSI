@@ -1,15 +1,15 @@
 <template>
-	<h1>{{viewModel.title}}</h1>
+	<h1>Input Options</h1>
 </template>
 
 <script lang="ts">
 	import {Vue, Component} from "vue-property-decorator";
-	import {AppModel} from "../viewmodel/AppModel";
+	import {InputOptionsModel} from "src/viewmodel/InputOptionsModel";
 
 	@Component
-	export default class InfoVideo extends Vue {
+	export default class InputOptions extends Vue {
 
-		private viewModel = new AppModel()
+		private viewModel = new InputOptionsModel()
 	};
 </script>
 

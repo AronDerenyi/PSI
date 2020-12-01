@@ -14,7 +14,7 @@ module.exports = {
 		__filename: false
 	},
 	entry: {
-		index: Path.resolve(__dirname, "app/index.ts")
+		app: Path.resolve(__dirname, "app/src/index.ts")
 	},
 	output: {
 		path: Path.resolve(__dirname, "dist"),
@@ -24,7 +24,7 @@ module.exports = {
 		// new BundleAnalyzerPlugin(),
 		new HtmlWebpackPlugin({
 			inject: "body",
-			chunks: ["index"],
+			chunks: ["app"],
 			fileName: "index.html",
 			title: "PSI"
 		}),

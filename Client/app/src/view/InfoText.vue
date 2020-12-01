@@ -1,15 +1,15 @@
 <template>
-	<h1>{{viewModel.title}}</h1>
+	<h1>Info Text</h1>
 </template>
 
 <script lang="ts">
 	import {Vue, Component} from "vue-property-decorator";
-	import {AppModel} from "../viewmodel/AppModel";
+	import {InfoTextModel} from "src/viewmodel/InfoTextModel";
 
 	@Component
-	export default class App extends Vue {
+	export default class InfoText extends Vue {
 
-		private viewModel = new AppModel()
+		private viewModel = new InfoTextModel()
 	};
 </script>
 

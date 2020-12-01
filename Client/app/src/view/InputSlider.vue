@@ -1,15 +1,15 @@
 <template>
-	<h1>{{viewModel.title}}</h1>
+	<h1>Input Slider</h1>
 </template>
 
 <script lang="ts">
 	import {Vue, Component} from "vue-property-decorator";
-	import {AppModel} from "../viewmodel/AppModel";
+	import {InputSliderModel} from "src/viewmodel/InputSliderModel";
 
 	@Component
-	export default class InputText extends Vue {
+	export default class InputSlider extends Vue {
 
-		private viewModel = new AppModel()
+		private viewModel = new InputSliderModel()
 	};
 </script>
 

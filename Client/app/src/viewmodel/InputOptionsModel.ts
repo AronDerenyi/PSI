@@ -1,2 +1,2 @@
-export class InfoVideoModel {
+export class InputOptionsModel {
 }

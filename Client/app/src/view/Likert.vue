@@ -1,15 +1,15 @@
 <template>
-	<h1>{{viewModel.title}}</h1>
+	<h1>Likert</h1>
 </template>
 
 <script lang="ts">
 	import {Vue, Component} from "vue-property-decorator";
-	import {AppModel} from "../viewmodel/AppModel";
+	import {LikertModel} from "src/viewmodel/LikertModel";
 
 	@Component
-	export default class InputText extends Vue {
+	export default class Likert extends Vue {
 
-		private viewModel = new AppModel()
+		private viewModel = new LikertModel()
 	};
 </script>
 

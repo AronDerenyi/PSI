@@ -1,2 +1,2 @@
-export class InputTextModel {
+export class LikertModel {
 }
