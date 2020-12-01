@@ -7,4 +7,8 @@ export class AppModel {
 	constructor() {
 
 	}
+
+	onResult(result: any) {
+
+	}
 }

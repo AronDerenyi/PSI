@@ -1,13 +1,38 @@
 <template>
 	<div class="app" :key="viewModel.id">
-		<InfoText class="screen" v-if="viewModel.type === 'info_text'" :parameters="viewModel.parameters"/>
-		<InfoImage class="screen" v-if="viewModel.type === 'info_image'" :parameters="viewModel.parameters"/>
-		<InfoVideo class="screen" v-if="viewModel.type === 'info_video'" :parameters="viewModel.parameters"/>
-		<InputOptions class="screen" v-if="viewModel.type === 'input_options'" :parameters="viewModel.parameters"/>
-		<InputText class="screen" v-if="viewModel.type === 'input_text'" :parameters="viewModel.parameters"/>
-		<InputSlider class="screen" v-if="viewModel.type === 'input_slider'" :parameters="viewModel.parameters"/>
-		<Likert class="screen" v-if="viewModel.type === 'likert'" :parameters="viewModel.parameters"/>
-		<Osgood class="screen" v-if="viewModel.type === 'osgood'" :parameters="viewModel.parameters"/>
+
+		<InfoText
+			class="screen" v-if="viewModel.type === 'info_text'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<InfoImage
+			class="screen" v-if="viewModel.type === 'info_image'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<InfoVideo
+			class="screen" v-if="viewModel.type === 'info_video'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<InputOptions
+			class="screen" v-if="viewModel.type === 'input_options'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<InputText
+			class="screen" v-if="viewModel.type === 'input_text'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<InputSlider
+			class="screen" v-if="viewModel.type === 'input_slider'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<Likert
+			class="screen" v-if="viewModel.type === 'likert'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
+		<Osgood
+			class="screen" v-if="viewModel.type === 'osgood'"
+			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
+
 	</div>
 </template>
 
