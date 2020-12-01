@@ -1,4 +1,10 @@
 export class AppModel {
 
-	readonly title: string = "Hello World!"
+	readonly id: string = null
+	readonly type: string = null
+	readonly parameters: any = null
+
+	constructor() {
+
+	}
 }
