@@ -46,7 +46,10 @@ export class AppModel {
 	private navigateToInfoText() {
 		Vue.set(this, 'id', 'inft')
 		Vue.set(this, 'type', 'info_text')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Text Title",
+			text: "Some text that is here",
+		})
 	}
 
 	private navigateToInfoImage() {
