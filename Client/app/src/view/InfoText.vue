@@ -19,7 +19,7 @@ export default class InfoText extends Vue {
 	private viewModel = new InfoTextModel(this.parameters)
 
 	@Watch('viewModel.result')
-	private onResult(result: {}) {
+	private onResult(result: any) {
 		this.$emit('result', result)
 	}
 };

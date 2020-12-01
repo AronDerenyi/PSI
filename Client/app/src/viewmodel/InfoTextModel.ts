@@ -5,7 +5,9 @@ export class InfoTextModel {
 	readonly title: string
 	readonly text: string
 
-	readonly result: {}
+	readonly result: { time: number }
+
+	private readonly startTime: number
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') {
@@ -15,9 +17,13 @@ export class InfoTextModel {
 		if (typeof parameters.text === 'string') {
 			this.text = parameters.text
 		}
+
+		this.startTime = Date.now()
 	}
 
 	next() {
-		Vue.set(this, "result", {})
+		Vue.set(this, "result", {
+			time: Date.now() - this.startTime
+		})
 	}
 }
