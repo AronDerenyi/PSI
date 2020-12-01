@@ -1,38 +1,9 @@
 <template>
 	<div class="app" :key="viewModel.id">
-
-		<InfoText
-			class="screen" v-if="viewModel.type === 'info_text'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<InfoImage
-			class="screen" v-if="viewModel.type === 'info_image'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<InfoVideo
-			class="screen" v-if="viewModel.type === 'info_video'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<InputOptions
-			class="screen" v-if="viewModel.type === 'input_options'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<InputText
-			class="screen" v-if="viewModel.type === 'input_text'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<InputSlider
-			class="screen" v-if="viewModel.type === 'input_slider'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<Likert
-			class="screen" v-if="viewModel.type === 'likert'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
-		<Osgood
-			class="screen" v-if="viewModel.type === 'osgood'"
-			:parameters="viewModel.parameters" @result="viewModel.onResult($event)"/>
-
+		<component
+			class="screen" :v-if="screen" :is="screen"
+			:parameters="viewModel.parameters"
+			@result="viewModel.onResult($event)"/>
 	</div>
 </template>
 
@@ -48,21 +19,24 @@ import InputSlider from "src/view/InputSlider.vue";
 import Likert from "src/view/Likert.vue";
 import Osgood from "src/view/Osgood.vue";
 
-@Component({
-	components: {
-		InfoText,
-		InfoImage,
-		InfoVideo,
-		InputOptions,
-		InputText,
-		InputSlider,
-		Likert,
-		Osgood
-	}
-})
+@Component
 export default class App extends Vue {
 
 	private viewModel = new AppModel()
+
+	get screen(): typeof Vue {
+		switch (this.viewModel.type) {
+			case 'info-text': return InfoText
+			case 'info-image': return InfoImage
+			case 'info-video': return InfoVideo
+			case 'input-options': return InputOptions
+			case 'input-text': return InputText
+			case 'input-slider': return InputSlider
+			case 'likert': return Likert
+			case 'osgood': return Osgood
+			default: return null
+		}
+	}
 };
 </script>
 
