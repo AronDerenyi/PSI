@@ -48,7 +48,7 @@ export class AppModel {
 		Vue.set(this, 'type', 'info_text')
 		Vue.set(this, 'parameters', {
 			title: "Text Title",
-			text: "Some text that is here",
+			text: "Some text that is here"
 		})
 	}
 
