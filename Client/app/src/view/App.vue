@@ -1,7 +1,7 @@
 <template>
 	<div class="app" :key="viewModel.id">
 		<component
-			class="screen" :v-if="screen" :is="screen"
+			class="screen" v-if="screen" :is="screen"
 			:parameters="viewModel.parameters"
 			@result="viewModel.onResult($event)"/>
 	</div>
