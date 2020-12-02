@@ -9,7 +9,6 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {InfoTextModel} from "src/viewmodel/InfoTextModel";
-import {InputOptionsModel} from "src/viewmodel/InputOptionsModel";
 
 @Component
 export default class InfoText extends Vue {

@@ -1,18 +1,35 @@
 <template>
 	<div>
-		<h1>Input Text</h1>
-		<button @click="$emit('result')">next</button>
+		<h1>{{ viewModel.title }}</h1>
+		<p>{{ viewModel.description }}</p>
+
+		<label v-for="(inputLabel, index) of viewModel.inputLabels" :key="index">
+			<p>{{ inputLabel }}</p>
+			<input
+				type="text"
+				:value="viewModel.getInputValue(index)"
+				@input="viewModel.setInputValue(index, $event.target.value)"/>
+		</label>
+
+		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {InputTextModel} from "src/viewmodel/InputTextModel";
 
 @Component
 export default class InputText extends Vue {
 
-	private viewModel = new InputTextModel()
+	@Prop() readonly parameters: any
+
+	private viewModel = new InputTextModel(this.parameters)
+
+	@Watch('viewModel.result')
+	private onResult(result: any) {
+		this.$emit('result', result)
+	}
 };
 </script>
 

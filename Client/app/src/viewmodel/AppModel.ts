@@ -7,7 +7,8 @@ export class AppModel {
 	readonly parameters: any = null
 
 	constructor() {
-		this.next()
+		// this.next()
+		this.navigateToInputText()
 	}
 
 	onResult(result: any) {
@@ -97,7 +98,16 @@ export class AppModel {
 	private navigateToInputText() {
 		Vue.set(this, 'id', 'inpt')
 		Vue.set(this, 'type', 'input_text')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Options Title",
+			description: "Select an option:",
+			next: "Next",
+			inputs: [
+				{id: "a", label: "Input A"},
+				{id: "b", label: "Input B"},
+				{id: "c", label: "Input C"}
+			]
+		})
 	}
 
 	private navigateToInputSlider() {
