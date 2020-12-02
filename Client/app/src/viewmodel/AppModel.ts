@@ -57,8 +57,8 @@ export class AppModel {
 		Vue.set(this, 'id', 'infi')
 		Vue.set(this, 'type', 'info_image')
 		Vue.set(this, 'parameters', {
-			title: "Text Title",
-			src: "Some image source",
+			title: "Image Title",
+			src: "https://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg",
 			waitingTime: 1000
 		})
 	}

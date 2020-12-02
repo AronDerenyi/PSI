@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.src }}</p>
+		<img :src="viewModel.src" alt="image"/>
 		<p>{{ viewModel.progress }}</p>
 		<button v-if="viewModel.showNext" @click="viewModel.next()">Folytatás</button>
 	</div>
