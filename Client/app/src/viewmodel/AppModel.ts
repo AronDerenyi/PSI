@@ -8,7 +8,7 @@ export class AppModel {
 
 	constructor() {
 		// this.next()
-		this.navigateToInputSlider()
+		this.navigateToLikert()
 	}
 
 	onResult(result: any) {
@@ -126,7 +126,29 @@ export class AppModel {
 	private navigateToLikert() {
 		Vue.set(this, 'id', 'lik')
 		Vue.set(this, 'type', 'likert')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Likert Title",
+			next: "Next",
+			pageSize: 3,
+			random: true,
+			labels: [
+				'strongly disagree',
+				'disagree',
+				'neutral',
+				'agree',
+				'strongly agree'
+			],
+			questions: [
+				{id: 'a', question: 'Question A'},
+				{id: 'b', question: 'Question B'},
+				{id: 'c', question: 'Question C'},
+				{id: 'd', question: 'Question D'},
+				{id: 'e', question: 'Question E'},
+				{id: 'f', question: 'Question F'},
+				{id: 'g', question: 'Question G'},
+				{id: 'h', question: 'Question H'}
+			]
+		})
 	}
 
 	private navigateToOsgood() {
