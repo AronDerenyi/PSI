@@ -8,7 +8,7 @@ export class AppModel {
 
 	constructor() {
 		// this.next()
-		this.navigateToInputOptions()
+		this.navigateToInputSlider()
 	}
 
 	onResult(result: any) {
@@ -99,8 +99,8 @@ export class AppModel {
 		Vue.set(this, 'id', 'inpt')
 		Vue.set(this, 'type', 'input_text')
 		Vue.set(this, 'parameters', {
-			title: "Options Title",
-			description: "Select an option:",
+			title: "Text input Title",
+			description: "Type something!",
 			next: "Next",
 			inputs: [
 				{id: "a", label: "Input A"},
@@ -113,7 +113,13 @@ export class AppModel {
 	private navigateToInputSlider() {
 		Vue.set(this, 'id', 'inps')
 		Vue.set(this, 'type', 'input_slider')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Slider Title",
+			description: "Sliiiiide",
+			next: "Next",
+			minValue: 0,
+			maxValue: 100
+		})
 	}
 
 
