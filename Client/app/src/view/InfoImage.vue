@@ -1,0 +1,31 @@
+<template>
+	<div>
+		<h1>{{ viewModel.title }}</h1>
+		<p>{{ viewModel.description }}</p>
+		<img :src="viewModel.source" alt="image"/>
+		<p>{{ viewModel.progress }}</p>
+		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+	</div>
+</template>
+
+<script lang="ts">
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import {InfoImageModel} from "src/viewmodel/InfoImageModel";
+
+@Component
+export default class InfoImage extends Vue {
+
+	@Prop() readonly parameters: any
+
+	private viewModel = new InfoImageModel(this.parameters)
+
+	@Watch('viewModel.result')
+	private onResult(result: any) {
+		this.$emit('result', result)
+	}
+};
+</script>
+
+<style scoped>
+
+</style>
