@@ -3,7 +3,7 @@
 		<h1>{{ viewModel.title }}</h1>
 		<p>{{ viewModel.description }}</p>
 		<video controls :src="viewModel.source" @ended="viewModel.videoFinished()"></video>
-		<button v-if="viewModel.showNext" @click="$emit('result')">{{ viewModel.nextLabel }}</button>
+		<button v-if="viewModel.showNext" @click="next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 
