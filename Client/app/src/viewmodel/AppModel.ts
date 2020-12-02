@@ -59,14 +59,17 @@ export class AppModel {
 		Vue.set(this, 'parameters', {
 			title: "Text Title",
 			src: "Some image source",
-			waitingTime: 10000
+			waitingTime: 1000
 		})
 	}
 
 	private navigateToInfoVideo() {
 		Vue.set(this, 'id', 'infv')
 		Vue.set(this, 'type', 'info_video')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Video Title",
+			src: "https://www.w3schools.com/html/mov_bbb.mp4"
+		})
 	}
 
 

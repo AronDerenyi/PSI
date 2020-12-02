@@ -1,18 +1,26 @@
 <template>
 	<div>
-		<h1>Info Video</h1>
-		<button @click="$emit('result')">next</button>
+		<h1>{{ viewModel.title }}</h1>
+		<video controls :src="viewModel.src" @ended="viewModel.videoFinished()"></video>
+		<button v-if="viewModel.showNext" @click="$emit('result')">Folytatás</button>
 	</div>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {InfoVideoModel} from "src/viewmodel/InfoVideoModel";
 
 @Component
 export default class InfoVideo extends Vue {
 
-	private viewModel = new InfoVideoModel()
+	@Prop() readonly parameters: any
+
+	private viewModel = new InfoVideoModel(this.parameters)
+
+	@Watch('viewModel.result')
+	private onResult(result: any) {
+		this.$emit('result', result)
+	}
 };
 </script>
 
