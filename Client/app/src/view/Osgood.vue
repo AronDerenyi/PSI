@@ -1,18 +1,34 @@
 <template>
 	<div>
-		<h1>Osgood</h1>
-		<button @click="$emit('result')">next</button>
+		<h1>{{ viewModel.title }}</h1>
+
+		<div v-for="pair of viewModel.pairs">
+			{{ pair.first }}
+			<label v-for="value of viewModel.size" :key="value">
+				<input type="radio" :value="value" v-model="pair.value"/>
+			</label>
+			{{ pair.second }}
+		</div>
+
+		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 
 <script lang="ts">
-import {Vue, Component} from "vue-property-decorator";
+import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {OsgoodModel} from "src/viewmodel/OsgoodModel";
 
 @Component
 export default class Osgood extends Vue {
 
-	private viewModel = new OsgoodModel()
+	@Prop() readonly parameters: any
+
+	private viewModel = new OsgoodModel(this.parameters)
+
+	@Watch('viewModel.result')
+	private onResult(result: any) {
+		this.$emit('result', result)
+	}
 };
 </script>
 

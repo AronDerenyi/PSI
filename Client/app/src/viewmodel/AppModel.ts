@@ -8,7 +8,7 @@ export class AppModel {
 
 	constructor() {
 		// this.next()
-		this.navigateToLikert()
+		this.navigateToOsgood()
 	}
 
 	onResult(result: any) {
@@ -154,6 +154,22 @@ export class AppModel {
 	private navigateToOsgood() {
 		Vue.set(this, 'id', 'osg')
 		Vue.set(this, 'type', 'osgood')
-		Vue.set(this, 'parameters', {})
+		Vue.set(this, 'parameters', {
+			title: "Osgood Title",
+			next: "Next",
+			pageSize: 3,
+			random: true,
+			size: 6,
+			pairs: [
+				{id: 'a', first: 'First A', second: 'Second A'},
+				{id: 'b', first: 'First B', second: 'Second B'},
+				{id: 'c', first: 'First C', second: 'Second C'},
+				{id: 'd', first: 'First D', second: 'Second D'},
+				{id: 'e', first: 'First E', second: 'Second E'},
+				{id: 'f', first: 'First F', second: 'Second F'},
+				{id: 'g', first: 'First G', second: 'Second G'},
+				{id: 'h', first: 'First H', second: 'Second H'}
+			]
+		})
 	}
 }
