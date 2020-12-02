@@ -32,11 +32,94 @@ const State = require('./test/State')
 
 const test = new Test(
 	{
-		'a': new State('type_a', {}, 'b'),
-		'b': new State('type_a', {}, 'c'),
-		'c': new State('type_b', {})
+		'inft': new State('info_text', {
+			title: "Text Title",
+			description: "Some text that is here",
+			next: "Next"
+		}, 'infi'),
+		'infi': new State('info_image', {
+			title: "Image Title",
+			description: "Wait a second and observe the image",
+			next: "Next",
+			source: "https://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg",
+			waitingTime: 1000
+		}, 'infv'),
+		'infv': new State('info_video', {
+			title: "Video Title",
+			description: "Watch the video",
+			next: "Next",
+			source: "https://www.w3schools.com/html/mov_bbb.mp4"
+		}, 'inpo'),
+		'inpo': new State('input_options', {
+			title: "Options Title",
+			description: "Select an option:",
+			next: "Next",
+			options: [
+				{id: "a", label: "Option A"},
+				{id: "b", label: "Option B"},
+				{id: "c", label: "Option C"},
+				{id: "d", label: "Option D"}
+			]
+		}, 'inpt'),
+		'inpt': new State('input_text', {
+			title: "Text input Title",
+			description: "Type something!",
+			next: "Next",
+			inputs: [
+				{id: "a", label: "Input A"},
+				{id: "b", label: "Input B"},
+				{id: "c", label: "Input C"}
+			]
+		}, 'inps'),
+		'inps': new State('input_slider', {
+			title: "Slider Title",
+			description: "Sliiiiide",
+			next: "Next",
+			minValue: 0,
+			maxValue: 100
+		}, 'lik'),
+		'lik': new State('likert', {
+			title: "Likert Title",
+			next: "Next",
+			pageSize: 3,
+			random: true,
+			labels: [
+				'strongly disagree',
+				'disagree',
+				'neutral',
+				'agree',
+				'strongly agree'
+			],
+			questions: [
+				{id: 'a', question: 'Question A'},
+				{id: 'b', question: 'Question B'},
+				{id: 'c', question: 'Question C'},
+				{id: 'd', question: 'Question D'},
+				{id: 'e', question: 'Question E'},
+				{id: 'f', question: 'Question F'},
+				{id: 'g', question: 'Question G'},
+				{id: 'h', question: 'Question H'}
+			]
+		}, 'osg'),
+		'osg': new State('osgood', {
+			title: "Osgood Title",
+			next: "Next",
+			pageSize: 3,
+			random: true,
+			size: 6,
+			pairs: [
+				{id: 'a', first: 'First A', second: 'Second A'},
+				{id: 'b', first: 'First B', second: 'Second B'},
+				{id: 'c', first: 'First C', second: 'Second C'},
+				{id: 'd', first: 'First D', second: 'Second D'},
+				{id: 'e', first: 'First E', second: 'Second E'},
+				{id: 'f', first: 'First F', second: 'Second F'},
+				{id: 'g', first: 'First G', second: 'Second G'},
+				{id: 'h', first: 'First H', second: 'Second H'}
+			]
+		})
 	},
-	'a'
+	'inft'
 )
 
 // Setting up the routes
