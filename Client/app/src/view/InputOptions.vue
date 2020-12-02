@@ -1,13 +1,14 @@
 <template>
 	<div>
 		<h1>{{ viewModel.title }}</h1>
+		<p>{{ viewModel.description }}</p>
 
 		<label v-for="(optionName, optionIndex) of viewModel.optionNames" :key="optionIndex">
 			<input type="radio" :value="optionIndex" v-model="viewModel.selectedOption"/>
 			<p>{{ optionName }}</p>
 		</label>
 
-		<button v-if="viewModel.showNext" @click="viewModel.next()">Folytatás</button>
+		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 

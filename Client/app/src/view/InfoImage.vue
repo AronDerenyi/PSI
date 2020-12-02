@@ -1,9 +1,10 @@
 <template>
 	<div>
 		<h1>{{ viewModel.title }}</h1>
-		<img :src="viewModel.src" alt="image"/>
+		<p>{{ viewModel.description }}</p>
+		<img :src="viewModel.source" alt="image"/>
 		<p>{{ viewModel.progress }}</p>
-		<button v-if="viewModel.showNext" @click="viewModel.next()">Folytatás</button>
+		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 

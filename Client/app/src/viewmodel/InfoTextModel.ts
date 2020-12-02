@@ -3,7 +3,8 @@ import Vue from "vue";
 export class InfoTextModel {
 
 	readonly title: string
-	readonly text: string
+	readonly description: string
+	readonly nextLabel: string
 
 	readonly result: {
 		elapsedTime: number
@@ -13,7 +14,8 @@ export class InfoTextModel {
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
-		if (typeof parameters.text === 'string') this.text = parameters.text
+		if (typeof parameters.description === 'string') this.description = parameters.description
+		if (typeof parameters.next === 'string') this.nextLabel = parameters.next
 	}
 
 	next() {

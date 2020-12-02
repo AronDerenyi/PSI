@@ -2,7 +2,9 @@ import Vue from "vue"
 
 export class InputOptionsModel {
 
-	readonly title: string = null
+	readonly title: string
+	readonly description: string
+	readonly nextLabel: string
 	readonly optionNames: { readonly [index: number]: string }
 
 	readonly result: {
@@ -29,6 +31,8 @@ export class InputOptionsModel {
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
+		if (typeof parameters.description === 'string') this.description = parameters.description
+		if (typeof parameters.next === 'string') this.nextLabel = parameters.next
 		if (Array.isArray(parameters.options)) {
 			parameters.options.forEach((option: any) => {
 				if (

@@ -1,8 +1,9 @@
 <template>
 	<div>
 		<h1>{{ viewModel.title }}</h1>
-		<video controls :src="viewModel.src" @ended="viewModel.videoFinished()"></video>
-		<button v-if="viewModel.showNext" @click="$emit('result')">Folytatás</button>
+		<p>{{ viewModel.description }}</p>
+		<video controls :src="viewModel.source" @ended="viewModel.videoFinished()"></video>
+		<button v-if="viewModel.showNext" @click="$emit('result')">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 

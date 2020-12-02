@@ -3,7 +3,9 @@ import Vue from "vue";
 export class InfoImageModel {
 
 	readonly title: string
-	readonly src: string
+	readonly description: string
+	readonly nextLabel: string
+	readonly source: string
 	readonly progress: number
 
 	readonly result: {
@@ -15,7 +17,9 @@ export class InfoImageModel {
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
-		if (typeof parameters.src === 'string') this.src = parameters.src
+		if (typeof parameters.description === 'string') this.description = parameters.description
+		if (typeof parameters.next === 'string') this.nextLabel = parameters.next
+		if (typeof parameters.source === 'string') this.source = parameters.source
 		if (typeof parameters.waitingTime === 'number') this.waitingTime = parameters.waitingTime
 		this.updateProgress()
 	}

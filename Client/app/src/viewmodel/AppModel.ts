@@ -49,7 +49,8 @@ export class AppModel {
 		Vue.set(this, 'type', 'info_text')
 		Vue.set(this, 'parameters', {
 			title: "Text Title",
-			text: "Some text that is here"
+			description: "Some text that is here",
+			next: "Next"
 		})
 	}
 
@@ -58,7 +59,9 @@ export class AppModel {
 		Vue.set(this, 'type', 'info_image')
 		Vue.set(this, 'parameters', {
 			title: "Image Title",
-			src: "https://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg",
+			description: "Wait a second and observe the image",
+			next: "Next",
+			source: "https://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg",
 			waitingTime: 1000
 		})
 	}
@@ -68,7 +71,9 @@ export class AppModel {
 		Vue.set(this, 'type', 'info_video')
 		Vue.set(this, 'parameters', {
 			title: "Video Title",
-			src: "https://www.w3schools.com/html/mov_bbb.mp4"
+			description: "Watch the video",
+			next: "Next",
+			source: "https://www.w3schools.com/html/mov_bbb.mp4"
 		})
 	}
 
@@ -78,6 +83,8 @@ export class AppModel {
 		Vue.set(this, 'type', 'input_options')
 		Vue.set(this, 'parameters', {
 			title: "Options Title",
+			description: "Select an option:",
+			next: "Next",
 			options: [
 				{id: "a", name: "Option A"},
 				{id: "b", name: "Option B"},

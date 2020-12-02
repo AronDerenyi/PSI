@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.text }}</p>
-		<button @click="viewModel.next()">Folytatás</button>
+		<p>{{ viewModel.description }}</p>
+		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
 
