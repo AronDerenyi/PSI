@@ -5,11 +5,11 @@ export class InputOptionsModel {
 	readonly title: string
 	readonly description: string
 	readonly nextLabel: string
-	readonly optionNames: { readonly [index: number]: string }
+	readonly optionLabels: { readonly [index: number]: string }
 
 	readonly result: {
-		selected: string,
 		elapsedTime: number,
+		selected: string,
 		events: {
 			time: number,
 			selected: string
@@ -18,7 +18,7 @@ export class InputOptionsModel {
 
 	private readonly options: {
 		id: string,
-		name: string
+		label: string
 	}[] = []
 
 	private readonly events: {
@@ -37,17 +37,17 @@ export class InputOptionsModel {
 			parameters.options.forEach((option: any) => {
 				if (
 					typeof option.id === 'string' &&
-					typeof option.name === 'string'
+					typeof option.label === 'string'
 				) {
 					this.options.push({
 						id: option.id,
-						name: option.name
+						label: option.label
 					})
 				}
 			})
 		}
 
-		this.optionNames = this.options.map(option => option.name)
+		this.optionLabels = this.options.map(option => option.label)
 	}
 
 	get selectedOption() {
@@ -68,8 +68,8 @@ export class InputOptionsModel {
 
 	next() {
 		Vue.set(this, "result", {
-			selected: this.options[this.internalSelectedOption].id,
 			elapsedTime: Date.now() - this.startTime,
+			selected: this.options[this.internalSelectedOption].id,
 			events: this.events.map(event => ({
 				time: event.time,
 				selected: event.selected

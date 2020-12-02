@@ -3,8 +3,8 @@
 		<h1>{{ viewModel.title }}</h1>
 		<p>{{ viewModel.description }}</p>
 
-		<label v-for="(inputLabel, index) of viewModel.inputLabels" :key="index">
-			<p>{{ inputLabel }}</p>
+		<label v-for="(label, index) of viewModel.inputLabels" :key="index">
+			<p>{{ label }}</p>
 			<input
 				type="text"
 				:value="viewModel.getInputValue(index)"

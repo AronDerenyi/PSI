@@ -3,9 +3,9 @@
 		<h1>{{ viewModel.title }}</h1>
 		<p>{{ viewModel.description }}</p>
 
-		<label v-for="(optionName, optionIndex) of viewModel.optionNames" :key="optionIndex">
-			<input type="radio" :value="optionIndex" v-model="viewModel.selectedOption"/>
-			<p>{{ optionName }}</p>
+		<label v-for="(label, index) of viewModel.optionLabels" :key="index">
+			<input type="radio" :value="index" v-model="viewModel.selectedOption"/>
+			<p>{{ label }}</p>
 		</label>
 
 		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>

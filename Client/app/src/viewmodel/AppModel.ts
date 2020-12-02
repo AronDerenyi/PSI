@@ -8,7 +8,7 @@ export class AppModel {
 
 	constructor() {
 		// this.next()
-		this.navigateToInputText()
+		this.navigateToInputOptions()
 	}
 
 	onResult(result: any) {
@@ -87,10 +87,10 @@ export class AppModel {
 			description: "Select an option:",
 			next: "Next",
 			options: [
-				{id: "a", name: "Option A"},
-				{id: "b", name: "Option B"},
-				{id: "c", name: "Option C"},
-				{id: "d", name: "Option D"}
+				{id: "a", label: "Option A"},
+				{id: "b", label: "Option B"},
+				{id: "c", label: "Option C"},
+				{id: "d", label: "Option D"}
 			]
 		})
 	}
