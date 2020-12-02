@@ -1,8 +1,8 @@
 <template>
-	<div class="app" :key="viewModel.id">
+	<div class="app" :key="viewModel.stateId">
 		<component
 			class="screen" v-if="screen" :is="screen"
-			:parameters="viewModel.parameters"
+			:parameters="viewModel.screenParameters"
 			@result="viewModel.onResult($event)"/>
 	</div>
 </template>
@@ -25,7 +25,7 @@ export default class App extends Vue {
 	private viewModel = new AppModel()
 
 	get screen(): typeof Vue {
-		switch (this.viewModel.type) {
+		switch (this.viewModel.screenType) {
 			case 'info_text': return InfoText
 			case 'info_image': return InfoImage
 			case 'info_video': return InfoVideo
