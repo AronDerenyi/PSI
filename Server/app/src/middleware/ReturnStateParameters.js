@@ -3,8 +3,8 @@ module.exports = (test) => (req, res) => {
 	const state = test.states[stateId]
 
 	res.json({
-		id: stateId,
-		type: state.type,
-		parameters: state.parameters
+		stateId: stateId,
+		screenType: state.screenType,
+		screenParameters: state.screenParameters
 	}).end();
 };

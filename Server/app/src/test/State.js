@@ -1,11 +1,11 @@
 module.exports = function State(
-	type,
-	parameters,
-	transitions
+	transitions,
+	screenType,
+	screenParameters
 ) {
 
-	this.type = type
-	this.parameters = parameters
+	this.screenType = screenType
+	this.screenParameters = screenParameters
 	this.ending = !transitions
 
 	this.next = (results) => {

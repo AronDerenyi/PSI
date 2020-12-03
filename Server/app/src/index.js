@@ -32,25 +32,25 @@ const State = require('./test/State')
 
 const test = new Test(
 	{
-		'inft': new State('info_text', {
+		'inft': new State('infi', 'info_text', {
 			title: "Text Title",
 			description: "Some text that is here",
 			next: "Next"
-		}, 'infi'),
-		'infi': new State('info_image', {
+		}),
+		'infi': new State('infv', 'info_image', {
 			title: "Image Title",
 			description: "Wait a second and observe the image",
 			next: "Next",
 			source: "https://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg",
 			waitingTime: 1000
-		}, 'infv'),
-		'infv': new State('info_video', {
+		}),
+		'infv': new State('inpo', 'info_video', {
 			title: "Video Title",
 			description: "Watch the video",
 			next: "Next",
 			source: "https://www.w3schools.com/html/mov_bbb.mp4"
-		}, 'inpo'),
-		'inpo': new State('input_options', {
+		}),
+		'inpo': new State('inpt', 'input_options', {
 			title: "Options Title",
 			description: "Select an option:",
 			next: "Next",
@@ -60,8 +60,8 @@ const test = new Test(
 				{id: "c", label: "Option C"},
 				{id: "d", label: "Option D"}
 			]
-		}, 'inpt'),
-		'inpt': new State('input_text', {
+		}),
+		'inpt': new State('inps', 'input_text', {
 			title: "Text input Title",
 			description: "Type something!",
 			next: "Next",
@@ -70,15 +70,15 @@ const test = new Test(
 				{id: "b", label: "Input B"},
 				{id: "c", label: "Input C"}
 			]
-		}, 'inps'),
-		'inps': new State('input_slider', {
+		}),
+		'inps': new State('lik', 'input_slider', {
 			title: "Slider Title",
 			description: "Sliiiiide",
 			next: "Next",
 			minValue: 0,
 			maxValue: 100
-		}, 'lik'),
-		'lik': new State('likert', {
+		}),
+		'lik': new State('osg', 'likert', {
 			title: "Likert Title",
 			next: "Next",
 			pageSize: 3,
@@ -100,7 +100,7 @@ const test = new Test(
 				{id: 'g', question: 'Question G'},
 				{id: 'h', question: 'Question H'}
 			]
-		}, 'osg'),
+		}),
 		'osg': new State('osgood', {
 			title: "Osgood Title",
 			next: "Next",
