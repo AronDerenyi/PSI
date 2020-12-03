@@ -6,7 +6,7 @@ export class TestAPI {
 
 	}
 
-	private create(xhttp: XMLHttpRequest): Promise<{ id: string, type: string, parameters: any }> {
+	private create(xhttp: XMLHttpRequest): Promise<{ stateId: string, screenType: string, screenParameters: any }> {
 		return new Promise((resolve, reject) => {
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4) {
@@ -17,9 +17,9 @@ export class TestAPI {
 						if (typeof response.type !== 'string') reject()
 
 						resolve({
-							id: response.id,
-							type: response.type,
-							parameters: response.parameters
+							stateId: response.stateId,
+							screenType: response.screenType,
+							screenParameters: response.screenParameters
 						})
 					} else {
 						reject({
@@ -32,7 +32,7 @@ export class TestAPI {
 		})
 	}
 
-	getTest(): Promise<{ id: string, type: string, parameters: any }> {
+	getTest(): Promise<{ stateId: string, screenType: string, screenParameters: any }> {
 		const xhttp = new XMLHttpRequest();
 		const promise = this.create(xhttp)
 
@@ -42,7 +42,7 @@ export class TestAPI {
 		return promise
 	}
 
-	postTest(stateId: string, result: any): Promise<{ id: string, type: string, parameters: any }> {
+	postTest(stateId: string, result: any): Promise<{ stateId: string, screenType: string, screenParameters: any }> {
 		const xhttp = new XMLHttpRequest();
 		const promise = this.create(xhttp)
 
@@ -56,7 +56,7 @@ export class TestAPI {
 		return promise
 	}
 
-	putReset(): Promise<{ id: string, type: string, parameters: any }> {
+	putReset(): Promise<{ stateId: string, screenType: string, screenParameters: any }> {
 		const xhttp = new XMLHttpRequest();
 		const promise = this.create(xhttp)
 

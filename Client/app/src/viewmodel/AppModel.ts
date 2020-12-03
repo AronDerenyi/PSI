@@ -22,9 +22,9 @@ export class AppModel {
 			.catch((error) => alert(error.status + " Error: " + error.response))
 	}
 
-	private apply(response: {id: string, type: string, parameters: any}) {
-		Vue.set(this, 'stateId', response.id)
-		Vue.set(this, 'screenType', response.type)
-		Vue.set(this, 'screenParameters', response.parameters)
+	private apply(response: { stateId: string, screenType: string, screenParameters: any }) {
+		Vue.set(this, 'stateId', response.stateId)
+		Vue.set(this, 'screenType', response.screenType)
+		Vue.set(this, 'screenParameters', response.screenParameters)
 	}
 }
