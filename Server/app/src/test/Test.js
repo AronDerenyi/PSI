@@ -1,8 +1,11 @@
 module.exports = function Test(
 	states,
-	start
+	firstStateIdProvider,
+	resultsProvider
 ) {
 
 	this.states = states
-	this.start = start
+
+	this.getFirstStateId = () => firstStateIdProvider()
+	this.getResults = () => resultsProvider()
 }
