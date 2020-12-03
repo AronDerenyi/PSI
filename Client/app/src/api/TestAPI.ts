@@ -13,8 +13,8 @@ export class TestAPI {
 					if (this.status == 200) {
 						const response = JSON.parse(this.response)
 
-						if (typeof response.id !== 'string') reject()
-						if (typeof response.type !== 'string') reject()
+						if (typeof response.stateId !== 'string') reject()
+						if (typeof response.screenType !== 'string') reject()
 
 						resolve({
 							stateId: response.stateId,
