@@ -1,9 +1,11 @@
 <template>
 	<div class="app" :key="viewModel.stateId">
-		<component
-			class="screen" v-if="screen" :is="screen"
-			:parameters="viewModel.screenParameters"
-			@result="viewModel.onResult($event)"/>
+		<div class="card">
+			<component
+				class="screen" v-if="screen" :is="screen"
+				:parameters="viewModel.screenParameters"
+				@result="viewModel.onResult($event)"/>
+		</div>
 	</div>
 </template>
 
@@ -26,15 +28,24 @@ export default class App extends Vue {
 
 	get screen(): typeof Vue {
 		switch (this.viewModel.screenType) {
-			case 'info_text': return InfoText
-			case 'info_image': return InfoImage
-			case 'info_video': return InfoVideo
-			case 'input_options': return InputOptions
-			case 'input_text': return InputText
-			case 'input_slider': return InputSlider
-			case 'likert': return Likert
-			case 'osgood': return Osgood
-			default: return null
+			case 'info_text':
+				return InfoText
+			case 'info_image':
+				return InfoImage
+			case 'info_video':
+				return InfoVideo
+			case 'input_options':
+				return InputOptions
+			case 'input_text':
+				return InputText
+			case 'input_slider':
+				return InputSlider
+			case 'likert':
+				return Likert
+			case 'osgood':
+				return Osgood
+			default:
+				return null
 		}
 	}
 };
@@ -42,10 +53,28 @@ export default class App extends Vue {
 
 <style scoped>
 .app {
+	width: 100%;
+	min-height: 100%;
 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.card {
+	width: 800px;
+	margin: 48px;
+
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	box-shadow: 0 12px 32px var(--color_shadow);
+	background: var(--color_surface);
 }
 
 .screen {
-
+	flex-grow: 1;
 }
 </style>
