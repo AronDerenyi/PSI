@@ -70,7 +70,7 @@ export default class App extends Vue {
 	display: flex;
 	flex-direction: column;
 	border-radius: 16px;
-	box-shadow: 0 12px 32px var(--color_shadow);
+	box-shadow: 0 12px 48px var(--color_shadow);
 	background: var(--color_surface);
 }
 
