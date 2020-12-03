@@ -31,6 +31,9 @@ const test = require('./test/PSITest')
 
 // Setting up the routes
 
+const errorInternal = require('./middleware/ErrorInternal')
+const errorNotFound = require('./middleware/ErrorNotFound')
+
 const initializeSession = require('./middleware/InitializeSession')
 const validateSession = require('./middleware/ValidateSession')
 const validateState = require('./middleware/ValidateState')
@@ -61,6 +64,9 @@ app.put(
 	initializeSession(test),
 	returnStateParameters(test)
 )
+
+app.use(errorInternal())
+app.use(errorNotFound())
 
 // Starting the Server
 
