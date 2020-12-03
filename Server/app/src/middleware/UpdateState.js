@@ -1,9 +1,15 @@
 module.exports = (test) => (req, res, next) => {
 	const session = req.session
-	const stateId = session.stateId
-	const results = session.results
+	const state = test.states[session.stateId]
 
-	session.stateId = test.states[stateId].next(results)
+	if (state.ending) {
+		console.log(session.results)
+		// TODO: Save results
+		session.stateId = null
+		session.results = null
+	} else {
+		session.stateId = state.next(session.results)
+	}
 
 	next()
 };
