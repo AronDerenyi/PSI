@@ -3,13 +3,11 @@ module.exports = (test) => (req, res, next) => {
 	const state = test.states[session.stateId]
 
 	if (state.ending) {
-		console.log(session.results)
-		// TODO: Save results
-		session.stateId = null
-		session.results = null
+		req.session.regenerate(function (err) {
+			next(err)
+		})
 	} else {
 		session.stateId = state.next(session.results)
+		next()
 	}
-
-	next()
 };

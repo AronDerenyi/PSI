@@ -1,7 +1,5 @@
 module.exports = () => (req, res, next) => {
-	const session = req.session
-	session.stateId = null
-	session.results = null
-
-	next()
+	req.session.regenerate(function(err) {
+		next(err)
+	})
 };

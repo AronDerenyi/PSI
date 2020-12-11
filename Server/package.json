@@ -6,8 +6,9 @@
 		"node": "12.x"
 	},
 	"dependencies": {
-		"express": "latest",
+		"axios": "^0.21.0",
 		"body-parser": "latest",
+		"express": "latest",
 		"express-session": "latest"
 	},
 	"scripts": {

@@ -38,6 +38,7 @@ const initializeSession = require('./middleware/InitializeSession')
 const validateSession = require('./middleware/ValidateSession')
 const validateState = require('./middleware/ValidateState')
 const updateResults = require('./middleware/UpdateResults')
+const saveResults = require('./middleware/SaveResults')
 const updateState = require('./middleware/UpdateState')
 const resetSession = require('./middleware/ResetSession')
 const returnStateParameters = require('./middleware/ReturnStateParameters')
@@ -53,6 +54,7 @@ app.post(
 	validateSession(),
 	validateState(),
 	updateResults(),
+	saveResults(),
 	updateState(test),
 	initializeSession(test),
 	returnStateParameters(test)
