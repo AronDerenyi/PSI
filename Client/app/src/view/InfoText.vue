@@ -32,6 +32,10 @@ export default class InfoText extends Vue {
 	flex-direction: column;
 }
 
+.title {
+	width: 800px;
+}
+
 .title h1 {
 	padding: 20px 60px;
 	text-align: center;
@@ -40,6 +44,7 @@ export default class InfoText extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: justify;
+	color: var(--color_on_surface_variant);
 }
 
 button {

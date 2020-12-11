@@ -56,6 +56,7 @@ export default class InfoImage extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: center;
+	color: var(--color_on_surface_variant);
 }
 
 .image {
@@ -65,7 +66,7 @@ export default class InfoImage extends Vue {
 }
 
 .image img {
-	width: 100%;
+	width: 800px;
 	display: block;
 }
 

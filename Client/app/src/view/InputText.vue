@@ -5,13 +5,15 @@
 			<p>{{ viewModel.description }}</p>
 		</div>
 
-		<label v-for="(label, index) of viewModel.inputLabels" :key="index">
-			<p>{{ label }}</p>
-			<input
-				type="text"
-				:value="viewModel.getInputValue(index)"
-				@input="viewModel.setInputValue(index, $event.target.value)"/>
-		</label>
+		<div class="card inputs">
+			<label v-for="(label, index) of viewModel.inputLabels" :key="index">
+				{{ label }}
+				<input
+					type="text"
+					:value="viewModel.getInputValue(index)"
+					@input="viewModel.setInputValue(index, $event.target.value)"/>
+			</label>
+		</div>
 
 		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
@@ -49,6 +51,34 @@ export default class InputText extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: center;
+	color: var(--color_on_surface_variant);
+}
+
+.inputs {
+	width: 400px;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.inputs label {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding: 15px 15px;
+}
+
+.inputs label input {
+	padding: 10px 10px;
+	font-weight: 300;
+	font-size: 18px;
+	text-align: center;
+	border-radius: 8px;
+	color: var(--color_primary);
+	background: var(--color_surface);
+	border: none;
+	outline: none;
 }
 
 button {

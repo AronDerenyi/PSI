@@ -1,5 +1,8 @@
 body {
 	font-family: "Helvetica Neue", sans-serif;
+	font-weight: 300;
+	font-size: 18px;
+	color: var(--color_on_surface);
 }
 
 h1 {
@@ -7,13 +10,8 @@ h1 {
 
 	font-weight: 300;
 	font-size: 42px;
-	color: var(--color_on_surface);
 }
 
 p {
 	margin: 0;
-
-	font-weight: 300;
-	font-size: 18px;
-	color: var(--color_on_surface_variant);
 }

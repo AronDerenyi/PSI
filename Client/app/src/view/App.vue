@@ -61,7 +61,6 @@ export default class App extends Vue {
 }
 
 .screen {
-	width: 800px;
 	margin: 48px;
 }
 </style>

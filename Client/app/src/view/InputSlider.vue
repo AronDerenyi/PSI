@@ -5,7 +5,7 @@
 			<p>{{ viewModel.description }}</p>
 		</div>
 
-		<label>
+		<label class="card slider">
 			{{ viewModel.minValue }}
 			<input
 				type="range" step="1"
@@ -55,6 +55,48 @@ export default class InputSlider extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: center;
+	color: var(--color_on_surface_variant);
+}
+
+.slider {
+	width: 400px;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.slider input {
+	flex-grow: 1;
+	height: 24px;
+	margin-left: 20px;
+	margin-right: 20px;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 12px;
+	background: var(--color_surface);
+	box-shadow: 0 0 6px var(--color_shadow) inset;
+	outline: none;
+}
+
+.slider input::-webkit-slider-thumb {
+	width: 24px;
+	height: 24px;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 100%;
+	background: var(--color_surface_variant);
+	box-shadow: 0 0 6px var(--color_shadow);
+	border: none;
+}
+
+.slider input::-moz-range-thumb {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	background: var(--color_surface_variant);
+	box-shadow: 0 0 6px var(--color_shadow);
+	border: none;
 }
 
 button {
