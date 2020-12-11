@@ -1,6 +1,6 @@
 <template>
 	<div class="screen">
-		<h1 class="card title">{{ viewModel.title }}</h1>
+		<h1 v-if="viewModel.title" class="card title">{{ viewModel.title }}</h1>
 
 		<div v-for="pair of viewModel.pairs" class="card pair" :key="pair.first + pair.second">
 			<p>{{ pair.first }}</p>

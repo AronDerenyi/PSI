@@ -1,8 +1,8 @@
 <template>
 	<div class="screen">
 		<div class="card title">
-			<h1>{{ viewModel.title }}</h1>
-			<p>{{ viewModel.description }}</p>
+			<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
+			<p v-if="viewModel.description">{{ viewModel.description }}</p>
 		</div>
 
 		<div class="card video">
