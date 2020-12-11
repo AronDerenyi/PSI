@@ -1,7 +1,9 @@
 <template>
-	<div>
-		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.description }}</p>
+	<div class="screen">
+		<div class="card title">
+			<h1>{{ viewModel.title }}</h1>
+			<p>{{ viewModel.description }}</p>
+		</div>
 
 		<label v-for="(label, index) of viewModel.inputLabels" :key="index">
 			<p>{{ label }}</p>
@@ -34,5 +36,23 @@ export default class InputText extends Vue {
 </script>
 
 <style scoped>
+.screen {
+	display: flex;
+	flex-direction: column;
+}
 
+.title h1 {
+	padding: 20px 60px;
+	text-align: center;
+}
+
+.title p {
+	padding: 40px 40px;
+	text-align: center;
+}
+
+button {
+	margin-top: 20px;
+	align-self: flex-end;
+}
 </style>

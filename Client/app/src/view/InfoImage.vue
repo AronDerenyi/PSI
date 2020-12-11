@@ -1,11 +1,11 @@
 <template>
 	<div class="screen">
-		<div class="card">
+		<div class="card title">
 			<h1>{{ viewModel.title }}</h1>
 			<p>{{ viewModel.description }}</p>
 		</div>
 
-		<div class="card image-card">
+		<div class="card image">
 			<img :src="viewModel.source" alt="image"/>
 			<div class="progress" :style="{width: (viewModel.progress * 100) + '%'}"></div>
 		</div>
@@ -42,21 +42,23 @@ export default class InfoImage extends Vue {
 	flex-direction: column;
 }
 
-h1 {
+.title h1 {
 	padding: 20px 60px;
+	text-align: center;
 }
 
-p {
+.title p {
 	padding: 40px 40px;
+	text-align: center;
 }
 
-.image-card {
+.image {
 	position: relative;
 	margin-top: 20px;
 	display: block;
 }
 
-img {
+.image img {
 	width: 100%;
 	display: block;
 }

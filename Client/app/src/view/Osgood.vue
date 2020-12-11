@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<h1>{{ viewModel.title }}</h1>
+	<div class="screen">
+		<h1 class="card title">{{ viewModel.title }}</h1>
 
 		<div v-for="pair of viewModel.pairs">
 			{{ pair.first }}
@@ -10,7 +10,11 @@
 			{{ pair.second }}
 		</div>
 
-		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+		<button
+			:class="{invisible: !viewModel.showNext}"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 
@@ -33,5 +37,18 @@ export default class Osgood extends Vue {
 </script>
 
 <style scoped>
+.screen {
+	display: flex;
+	flex-direction: column;
+}
 
+.title {
+	padding: 20px 60px;
+	text-align: center;
+}
+
+button {
+	margin-top: 20px;
+	align-self: flex-end;
+}
 </style>
