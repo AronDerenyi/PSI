@@ -11,6 +11,8 @@ button {
 	box-shadow: 0 12px 48px var(--color_shadow);
 	border: none;
 	outline: none;
+
+	transition: opacity 0.2s, transform 0.2s;
 }
 
 button:hover {

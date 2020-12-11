@@ -7,7 +7,13 @@
 
 		<div class="card image">
 			<img :src="viewModel.source" alt="image"/>
-			<div class="progress" :style="{width: (viewModel.progress * 100) + '%'}"></div>
+			<div
+				class="progress"
+				:class="{invisible: !viewModel.showNext}"
+				:style="{
+					width: (viewModel.progress * 100) + '%',
+					opacity: viewModel.progress === 1 ? '0' : '1'
+				}"></div>
 		</div>
 
 		<button
@@ -69,6 +75,7 @@ export default class InfoImage extends Vue {
 	left: 0;
 	height: 5px;
 	background: var(--color_primary);
+	transition: opacity 0.4s;
 }
 
 button {
