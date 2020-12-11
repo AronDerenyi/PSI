@@ -1,9 +1,9 @@
 body {
-	--color_primary: rgb(0, 80, 174);
+	--color_primary: rgb(0, 127, 196);
 	--color_on_primary: rgb(255, 255, 255);
 
-	--color_surface: #fff;
-	--color_surface_variant: #f2f2f2;
+	--color_surface: #f3f3f3;
+	--color_surface_variant: #fff;
 	--color_on_surface: #222;
 	--color_on_surface_variant: #444;
 

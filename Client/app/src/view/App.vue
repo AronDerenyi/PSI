@@ -1,11 +1,9 @@
 <template>
 	<div class="app" :key="viewModel.stateId">
-		<div class="card">
-			<component
-				class="screen" v-if="screen" :is="screen"
-				:parameters="viewModel.screenParameters"
-				@result="viewModel.onResult($event)"/>
-		</div>
+		<component
+			class="screen" v-if="screen" :is="screen"
+			:parameters="viewModel.screenParameters"
+			@result="viewModel.onResult($event)"/>
 	</div>
 </template>
 
@@ -62,19 +60,8 @@ export default class App extends Vue {
 	justify-content: center;
 }
 
-.card {
+.screen {
 	width: 800px;
 	margin: 48px;
-
-	padding: 32px;
-	display: flex;
-	flex-direction: column;
-	border-radius: 16px;
-	box-shadow: 0 12px 48px var(--color_shadow);
-	background: var(--color_surface);
-}
-
-.screen {
-	flex-grow: 1;
 }
 </style>

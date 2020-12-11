@@ -1,10 +1,20 @@
 <template>
-	<div>
-		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.description }}</p>
-		<img :src="viewModel.source" alt="image"/>
-		<p>{{ viewModel.progress }}</p>
-		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+	<div class="screen">
+		<div class="card">
+			<h1>{{ viewModel.title }}</h1>
+			<p>{{ viewModel.description }}</p>
+		</div>
+
+		<div class="card image-card">
+			<img :src="viewModel.source" alt="image"/>
+			<div class="progress" :style="{width: (viewModel.progress * 100) + '%'}"></div>
+		</div>
+
+		<button
+			:class="{invisible: !viewModel.showNext}"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 
@@ -27,5 +37,40 @@ export default class InfoImage extends Vue {
 </script>
 
 <style scoped>
+.screen {
+	display: flex;
+	flex-direction: column;
+}
 
+h1 {
+	padding: 20px 60px;
+}
+
+p {
+	padding: 40px 40px;
+}
+
+.image-card {
+	position: relative;
+	margin-top: 20px;
+	display: block;
+}
+
+img {
+	width: 100%;
+	display: block;
+}
+
+.progress {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 5px;
+	background: var(--color_primary);
+}
+
+button {
+	margin-top: 20px;
+	align-self: flex-end;
+}
 </style>

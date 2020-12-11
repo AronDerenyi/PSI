@@ -1,9 +1,23 @@
 <template>
-	<div>
-		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.description }}</p>
-		<video controls :src="viewModel.source" @ended="viewModel.videoFinished()"></video>
-		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+	<div class="screen">
+		<div class="card">
+			<h1>{{ viewModel.title }}</h1>
+			<p>{{ viewModel.description }}</p>
+		</div>
+
+		<div class="card video-card">
+			<video
+				controls
+				class="card"
+				:src="viewModel.source"
+				@ended="viewModel.videoFinished()"></video>
+		</div>
+
+		<button
+			:class="{invisible: !viewModel.showNext}"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 
@@ -26,5 +40,32 @@ export default class InfoVideo extends Vue {
 </script>
 
 <style scoped>
+.screen {
+	display: flex;
+	flex-direction: column;
+}
 
+h1 {
+	padding: 20px 60px;
+}
+
+p {
+	padding: 40px 40px;
+}
+
+.video-card {
+	position: relative;
+	margin-top: 20px;
+	display: block;
+}
+
+video {
+	width: 100%;
+	display: block;
+}
+
+button {
+	margin-top: 20px;
+	align-self: flex-end;
+}
 </style>

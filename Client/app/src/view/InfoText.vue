@@ -1,7 +1,9 @@
 <template>
 	<div class="screen">
-		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.description }}</p>
+		<div class="card">
+			<h1>{{ viewModel.title }}</h1>
+			<p>{{ viewModel.description }}</p>
+		</div>
 		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
 	</div>
 </template>
@@ -28,20 +30,18 @@ export default class InfoText extends Vue {
 .screen {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 
 h1 {
-	width: 300px;
-	padding-bottom: 48px;
+	padding: 20px 60px;
 }
 
 p {
-	max-width: 500px;
-	padding-bottom: 48px;
+	padding: 40px 40px;
 }
 
 button {
+	margin-top: 20px;
 	align-self: flex-end;
 }
 </style>
