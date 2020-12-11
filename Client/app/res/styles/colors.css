@@ -1,0 +1,22 @@
+body {
+	--color_primary: rgb(0, 127, 196);
+	--color_on_primary: rgb(255, 255, 255);
+
+	--color_surface: #f3f3f3;
+	--color_surface_variant: #fff;
+	--color_on_surface: #222;
+	--color_on_surface_variant: #444;
+
+	--color_positive: rgb(76, 175, 80);
+	--color_negative: rgb(244, 67, 54);
+
+	--color_shadow: rgba(0, 0, 0, 0.1);
+}
+
+body .positive {
+	--color_primary: var(--color_positive);
+}
+
+body .negative {
+	--color_primary: var(--color_negative);
+}

@@ -1,0 +1,26 @@
+button {
+	margin: 0;
+
+	padding: 10px 30px;
+	font-weight: 300;
+	font-size: 18px;
+	text-align: center;
+	border-radius: 8px;
+	color: var(--color_primary);
+	background: var(--color_surface_variant);
+	box-shadow: 0 12px 48px var(--color_shadow);
+	border: none;
+	outline: none;
+
+	transition: opacity 0.2s, transform 0.2s;
+}
+
+button:hover {
+	transform: scale(1.2);
+}
+
+button.invisible {
+	opacity: 0;
+	transform: translateY(-10px);
+	pointer-events: none;
+}

@@ -1,9 +1,11 @@
 <template>
-	<div>
-		<h1>{{ viewModel.title }}</h1>
-		<p>{{ viewModel.description }}</p>
+	<div class="screen">
+		<div class="card title">
+			<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
+			<p v-if="viewModel.description">{{ viewModel.description }}</p>
+		</div>
 
-		<label>
+		<label class="card slider">
 			{{ viewModel.minValue }}
 			<input
 				type="range" step="1"
@@ -13,7 +15,11 @@
 			{{ viewModel.maxValue }}
 		</label>
 
-		<button v-if="viewModel.showNext" @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+		<button
+			:class="{invisible: !viewModel.showNext}"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 
@@ -36,5 +42,65 @@ export default class InputSlider extends Vue {
 </script>
 
 <style scoped>
+.screen {
+	display: flex;
+	flex-direction: column;
+}
 
+.title h1 {
+	padding: 20px 60px;
+	text-align: center;
+}
+
+.title p {
+	padding: 40px 40px;
+	text-align: center;
+	color: var(--color_on_surface_variant);
+}
+
+.slider {
+	width: 400px;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.slider input {
+	flex-grow: 1;
+	height: 24px;
+	margin-left: 20px;
+	margin-right: 20px;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 12px;
+	background: var(--color_surface);
+	box-shadow: 0 0 6px var(--color_shadow) inset;
+	outline: none;
+}
+
+.slider input::-webkit-slider-thumb {
+	width: 24px;
+	height: 24px;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 100%;
+	background: var(--color_surface_variant);
+	box-shadow: 0 0 6px var(--color_shadow);
+	border: none;
+}
+
+.slider input::-moz-range-thumb {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	background: var(--color_surface_variant);
+	box-shadow: 0 0 6px var(--color_shadow);
+	border: none;
+}
+
+button {
+	margin-top: 20px;
+	align-self: flex-end;
+}
 </style>

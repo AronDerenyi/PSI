@@ -10,10 +10,13 @@ if (agentSupported) {
 	styleContext.keys().forEach(style => styleContext(style));
 
 	Vue.use(VueRouter);
-	new Vue({
+	const vue = new Vue({
 		router: new VueRouter(),
 		render: createElement => createElement(App),
-	}).$mount("body");
+	})
+
+	document.write(`<div id="app"></div>`)
+	vue.$mount("#app");
 } else {
 	document.write(`
 		<h1 style="padding: 56px; text-align: center; font-family: sans-serif;">

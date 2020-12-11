@@ -26,15 +26,24 @@ export default class App extends Vue {
 
 	get screen(): typeof Vue {
 		switch (this.viewModel.screenType) {
-			case 'info_text': return InfoText
-			case 'info_image': return InfoImage
-			case 'info_video': return InfoVideo
-			case 'input_options': return InputOptions
-			case 'input_text': return InputText
-			case 'input_slider': return InputSlider
-			case 'likert': return Likert
-			case 'osgood': return Osgood
-			default: return null
+			case 'info_text':
+				return InfoText
+			case 'info_image':
+				return InfoImage
+			case 'info_video':
+				return InfoVideo
+			case 'input_options':
+				return InputOptions
+			case 'input_text':
+				return InputText
+			case 'input_slider':
+				return InputSlider
+			case 'likert':
+				return Likert
+			case 'osgood':
+				return Osgood
+			default:
+				return null
 		}
 	}
 };
@@ -42,10 +51,16 @@ export default class App extends Vue {
 
 <style scoped>
 .app {
+	width: 100%;
+	min-height: 100%;
 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .screen {
-
+	margin: 48px;
 }
 </style>
