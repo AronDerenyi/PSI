@@ -221,8 +221,8 @@ module.exports = new Test(
 		}),
 		'attractive': new State({
 			'ethics': results => results.group.brand !== 'none',
-			'covid_content': results => results.group.brand !== 'none' && results.group.covid === true,
-			'creadibility': results => results.group.brand !== 'none' && results.group.covid === false,
+			'covid_content': results => results.group.brand === 'none' && results.group.covid === true,
+			'creadibility': results => results.group.brand === 'none' && results.group.covid === false,
 		}, 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a poszttal kapcsolatos érzéseid!",
 			next: "Következő",
