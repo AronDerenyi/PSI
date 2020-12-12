@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}))
 app.use(bodyParser.json({extended: true, limit: '5mb'}))
 
 app.use(express.static('../Client/dist'))
+app.use('/res', express.static('app/res'))
 
 // Setting up the test
 
