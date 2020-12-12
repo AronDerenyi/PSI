@@ -15,7 +15,7 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: {
 		secure: false,
-		maxAge: 1000 * 60 * 60
+		maxAge: (1000 * 60 * 60) * 24 * 30
 	},
 	store: session.MemoryStore()
 }))
