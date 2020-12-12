@@ -49,11 +49,12 @@ export default class InputOptions extends Vue {
 }
 
 .title {
-	width: 400px;
+	box-sizing: border-box;
+	width: 500px;
 }
 
 .title h1 {
-	padding: 20px 60px;
+	padding: 20px 40px;
 	text-align: center;
 }
 
@@ -64,7 +65,8 @@ export default class InputOptions extends Vue {
 }
 
 .options {
-	width: 400px;
+	box-sizing: border-box;
+	width: 500px;
 	margin-top: 20px;
 	display: flex;
 	flex-direction: column;

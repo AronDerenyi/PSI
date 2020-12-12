@@ -48,11 +48,12 @@ export default class InputSlider extends Vue {
 }
 
 .title {
-	width: 400px;
+	box-sizing: border-box;
+	width: 600px;
 }
 
 .title h1 {
-	padding: 20px 60px;
+	padding: 20px 40px;
 	text-align: center;
 }
 
@@ -63,7 +64,8 @@ export default class InputSlider extends Vue {
 }
 
 .slider {
-	width: 400px;
+	box-sizing: border-box;
+	width: 600px;
 	margin-top: 20px;
 	display: flex;
 	align-items: center;

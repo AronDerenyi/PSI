@@ -33,11 +33,12 @@ export default class InfoText extends Vue {
 }
 
 .title {
+	box-sizing: border-box;
 	width: 800px;
 }
 
 .title h1 {
-	padding: 20px 60px;
+	padding: 20px 40px;
 	text-align: center;
 }
 
