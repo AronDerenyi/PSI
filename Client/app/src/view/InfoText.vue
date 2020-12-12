@@ -44,7 +44,7 @@ export default class InfoText extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: justify;
-	white-space: pre;
+	white-space: pre-wrap;
 	color: var(--color_on_surface_variant);
 }
 
