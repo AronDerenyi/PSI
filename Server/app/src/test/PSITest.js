@@ -144,37 +144,37 @@ module.exports = new Test(
 
 
 		'insta_brand_none': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_none.png",
 			waitingTime: 10000
 		}),
 		'insta_brand_cong': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_cong.png",
 			waitingTime: 10000
 		}),
 		'insta_brand_incong': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_incong.png",
 			waitingTime: 10000
 		}),
 		'insta_covid_brand_none': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_none.png",
 			waitingTime: 10000
 		}),
 		'insta_covid_brand_cong': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_cong.png",
 			waitingTime: 10000
 		}),
 		'insta_covid_brand_incong': new State('trustworthy', 'info_image', {
-			description: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
+			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_incong.png",
 			waitingTime: 10000
