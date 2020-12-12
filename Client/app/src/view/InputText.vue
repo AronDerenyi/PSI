@@ -15,7 +15,11 @@
 			</label>
 		</div>
 
-		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+		<button
+			v-if="viewModel.nextLabel"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 

@@ -14,6 +14,7 @@
 		</div>
 
 		<button
+			v-if="viewModel.nextLabel"
 			:class="{invisible: !viewModel.showNext}"
 			@click="viewModel.next()">
 			{{ viewModel.nextLabel }}
