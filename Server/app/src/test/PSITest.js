@@ -281,7 +281,10 @@ module.exports = new Test(
 			title: "Az instagram bejegyzésben a PizzaForte volt relámozva, két PizzaFortés pizzadoboz volt látható a képen is.",
 			next: "Következő",
 		}),
-		'congruency_cong': new State(null, 'osgood', {
+		'congruency_cong': new State({
+			'covid_content': results => results.group.covid === true,
+			'creadibility': results => results.group.covid === false,
+		}, 'osgood', {
 			title: "Hogyan jellemeznéd az HelloBody márka és Farkas Timi kapcsolatát?",
 			next: "Következő",
 			random: true,
