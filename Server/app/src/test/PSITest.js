@@ -94,7 +94,7 @@ module.exports = new Test(
 			'insta_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
 			'insta_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
 		}, 'likert', {
-			title: "Kérlek, figyelmesen olvasd el az alábbi kérdéseket, és válaszolj véleményed szerint egy 1-től 5-ig terjedő skálán mennyire értesz egyet az alábbi kijelentésekkel?",
+			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
 			random: true,
