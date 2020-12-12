@@ -51,8 +51,7 @@ module.exports = new Test(
 
 
 		'video': new State('psi', 'info_video', {
-			title: "Video Title",
-			description: "Watch the video",
+			title: "Kérlek figyelmesen nézd végig a videót.",
 			next: "Következő",
 			source: "/res/farkas_timi.mp4"
 		}),
