@@ -44,13 +44,15 @@ export default class Likert extends Vue {
 }
 
 .title {
-	width: 600px;
-	padding: 20px 60px;
+	box-sizing: border-box;
+	width: 700px;
+	padding: 20px 40px;
 	text-align: center;
 }
 
 .question {
-	width: 600px;
+	box-sizing: border-box;
+	width: 700px;
 	margin-top: 20px;
 	display: flex;
 	flex-wrap: wrap;
