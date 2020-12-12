@@ -4,7 +4,11 @@
 			<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
 			<p v-if="viewModel.description">{{ viewModel.description }}</p>
 		</div>
-		<button @click="viewModel.next()">{{ viewModel.nextLabel }}</button>
+		<button
+			v-if="viewModel.nextLabel"
+			@click="viewModel.next()">
+			{{ viewModel.nextLabel }}
+		</button>
 	</div>
 </template>
 
