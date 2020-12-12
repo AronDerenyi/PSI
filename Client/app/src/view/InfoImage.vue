@@ -49,11 +49,12 @@ export default class InfoImage extends Vue {
 }
 
 .title {
+	box-sizing: border-box;
 	width: 800px;
 }
 
 .title h1 {
-	padding: 20px 60px;
+	padding: 20px 40px;
 	text-align: center;
 }
 
@@ -64,6 +65,7 @@ export default class InfoImage extends Vue {
 }
 
 .image {
+	box-sizing: border-box;
 	position: relative;
 	margin-top: 20px;
 	display: block;
