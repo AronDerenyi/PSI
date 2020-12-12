@@ -481,8 +481,7 @@ module.exports = new Test(
 				" \n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
 				"\n" +
-				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n",
-			next: "Teszt újrakezdése",
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
 		}),
 	},
 	() => 'approval',
