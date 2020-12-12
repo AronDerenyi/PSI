@@ -45,6 +45,10 @@ export default class InfoVideo extends Vue {
 	flex-direction: column;
 }
 
+.title {
+	width: 800px;
+}
+
 .title h1 {
 	padding: 20px 60px;
 	text-align: center;
