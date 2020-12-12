@@ -61,7 +61,7 @@ app.post(
 	returnStateParameters(test)
 )
 
-app.put(
+app.get(
 	"/api/reset",
 	resetSession(),
 	initializeSession(test),
