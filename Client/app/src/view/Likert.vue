@@ -44,6 +44,7 @@ export default class Likert extends Vue {
 }
 
 .title {
+	width: 600px;
 	padding: 20px 60px;
 	text-align: center;
 }

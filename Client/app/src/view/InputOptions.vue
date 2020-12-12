@@ -48,6 +48,10 @@ export default class InputOptions extends Vue {
 	flex-direction: column;
 }
 
+.title {
+	width: 400px;
+}
+
 .title h1 {
 	padding: 20px 60px;
 	text-align: center;
