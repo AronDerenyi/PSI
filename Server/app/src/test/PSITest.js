@@ -339,8 +339,8 @@ module.exports = new Test(
 			pairs: [
 				{id: '1', first: 'Nem tetszik', second: 'Tetszik'},
 				{id: '2', first: 'Negatív', second: 'Pozitív'},
-				{id: '3', first: 'Unalmas', second: 'Élvezetes'},
-				{id: '4', first: 'Taszító', second: 'Vonzó'},
+				{id: '3', first: 'Lényegtelen', second: 'Lényeges'},
+				{id: '4', first: 'Elcsépelt', second: 'Aktuális'},
 				{id: '5', first: 'Idegesítő', second: 'Nem idegesítő'}
 			]
 		}),
