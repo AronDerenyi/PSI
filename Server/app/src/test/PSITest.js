@@ -350,7 +350,7 @@ module.exports = new Test(
 			maxValue: 100
 		}),
 		'covid_congruency': new State('creadibility', 'osgood', {
-			title: "Hogyan jellemeznéd a COVID üzenet és Farkas Timi kapcsolatát?",
+			title: "Hogyan jellemeznéd a koronavírussal kapocsolatos üzenet és Farkas Timi kapcsolatát?",
 			next: "Következő",
 			random: true,
 			size: 7,
