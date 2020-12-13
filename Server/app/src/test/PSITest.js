@@ -391,7 +391,7 @@ module.exports = new Test(
 				{id: '19', first: 'foglalkozik velem', second: 'nem foglalkozik velem'},
 				{id: '20', first: 'érzéketlen', second: 'érzékeny'},
 				{id: '21', first: 'nem megértő', second: 'megértő'},
-				{id: '0', first: 'nyomd meg a', second: 'középső lehetőséget'}
+				{id: '0', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
 			]
 		}),
 		'advertisement': new State('post_familiar', 'input_slider', {
