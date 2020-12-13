@@ -327,10 +327,11 @@ module.exports = new Test(
 		}),
 		'debrief2': new State('covid_attractive', 'info_text', {
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
+			description: "Timi arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
 			next: "Következő",
 		}),
 		'covid_attractive': new State('third_person', 'osgood', {
-			title: "A következő kérdésekre adott válaszok segítségével jellemezd a poszttal kapcsolatos érzéseid!",
+			title: "A következő kérdésekre adott válaszok segítségével jellemezd a koronavírussal kapcsolatos üzenethez kapcsolódó érzéseidet!",
 			next: "Következő",
 			random: true,
 			size: 7,
