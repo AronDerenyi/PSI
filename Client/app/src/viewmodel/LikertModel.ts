@@ -83,6 +83,16 @@ export class LikertModel {
 			}
 		}
 
+		if (typeof parameters.control !== 'undefined' && parameters.control !== null) {
+			const centerIndex = Math.floor(this.internalQuestions.length / 2)
+			const controlIndex = this.internalQuestions.findIndex(question => question.id === parameters.control)
+			if (controlIndex >= 0) {
+				const control = this.internalQuestions[controlIndex]
+				this.internalQuestions[controlIndex] = this.internalQuestions[centerIndex]
+				this.internalQuestions[centerIndex] = control
+			}
+		}
+
 		this.nextPage()
 	}
 

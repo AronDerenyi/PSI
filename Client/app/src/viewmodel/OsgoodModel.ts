@@ -83,6 +83,16 @@ export class OsgoodModel {
 			}
 		}
 
+		if (typeof parameters.control !== 'undefined' && parameters.control !== null) {
+			const centerIndex = Math.floor(this.internalPairs.length / 2)
+			const controlIndex = this.internalPairs.findIndex(pair => pair.id === parameters.control)
+			if (controlIndex >= 0) {
+				const control = this.internalPairs[controlIndex]
+				this.internalPairs[controlIndex] = this.internalPairs[centerIndex]
+				this.internalPairs[centerIndex] = control
+			}
+		}
+
 		this.nextPage()
 	}
 
