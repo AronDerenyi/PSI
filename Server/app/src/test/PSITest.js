@@ -274,11 +274,11 @@ module.exports = new Test(
 			]
 		}),
 		'debrief1_cong': new State('congruency_cong', 'info_text', {
-			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt relámozva, egy Coco WOW agyagmaszk volt látható a képen is.",
+			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt látható, egy Coco WOW agyagmaszk szerepelt a képen.",
 			next: "Következő",
 		}),
 		'debrief1_incong': new State('congruency_incong', 'info_text', {
-			title: "Az instagram bejegyzésben a PizzaForte volt relámozva, két PizzaFortés pizzadoboz volt látható a képen is.",
+			title: "Az instagram bejegyzésben a PizzaForte volt látható, két PizzaFortés pizzadoboz szerepelt a képen.",
 			next: "Következő",
 		}),
 		'congruency_cong': new State({
