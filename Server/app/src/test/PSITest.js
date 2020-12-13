@@ -105,6 +105,7 @@ module.exports = new Test(
 				'Inkább egyetértek',
 				'Teljes mértékben egyetértek'
 			],
+			control: '0',
 			questions: [
 				{
 					id: '1',
@@ -369,6 +370,7 @@ module.exports = new Test(
 			pageSize: 6,
 			random: true,
 			size: 5,
+			control: '0',
 			pairs: [
 				{id: '1', first: 'taszító', second: 'vonzó'},
 				{id: '2', first: 'közönséges', second: 'ízléses'},
