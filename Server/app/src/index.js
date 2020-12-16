@@ -74,7 +74,12 @@ app.get(
 
 app.get(
 	"/api/results",
-	loadResults(results => results.test === 'psi1'),
+	loadResults(results =>
+		results.test === 'psi1' &&
+		(results['familiar'].selected === '0' || results['psr'].inputs.find(input => input.id === '0').answer === 5) &&
+		results['creadibility'].inputs.find(input => input.id === '0').answer === 4 &&
+		results['actions']
+	),
 	returnResults(converter)
 )
 

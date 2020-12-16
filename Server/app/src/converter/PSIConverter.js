@@ -1,12 +1,6 @@
 const Converter = require('./Converter')
 const Property = require('./Property')
 
-const properties = [
-	new Property('group_covid', results => results.group.covid ? 1 : 0),
-	new Property('group_brand', results => results.group.brand),
-	new Property('familiar', results => results['familiar'].selected)
-]
-
 const fromAnswers = (name, state, id) => new Property(name + '_' + id, results =>
 	results[state]
 		.inputs
@@ -20,6 +14,12 @@ const fromValues = (name, state, id) => new Property(name + '_' + id, results =>
 		.find(input => input.id === id.toString())
 		.value
 )
+
+const properties = [
+	new Property('group_covid', results => results.group.covid ? 1 : 0),
+	new Property('group_brand', results => results.group.brand),
+	new Property('familiar', results => results['familiar'].selected)
+]
 
 // PSI
 for (let id = 1; id <= 6; id++) {
