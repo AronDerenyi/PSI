@@ -25,7 +25,7 @@ module.exports = function Converter(
 		results.forEach(r => {
 			html += row(r)
 		})
-		return html + `<table>`
+		return html + `</table>`
 	}
 
 	const headers = () => {
