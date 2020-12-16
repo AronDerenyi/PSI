@@ -5,6 +5,15 @@ module.exports = function Property(
 
 	this.name = name
 	this.convert = (results) => {
-		return converter(results)
+		try {
+			const converted = converter(results)
+			if (typeof converted !== 'undefined' && converted !== null) {
+				return converted.toString()
+			} else {
+				return null
+			}
+		} catch {
+			return null
+		}
 	}
 }

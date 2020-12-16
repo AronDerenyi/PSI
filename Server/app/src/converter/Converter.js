@@ -16,7 +16,9 @@ module.exports = function Converter(
 	const style = () => `<style>
 		table, th, td {border: 1px solid black}
 		th, td {padding: 4px 8px}
-		th {background: lightgray}
+		th {background: #AAA}
+		td {background: #DDD}
+		.null {background: #FFF}
 	</style>`.trim()
 
 	const table = (results) => {
@@ -39,10 +41,11 @@ module.exports = function Converter(
 	const row = (results) => {
 		let html = `<tr>`
 		properties.forEach(property => {
-			try {
-				html += `<td>${property.convert(results)}</td>`
-			} catch {
-				html += `<td>null</td>`
+			const converted = property.convert(results)
+			if (converted !== null) {
+				html += `<td>${converted}</td>`
+			} else {
+				html += `<td class="null"></td>`
 			}
 		})
 		return html + `</tr>`
