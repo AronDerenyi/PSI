@@ -74,7 +74,7 @@ app.get(
 
 app.get(
 	"/api/results",
-	loadResults(),
+	loadResults(results => results.test === 'psi1'),
 	returnResults(converter)
 )
 
