@@ -29,6 +29,7 @@ app.use('/res', express.static('app/res'))
 // Setting up the test
 
 const test = require('./test/PSITest')
+const converter = require('./converter/PSIConverter')
 
 // Setting up the routes
 
@@ -43,6 +44,9 @@ const saveResults = require('./middleware/SaveResults')
 const updateState = require('./middleware/UpdateState')
 const resetSession = require('./middleware/ResetSession')
 const returnStateParameters = require('./middleware/ReturnStateParameters')
+
+const loadResults = require('./middleware/LoadResults')
+const returnResults = require('./middleware/ReturnResults')
 
 app.get(
 	"/api/test",
@@ -66,6 +70,12 @@ app.get(
 	resetSession(),
 	initializeSession(test),
 	returnStateParameters(test)
+)
+
+app.get(
+	"/api/results",
+	loadResults(),
+	returnResults(converter)
 )
 
 app.use(errorInternal())
