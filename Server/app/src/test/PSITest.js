@@ -461,7 +461,7 @@ module.exports = new Test(
 				{id: "6", label: "Doktori vagy azzal egyenértékű fokozat"}
 			]
 		}),
-		'marketing_knowledge': new State('source', 'input_options', {
+		'marketing_knowledge': new State('debrief', 'input_options', {
 			title: "Hogyan jellemeznéd a reklám/marketing területtel kapcsolatos tudásod?",
 			next: "Következő",
 			options: [
@@ -472,11 +472,6 @@ module.exports = new Test(
 				{id: "5", label: "Alap szinten tanultam reklámot vagy marketinget, de nincs gyakorlati vagy munkatapasztalatom a területen."},
 				{id: "6", label: "Soha nem tanultam reklámot vagy marketinget."}
 			]
-		}),
-		'source': new State('debrief', 'input_text', {
-			title: "Honnan hallottál a kérdőívről?",
-			next: "Következő",
-			inputs: [{id: "source", label: ""}]
 		}),
 		'debrief': new State(null, 'info_text', {
 			title: "Köszönjük a részvételed!",
