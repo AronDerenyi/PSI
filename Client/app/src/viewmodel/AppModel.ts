@@ -16,10 +16,18 @@ export class AppModel {
 	}
 
 	onResult(result: any) {
-		if (result) console.log(JSON.parse(JSON.stringify(result)))
-		this.testAPI.postTest(this.stateId, result)
+		const stateId = this.stateId
+
+		// this.reset()
+		this.testAPI.postTest(stateId, result)
 			.then(response => this.apply(response))
-			.catch((error) => alert(error.status + " Error: " + error.response))
+			.catch((error) => alert(`${error.status} Error: ${error.response}`))
+	}
+
+	private reset() {
+		Vue.set(this, 'stateId', null)
+		Vue.set(this, 'screenType', null)
+		Vue.set(this, 'screenParameters', null)
 	}
 
 	private apply(response: { stateId: string, screenType: string, screenParameters: any }) {

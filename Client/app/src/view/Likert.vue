@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import SmoothScroll from "smooth-scroll";
 import {LikertModel} from "src/viewmodel/LikertModel";
 
 @Component
@@ -30,6 +31,16 @@ export default class Likert extends Vue {
 	@Prop() readonly parameters: any
 
 	private viewModel = new LikertModel(this.parameters)
+	private scroll = new SmoothScroll()
+
+	destroyed() {
+		this.scroll.destroy()
+	}
+
+	@Watch('viewModel.questions')
+	private onQuestions() {
+		this.scroll.animateScroll(0)
+	}
 
 	@Watch('viewModel.result')
 	private onResult(result: any) {

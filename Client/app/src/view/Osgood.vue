@@ -23,6 +23,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {OsgoodModel} from "src/viewmodel/OsgoodModel";
+import SmoothScroll from "smooth-scroll";
 
 @Component
 export default class Osgood extends Vue {
@@ -30,6 +31,16 @@ export default class Osgood extends Vue {
 	@Prop() readonly parameters: any
 
 	private viewModel = new OsgoodModel(this.parameters)
+	private scroll = new SmoothScroll()
+
+	destroyed() {
+		this.scroll.destroy()
+	}
+
+	@Watch('viewModel.pairs')
+	private onPairs() {
+		this.scroll.animateScroll(0)
+	}
 
 	@Watch('viewModel.result')
 	private onResult(result: any) {
