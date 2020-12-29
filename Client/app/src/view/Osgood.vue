@@ -2,14 +2,18 @@
 	<div class="screen">
 		<h1 v-if="viewModel.title" class="card title">{{ viewModel.title }}</h1>
 
-		<div v-for="pair of viewModel.pairs" class="card pair" :key="pair.first + pair.second">
-			<p>{{ pair.first }}</p>
-			<label v-for="value of viewModel.size" :key="value">
-				<input type="radio" :value="value" v-model="pair.value"/>
-				<div></div>
-			</label>
-			<p>{{ pair.second }}</p>
-		</div>
+		<transition name="list-slide" mode="out-in">
+			<div class="pairs" :key="viewModel.pairs">
+				<div v-for="pair of viewModel.pairs" class="card pair" :key="pair.first + pair.second">
+					<p>{{ pair.first }}</p>
+					<label v-for="value of viewModel.size" :key="value">
+						<input type="radio" :value="value" v-model="pair.value"/>
+						<div></div>
+					</label>
+					<p>{{ pair.second }}</p>
+				</div>
+			</div>
+		</transition>
 
 		<button
 			v-if="viewModel.nextLabel"
@@ -23,6 +27,7 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {OsgoodModel} from "src/viewmodel/OsgoodModel";
+import SmoothScroll from "smooth-scroll";
 
 @Component
 export default class Osgood extends Vue {
@@ -30,6 +35,16 @@ export default class Osgood extends Vue {
 	@Prop() readonly parameters: any
 
 	private viewModel = new OsgoodModel(this.parameters)
+	private scroll = new SmoothScroll()
+
+	destroyed() {
+		this.scroll.destroy()
+	}
+
+	@Watch('viewModel.pairs')
+	private onPairs() {
+		this.scroll.animateScroll(0)
+	}
 
 	@Watch('viewModel.result')
 	private onResult(result: any) {
@@ -49,6 +64,11 @@ export default class Osgood extends Vue {
 	width: 700px;
 	padding: 20px 40px;
 	text-align: center;
+}
+
+.pairs {
+	display: flex;
+	flex-direction: column;
 }
 
 .pair {

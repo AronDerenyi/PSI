@@ -126,7 +126,6 @@ export class OsgoodModel {
 		}
 
 		if (this.currentPage * this.pageSize >= this.internalPairs.length) {
-			Vue.set(this, 'pairs', [])
 			return false
 		}
 

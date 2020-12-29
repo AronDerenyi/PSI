@@ -2,14 +2,18 @@
 	<div class="screen">
 		<h1 v-if="viewModel.title" class="card title">{{ viewModel.title }}</h1>
 
-		<div v-for="question of viewModel.questions" class="card question" :key="question.question">
-			<p>{{ question.question }}</p>
-			<label v-for="(label, index) of viewModel.labels" :key="index + 1">
-				<input type="radio" :value="index + 1" v-model="question.answer"/>
-				<p>{{ index + 1 }}</p>
-				{{ label }}
-			</label>
-		</div>
+		<transition name="list-slide" mode="out-in">
+			<div class="questions" :key="viewModel.questions">
+				<div v-for="question of viewModel.questions" class="card question" :key="question.question">
+					<p>{{ question.question }}</p>
+					<label v-for="(label, index) of viewModel.labels" :key="index + 1">
+						<input type="radio" :value="index + 1" v-model="question.answer"/>
+						<p>{{ index + 1 }}</p>
+						{{ label }}
+					</label>
+				</div>
+			</div>
+		</transition>
 
 		<button
 			v-if="viewModel.nextLabel"
@@ -22,6 +26,7 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import SmoothScroll from "smooth-scroll";
 import {LikertModel} from "src/viewmodel/LikertModel";
 
 @Component
@@ -30,6 +35,16 @@ export default class Likert extends Vue {
 	@Prop() readonly parameters: any
 
 	private viewModel = new LikertModel(this.parameters)
+	private scroll = new SmoothScroll()
+
+	destroyed() {
+		this.scroll.destroy()
+	}
+
+	@Watch('viewModel.questions')
+	private onQuestions() {
+		this.scroll.animateScroll(0)
+	}
 
 	@Watch('viewModel.result')
 	private onResult(result: any) {
@@ -49,6 +64,11 @@ export default class Likert extends Vue {
 	width: 700px;
 	padding: 20px 40px;
 	text-align: center;
+}
+
+.questions {
+	display: flex;
+	flex-direction: column;
 }
 
 .question {
