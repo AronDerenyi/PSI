@@ -1,9 +1,12 @@
 <template>
-	<div class="app" :key="viewModel.stateId">
-		<component
-			class="screen" v-if="screen" :is="screen"
-			:parameters="viewModel.screenParameters"
-			@result="viewModel.onResult($event)"/>
+	<div class="app">
+		<transition name="slide" mode="out-in" appear>
+			<component
+				class="screen" v-if="screen" :is="screen"
+				:key="viewModel.stateId"
+				:parameters="viewModel.screenParameters"
+				@result="viewModel.onResult($event)"/>
+		</transition>
 	</div>
 </template>
 

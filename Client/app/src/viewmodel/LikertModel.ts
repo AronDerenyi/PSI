@@ -126,7 +126,6 @@ export class LikertModel {
 		}
 
 		if (this.currentPage * this.pageSize >= this.internalQuestions.length) {
-			Vue.set(this, 'questions', [])
 			return false
 		}
 
