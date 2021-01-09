@@ -372,22 +372,22 @@ module.exports = new Test(
 			size: 5,
 			control: '0',
 			pairs: [
-				{id: '1', first: 'taszító', second: 'vonzó'},
+				{id: '1', first: 'taszító', second: 'vonzó'}, // attractiveness
 				{id: '2', first: 'közönséges', second: 'ízléses'},
 				{id: '3', first: 'csúnya', second: 'szép'},
 				{id: '4', first: 'hétköznapi', second: 'elegáns'},
 				{id: '5', first: 'nem szexi', second: 'szexi'},
-				{id: '6', first: 'megbízhatatlan', second: 'megbízható'},
+				{id: '6', first: 'megbízhatatlan', second: 'megbízható'}, // trustworthiness
 				{id: '7', first: 'becstelen', second: 'becsületes'},
 				{id: '8', first: 'hiteltelen', second: 'hiteles'},
 				{id: '9', first: 'őszintétlen', second: 'őszinte'},
 				{id: '10', first: 'tisztességtelen', second: 'tisztességes'},
-				{id: '11', first: 'nem szakértő', second: 'szakértő'},
+				{id: '11', first: 'nem szakértő', second: 'szakértő'}, // expertise
 				{id: '12', first: 'tapasztalatlan', second: 'tapasztalt'},
 				{id: '13', first: 'tudatlan', second: 'jól informált'},
 				{id: '14', first: 'hozzá nem értő', second: 'hozzáértő'},
 				{id: '15', first: 'kontár', second: 'profi'},
-				{id: '16', first: 'törődik velem', second: 'nem törődik velem'},
+				{id: '16', first: 'törődik velem', second: 'nem törődik velem'}, // goodwill
 				{id: '17', first: 'figyelembe veszi az érdekeimet', second: 'nem veszi figyelembe az érdekeimet'},
 				{id: '18', first: 'énközpontú', second: 'empatikus'},
 				{id: '19', first: 'foglalkozik velem', second: 'nem foglalkozik velem'},

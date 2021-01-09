@@ -102,6 +102,65 @@ properties.push(new Property('credibility_control', results =>
 for (let id = 1; id <= 21; id++) {
 	properties.push(fromAnswers('credibility', 'creadibility', id.toString()))
 }
+properties.push(new Property('credibility_sum', results =>
+	results['creadibility']
+		.inputs
+		.reduce((sum, input) => {
+			if (input.id === '0') {
+				return sum
+			} else if (['16', '17', '19'].includes(input.id)) {
+				return sum + 6 - input.answer
+			} else {
+				return sum + input.answer
+			}
+		}, 0)
+))
+properties.push(new Property('credibility_attractiveness', results =>
+	results['creadibility']
+		.inputs
+		.reduce((sum, input) => {
+			if (['1', '2', '3', '4', '5'].includes(input.id)) {
+				return sum + input.answer
+			} else {
+				return sum
+			}
+		}, 0)
+))
+properties.push(new Property('credibility_trustworthiness', results =>
+	results['creadibility']
+		.inputs
+		.reduce((sum, input) => {
+			if (['6', '7', '8', '9', '10'].includes(input.id)) {
+				return sum + input.answer
+			} else {
+				return sum
+			}
+		}, 0)
+))
+properties.push(new Property('credibility_expertise', results =>
+	results['creadibility']
+		.inputs
+		.reduce((sum, input) => {
+			if (['11', '12', '13', '14', '15'].includes(input.id)) {
+				return sum + input.answer
+			} else {
+				return sum
+			}
+		}, 0)
+))
+properties.push(new Property('credibility_goodwill', results =>
+	results['creadibility']
+		.inputs
+		.reduce((sum, input) => {
+			if (['18', '20', '21'].includes(input.id)) {
+				return sum + input.answer
+			} else if (['16', '17', '19'].includes(input.id)) {
+				return sum + 6 - input.answer
+			} else {
+				return sum
+			}
+		}, 0)
+))
 
 // Advertisement
 properties.push(new Property('advertisement', results => results['advertisement'].selected))
