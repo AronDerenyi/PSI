@@ -30,6 +30,11 @@ app.use('/res', express.static('app/res'))
 
 const test = require('./test/PSITest')
 const converter = require('./converter/PSIConverter')
+const resultFilter = results =>
+	results.test === 'psi1' &&
+	(results['familiar'].selected === '0' || results['psr'].inputs.find(input => input.id === '0').answer === 5) &&
+	results['creadibility'].inputs.find(input => input.id === '0').answer === 4 &&
+	results['actions']
 
 // Setting up the routes
 
@@ -46,7 +51,8 @@ const resetSession = require('./middleware/ResetSession')
 const returnStateParameters = require('./middleware/ReturnStateParameters')
 
 const loadResults = require('./middleware/LoadResults')
-const returnResults = require('./middleware/ReturnResults')
+const returnResultsHTML = require('./middleware/ReturnResultsHTML')
+const returnResultsCSV = require('./middleware/ReturnResultsCSV')
 
 app.get(
 	"/api/test",
@@ -73,14 +79,15 @@ app.get(
 )
 
 app.get(
-	"/api/results",
-	loadResults(results =>
-		results.test === 'psi1' &&
-		(results['familiar'].selected === '0' || results['psr'].inputs.find(input => input.id === '0').answer === 5) &&
-		results['creadibility'].inputs.find(input => input.id === '0').answer === 4 &&
-		results['actions']
-	),
-	returnResults(converter)
+	"/api/results/html",
+	loadResults(resultFilter),
+	returnResultsHTML(converter)
+)
+
+app.get(
+	"/api/results/csv",
+	loadResults(resultFilter),
+	returnResultsCSV(converter)
 )
 
 app.use(errorInternal())
