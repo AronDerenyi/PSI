@@ -57,9 +57,10 @@ module.exports = function Converter(
 	// CSV
 
 	const csv = (results) => {
+		const byteOrderMark = "\ufeff"
 		const columnDelimiter = ";"
 		const rowDelimiter = "\n"
-		let csv = ""
+		let csv = byteOrderMark
 
 		properties.forEach((property, index) => {
 			csv += property.name
