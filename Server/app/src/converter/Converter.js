@@ -3,6 +3,9 @@ module.exports = function Converter(
 ) {
 
 	this.toHTML = (results) => html(results)
+	this.toCSV = (results) => csv(results)
+
+	// HTML
 
 	const html = (results) => `<html>
 		${body(results)}
@@ -49,5 +52,40 @@ module.exports = function Converter(
 			}
 		})
 		return html + `</tr>`
+	}
+
+	// CSV
+
+	const csv = (results) => {
+		const columnDelimiter = ";"
+		const rowDelimiter = "\n"
+		let csv = ""
+
+		properties.forEach((property, index) => {
+			csv += property.name
+			if (index < properties.length - 1) {
+				csv += columnDelimiter
+			}
+		})
+		csv += "\n"
+
+		results.forEach(r => {
+			properties.forEach((property, index) => {
+				const converted = property.convert(r)
+				if (converted !== null) {
+					const type = typeof converted
+					if (type === 'number' || type === 'boolean') {
+						csv += converted
+					} else {
+						csv += `"${converted.replace('"', '""')}"`
+					}
+				}
+				if (index < properties.length - 1) {
+					csv += columnDelimiter
+				}
+			})
+			csv += rowDelimiter
+		})
+		return csv
 	}
 }

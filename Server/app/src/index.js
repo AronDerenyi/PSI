@@ -46,7 +46,8 @@ const resetSession = require('./middleware/ResetSession')
 const returnStateParameters = require('./middleware/ReturnStateParameters')
 
 const loadResults = require('./middleware/LoadResults')
-const returnResults = require('./middleware/ReturnResults')
+const returnResultsHTML = require('./middleware/ReturnResultsHTML')
+const returnResultsCSV = require('./middleware/ReturnResultsCSV')
 
 app.get(
 	"/api/test",
@@ -73,9 +74,15 @@ app.get(
 )
 
 app.get(
-	"/api/results",
+	"/api/results/html",
 	loadResults(),
-	returnResults(converter)
+	returnResultsHTML(converter)
+)
+
+app.get(
+	"/api/results/csv",
+	loadResults(),
+	returnResultsCSV(converter)
 )
 
 app.use(errorInternal())
