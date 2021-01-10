@@ -8,7 +8,7 @@ module.exports = function State(
 	this.screenParameters = screenParameters
 	this.ending = !transitions
 
-	this.next = (results) => {
+	this.next = (env) => {
 		if (this.ending) {
 			throw "The state is an ending state."
 		} else if (typeof transitions === "string") {
@@ -17,7 +17,7 @@ module.exports = function State(
 			let nextStateId
 
 			for (let stateId in transitions) {
-				if (transitions[stateId](results)) {
+				if (transitions[stateId](env)) {
 					if (!nextStateId) {
 						nextStateId = stateId
 					} else {
