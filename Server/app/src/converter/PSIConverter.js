@@ -99,8 +99,24 @@ properties.push(new Property('credibility_control', results =>
 		.find(input => input.id === '0')
 		.answer
 ))
-for (let id = 1; id <= 21; id++) {
-	properties.push(fromAnswers('credibility', 'creadibility', id.toString()))
+for (let id = 1; id <= 5; id++) {
+	properties.push(fromAnswers('credibility_at', 'creadibility', id.toString()))
+}
+for (let id = 6; id <= 10; id++) {
+	properties.push(fromAnswers('credibility_tr', 'creadibility', id.toString()))
+}
+for (let id = 11; id <= 15; id++) {
+	properties.push(fromAnswers('credibility_ex', 'creadibility', id.toString()))
+}
+for (let id = 16; id <= 21; id++) {
+	properties.push(new Property('credibility_gw_' + id.toString(), results => {
+		const answer = results['creadibility']
+			.inputs
+			.find(input => input.id === id.toString())
+			.answer
+
+		return [16, 17, 19].includes(id) ? 6 - answer : answer
+	}))
 }
 properties.push(new Property('credibility_sum', results =>
 	results['creadibility']
