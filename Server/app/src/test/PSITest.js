@@ -61,7 +61,7 @@ module.exports = new Test(
 			'vid_positive': results => results['fam'].selected === '0' && lazyGroupPositivity(results.group),
 			'vid_negative': results => results['fam'].selected === '0' && !lazyGroupPositivity(results.group),
 		}, 'input_options', {
-			title: "Ismered [influencer]?", // TODO: influencer
+			title: "Ismered Visnyei Barbarát?",
 			next: "Következő",
 			options: [
 				{id: "1", label: "Igen"},
@@ -69,7 +69,7 @@ module.exports = new Test(
 			]
 		}),
 		'fam_scale': new State('PSR', 'input_slider', {
-			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered [influencer].", // TODO: influencer
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered Visnyei Barbarát.",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
@@ -77,7 +77,6 @@ module.exports = new Test(
 
 
 
-		// TODO: influencer
 		'PSR': new State({
 			'post_congruent': results => lazyGroupCongruency(results.group),
 			'post_incongruent': results => !lazyGroupCongruency(results.group)
@@ -97,36 +96,36 @@ module.exports = new Test(
 			questions: [
 				{
 					id: '1',
-					question: '[influencer]t nézve olyan érzésem támad, mintha olyasvalaki lenne, akit jól ismerek.'
+					question: 'Visnyei Barbit nézve olyan érzésem támad, mintha olyasvalaki lenne, akit jól ismerek.'
 				},
-				{id: '2', question: 'Ha [influencer] megjelenne egy műsorban, megnézném azt a műsort.'},
-				{id: '3', question: '[influencer]t egy természetes, szerény embernek látom.'},
-				{id: '4', question: 'Ha látnék egy cikket, melyben [influencer] szerepel, elolvasnám azt.'},
-				{id: '5', question: 'Szeretnék élőben is találkozni [influencer]vel.'},
-				{id: '6', question: 'Úgy érzem, megértem [influencer] érzéseit.'},
-				{id: '7', question: 'Előfordul olykor, hogy [influencer]re gondolok.'},
-				{id: '8', question: 'Nem érzek semmit [influencer]vel kapcsolatban.'},
-				{id: '9', question: 'Szívesen nézem [influencer] videóit és posztjait a közösségi médiában.'},
+				{id: '2', question: 'Ha Visnyei Barbi megjelenne egy műsorban, megnézném azt a műsort.'},
+				{id: '3', question: 'Visnyei Barbit egy természetes, szerény embernek látom.'},
+				{id: '4', question: 'Ha látnék egy cikket, melyben Visnyei Barbi szerepel, elolvasnám azt.'},
+				{id: '5', question: 'Szeretnék élőben is találkozni Visnyei Barbival.'},
+				{id: '6', question: 'Úgy érzem, megértem Visnyei Barbi érzéseit.'},
+				{id: '7', question: 'Előfordul olykor, hogy Visnyei Barbira gondolok.'},
+				{id: '8', question: 'Nem érzek semmit Visnyei Barbival kapcsolatban.'},
+				{id: '9', question: 'Szívesen nézem Visnyei Barbi videóit és posztjait a közösségi médiában.'},
 				{
 					id: '10',
-					question: 'Amikor nem jutok [influencer]vel kapcsolatos hírekhez, hiányolom ezeket a híreket.'
+					question: 'Amikor nem jutok Visnyei Barbival kapcsolatos hírekhez, hiányolom ezeket a híreket.'
 				},
-				{id: '11', question: 'Szeretnék minél több mindent megtudni [influencer]ről.'},
+				{id: '11', question: 'Szeretnék minél több mindent megtudni Visnyei Barbiról.'},
 				{
 					id: '12',
-					question: 'Előfordul, hogy információ után kutatok, hogy többet tudhassak meg [influencer]ről.'
+					question: 'Előfordul, hogy információ után kutatok, hogy többet tudhassak meg Visnyei Barbiról.'
 				},
-				{id: '13', question: 'Néha böngészek az interneten azért, hogy információt találjak [influencer]ről.'},
-				{id: '14', question: 'Néha kedvem támad írásban reagálni [influencer] videójára vagy posztjára.'},
+				{id: '13', question: 'Néha böngészek az interneten azért, hogy információt találjak Visnyei Barbiról.'},
+				{id: '14', question: 'Néha kedvem támad írásban reagálni Visnyei Barbi videójára vagy posztjára.'},
 				{
 					id: '15',
-					question: 'Szerintem [influencer] ért azokhoz a dolgokhoz, amikről én is többet szeretnék tudni.'
+					question: 'Szerintem Visnyei Barbi ért azokhoz a dolgokhoz, amikről én is többet szeretnék tudni.'
 				},
-				{id: '16', question: 'Néha kommentelek [influencer] posztjai alá.'},
-				{id: '17', question: 'Jól ismerem [influencer] életének részleteit.'},
-				{id: '18', question: 'Csak nagyon kicsit értem meg [influencer]t, mint embert.'},
-				{id: '19', question: 'Előre várni szoktam, hogy [influencer] új videót vagy posztot töltsön fel.'},
-				{id: '20', question: '[influencer] nem igazán érdekel engem.'},
+				{id: '16', question: 'Néha kommentelek Visnyei Barbi posztjai alá.'},
+				{id: '17', question: 'Jól ismerem Visnyei Barbi életének részleteit.'},
+				{id: '18', question: 'Csak nagyon kicsit értem meg Visnyei Barbit, mint embert.'},
+				{id: '19', question: 'Előre várni szoktam, hogy Visnyei Barbi új videót vagy posztot töltsön fel.'},
+				{id: '20', question: 'Visnyei Barbi nem igazán érdekel engem.'},
 				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
 			]
 		}),
@@ -281,15 +280,15 @@ module.exports = new Test(
 			]
 		}),
 		'debrief1_congruent': new State('con_congruent', 'info_text', {
-			title: "Az instagram bejegyzésben [congruent_brand] volt látható, [congruent_product] szerepelt a képen.", // TODO: brand, product, influencer
+			title: "Az instagram bejegyzésben [congruent_brand] volt látható, [congruent_product] szerepelt a képen.", // TODO: brand, product
 			next: "Következő",
 		}),
 		'debrief1_incongruent': new State('con_incongruent', 'info_text', {
-			title: "Az instagram bejegyzésben [incongruent_brand] volt látható, [incongruent_product] szerepelt a képen.", // TODO: brand, product, influencer
+			title: "Az instagram bejegyzésben [incongruent_brand] volt látható, [incongruent_product] szerepelt a képen.", // TODO: brand, product
 			next: "Következő",
 		}),
 		'con_congruent': new State('third_pers', 'osgood', {
-			title: "Hogyan jellemeznéd [congruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
+			title: "Hogyan jellemeznéd [congruent_brand] és Visnyei Barbi kapcsolatát?", // TODO: brand
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -301,7 +300,7 @@ module.exports = new Test(
 			]
 		}),
 		'con_incongruent': new State('third_pers', 'osgood', {
-			title: "Hogyan jellemeznéd [incongruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
+			title: "Hogyan jellemeznéd [incongruent_brand] és Visnyei Barbi kapcsolatát?", // TODO: brand
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -316,13 +315,13 @@ module.exports = new Test(
 
 
 		'third_pers': new State('cred', 'input_slider', {
-			title: "Szerinted mennyire tartják mások [önfeltárónak / hozzáértőnek] [influencer] egy 0-tól 100-as skálán?", // TODO: Influencer
+			title: "Szerinted mennyire tartják mások önfeltárónak Visnyei Barbit egy 0-tól 100-as skálán?",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
 		'cred': new State('ad_perc', 'osgood', {
-			title: "A következő fogalmak segítségével jellemezd [influencer]!", // TODO: Influencer
+			title: "A következő fogalmak segítségével jellemezd Visnyei Barbit!",
 			next: "Következő",
 			pageSize: 6,
 			random: true,
