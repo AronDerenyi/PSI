@@ -78,10 +78,7 @@ module.exports = new Test(
 
 
 		// TODO: influencer
-		'PSR': new State({
-			'post_congruent': results => lazyGroupCongruency(results.group),
-			'post_incongruent': results => !lazyGroupCongruency(results.group)
-		}, 'likert', {
+		'PSR': new State('baseline', 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
