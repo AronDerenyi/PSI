@@ -68,17 +68,25 @@ module.exports = new Test(
 				{id: "0", label: "Nem"}
 			]
 		}),
-		'fam_scale': new State('PSR', 'input_slider', {
-			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered [influencer].", // TODO: influencer
+		'fam_scale': new State('following', 'input_slider', {
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered [influencer]!", // TODO: influencer
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
+		'following': new State('PSR', 'input_options', {
+			title: "Követed valamilyen platformon [influencer]t?", // TODO: influencer
+			next: "Következő",
+			options: [
+				{id: "1", label: "Igen"},
+				{id: "0", label: "Nem"}
+			]
+		})
 
 
 
 		// TODO: influencer
-		'PSR': new State('baseline', 'likert', {
+		'PSR': new State('disclosure', 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
@@ -127,30 +135,20 @@ module.exports = new Test(
 				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
 			]
 		}),
-		'baseline': new State({
-			'post_congruent': results => lazyGroupCongruency(results.group),
-			'post_incongruent': results => !lazyGroupCongruency(results.group)
-		}, 'info_text', { // TODO: baseline
-			title: "Baseline",
-			next: "Következő"
-		}),
 
 
 
 		'vid_positive': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót.",
+			title: "Kérlek figyelmesen nézd végig a videót!",
 			next: "Következő",
 			source: "/res/vid_positive.mp4"
 		}),
 		'vid_negative': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót.",
+			title: "Kérlek figyelmesen nézd végig a videót!",
 			next: "Következő",
 			source: "/res/vid_negative.mp4"
 		}),
-		'EPSI': new State({
-			'post_congruent': results => lazyGroupCongruency(results.group),
-			'post_incongruent': results => !lazyGroupCongruency(results.group)
-		}, 'likert', {
+		'EPSI': new State('disclosure', 'likert', {
 			title: "A videó nézése közben az az érzésem támadt, hogy…",
 			next: "Következő",
 			random: true,
@@ -174,6 +172,14 @@ module.exports = new Test(
 		}),
 
 
+
+		'disclosure': new State({
+			'post_congruent': results => lazyGroupCongruency(results.group),
+			'post_incongruent': results => !lazyGroupCongruency(results.group)
+		}, 'info_text', { // TODO: baseline
+			title: "Baseline",
+			next: "Következő"
+		}),
 		'post_congruent': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
@@ -239,30 +245,6 @@ module.exports = new Test(
 				{id: '5', first: 'Idegesítő', second: 'Nem idegesítő'}
 			]
 		}),
-		'ad_ethical': new State('rec', 'likert', {
-			title: "Kérlek, válaszolj, az alábbi kérdésekre",
-			next: "Következő",
-			random: true,
-			labels: [
-				'Egyáltalán nem értek egyet',
-				'',
-				'',
-				'',
-				'',
-				'',
-				'Teljes mértékben egyetértek'
-			],
-			questions: [
-				{
-					id: '1',
-					question: 'Ha marketinges lennék, fizetnék influenszereknek, hogy a termékemről a látott poszttal megegyező posztot osszanak meg.'
-				},
-				{
-					id: '2',
-					question: 'Ha influenszer lennék, elfogadnék fizetséget marketingesektől, hogy a látott poszttal megegyező posztot osszak meg.'
-				},
-			]
-		}),
 
 
 
@@ -270,20 +252,42 @@ module.exports = new Test(
 			'debrief1_congruent': results => lazyGroupCongruency(results.group),
 			'debrief1_incongruent': results => !lazyGroupCongruency(results.group)
 		}, 'input_text', {
-			title: "Kérlek, válaszolj, az alábbi kérdésekre",
+			title: "Kérlek, válaszolj, az alábbi kérdésekre!",
 			next: "Következő",
 			inputs: [
 				{id: "product", label: "Milyen termék szerepelt a posztban?"},
 				{id: "brand", label: "Milyen márka szerepelt a posztban?"},
 			]
 		}),
-		'debrief1_congruent': new State('con_congruent', 'info_text', {
+		'debrief1_congruent': new State('brand_att', 'info_text', {
 			title: "Az instagram bejegyzésben [congruent_brand] volt látható, [congruent_product] szerepelt a képen.", // TODO: brand, product, influencer
 			next: "Következő",
 		}),
-		'debrief1_incongruent': new State('con_incongruent', 'info_text', {
+		'debrief1_incongruent': new State('brand_att', 'info_text', {
 			title: "Az instagram bejegyzésben [incongruent_brand] volt látható, [incongruent_product] szerepelt a képen.", // TODO: brand, product, influencer
 			next: "Következő",
+		}),
+		'brand_att': new State('purch_int', 'osgood', {
+			title: "A következő kérdésekre adott válaszok segítségével jellemezd a posztban látott márkával kapcsolatos érzéseid!",
+			next: "Következő",
+			random: true,
+			size: 7,
+			pairs: [
+				{id: '1', first: 'Nem tetszik', second: 'Tetszik'},
+				{id: '2', first: 'Negatív', second: 'Pozitív'},
+				{id: '3', first: 'Unalmas', second: 'Élvezetes'},
+				{id: '4', first: 'Taszító', second: 'Vonzó'},
+				{id: '5', first: 'Idegesítő', second: 'Nem idegesítő'}
+			]
+		}),
+		'purch_int': new State({
+			'con_congruent': results => lazyGroupCongruency(results.group),
+			'con_incongruent': results => !lazyGroupCongruency(results.group)
+		}, 'input_slider', {
+			title: "Hogyan jellemezné az instagram posztban látott márkával kapcsolatos feltételezett vásárlási szándékát egy 0-tól 100-as skálán?",
+			next: "Következő",
+			minValue: 0,
+			maxValue: 100
 		}),
 		'con_congruent': new State('third_pers', 'osgood', {
 			title: "Hogyan jellemeznéd [congruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
@@ -297,7 +301,7 @@ module.exports = new Test(
 				{id: '4', first: 'Egymáshoz nem kötődő', second: 'Egymáshoz kötődő'}
 			]
 		}),
-		'con_incongruent': new State('third_pers', 'osgood', {
+		'con_incongruent': new State('cred', 'osgood', {
 			title: "Hogyan jellemeznéd [incongruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
 			next: "Következő",
 			random: true,
@@ -312,13 +316,7 @@ module.exports = new Test(
 
 
 
-		'third_pers': new State('cred', 'input_slider', {
-			title: "Szerinted mennyire tartják mások [önfeltárónak / hozzáértőnek] [influencer] egy 0-tól 100-as skálán?", // TODO: Influencer
-			next: "Következő",
-			minValue: 0,
-			maxValue: 100
-		}),
-		'cred': new State('ad_perc', 'osgood', {
+		'cred': new State('fam_post', 'osgood', {
 			title: "A következő fogalmak segítségével jellemezd [influencer]!", // TODO: Influencer
 			next: "Következő",
 			pageSize: 6,
@@ -350,20 +348,14 @@ module.exports = new Test(
 				{id: 'cred_control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
 			]
 		}),
-		'ad_perc': new State('fam_post', 'input_slider', {
-			title: "Értékeld, mennyire tekinthető reklámnak, amit láttál egy 0-tól 100-as skálán.",
-			next: "Következő",
-			minValue: 0,
-			maxValue: 100
-		}),
 		'fam_post': new State('fam_brand', 'input_slider', {
-			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a poszt, amit láttál.",
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a poszt, amit láttál!",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
 		'fam_brand': new State('sales_exp', 'input_slider', {
-			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a márka, amivel találkoztál.",
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a márka, amivel találkoztál!",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
