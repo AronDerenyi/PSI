@@ -81,7 +81,7 @@ module.exports = new Test(
 				{id: "1", label: "Igen"},
 				{id: "0", label: "Nem"}
 			]
-		})
+		}),
 
 
 
