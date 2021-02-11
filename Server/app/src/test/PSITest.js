@@ -75,7 +75,7 @@ module.exports = new Test(
 			maxValue: 100
 		}),
 		'following': new State('PSR', 'input_options', {
-			title: "Követed valamilyen platformon [influencer]t?", // TODO: influencer
+			title: "Követed valamilyen platformon Visnyei Barbarát?",
 			next: "Következő",
 			options: [
 				{id: "1", label: "Igen"},
@@ -161,18 +161,17 @@ module.exports = new Test(
 				'Teljes mértékben egyetértek'
 			],
 			questions: [
-				{id: '1', question: '[influencer] úgy beszélt mintha én is ott lettem volna vele'},
-				{id: '2', question: 'mintha [influencer] érzékelte volna a jelenlétem'},
-				{id: '3', question: 'mintha [influencer] hozzám beszélt volna'},
-				{id: '4', question: 'mintha [influencer] tudta volna, hogy figyelek rá'},
-				{id: '5', question: 'mintha [influencer] ismerte volna a reakcióimat'},
-				{id: '6', question: 'mintha [influencer] reagált volna a gondolataimra'}
+				{id: '1', question: 'Visnyei Barbi úgy beszélt mintha én is ott lettem volna vele'},
+				{id: '2', question: 'mintha Visnyei Barbi érzékelte volna a jelenlétem'},
+				{id: '3', question: 'mintha Visnyei Barbi hozzám beszélt volna'},
+				{id: '4', question: 'mintha Visnyei Barbi tudta volna, hogy figyelek rá'},
+				{id: '5', question: 'mintha Visnyei Barbi ismerte volna a reakcióimat'},
+				{id: '6', question: 'mintha Visnyei Barbi reagált volna a gondolataimra'}
 			]
 		}),
 
 
 
-		// TODO: influencer
 		'disclosure1': new State('disclosure2', 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
@@ -187,16 +186,15 @@ module.exports = new Test(
 				'Teljes mértékben egyetértek'
 			],
 			questions: [
-				{id: '1', question: '[influencer] mélyen és közvetlenül megnyílik arról, hogy ki ő valójában.'},
-				{id: '2', question: '[influencer] gyakran osztja meg a személyes dolgait, érzéseit.'}
+				{id: '1', question: 'Visnyei Barbi mélyen és közvetlenül megnyílik arról, hogy ki ő valójában.'},
+				{id: '2', question: 'Visnyei Barbi gyakran osztja meg a személyes dolgait, érzéseit.'}
 			]
 		}),
-		// TODO: influencer
 		'disclosure2': new State({
 			'post_congruent': results => lazyGroupCongruency(results.group),
 			'post_incongruent': results => !lazyGroupCongruency(results.group)
 		}, 'likert', {
-			title: "[influencer] gyakran beszél…",
+			title: "Visnyei Barbi gyakran beszél…",
 			next: "Következő",
 			random: true,
 			labels: [
