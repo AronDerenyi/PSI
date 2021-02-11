@@ -86,7 +86,7 @@ module.exports = new Test(
 
 
 		// TODO: influencer
-		'PSR': new State('disclosure', 'likert', {
+		'PSR': new State('disclosure1', 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
@@ -148,7 +148,7 @@ module.exports = new Test(
 			next: "Következő",
 			source: "/res/vid_negative.mp4"
 		}),
-		'EPSI': new State('disclosure', 'likert', {
+		'EPSI': new State('disclosure1', 'likert', {
 			title: "A videó nézése közben az az érzésem támadt, hogy…",
 			next: "Következő",
 			random: true,
@@ -162,23 +162,62 @@ module.exports = new Test(
 				'Teljes mértékben egyetértek'
 			],
 			questions: [
-				{id: '1', question: 'Farkas Timi úgy beszélt mintha én is ott lettem volna vele'},
-				{id: '2', question: 'mintha Farkas Timi érzékelte volna a jelenlétem'},
-				{id: '3', question: 'mintha Farkas Timi hozzám beszélt volna'},
-				{id: '4', question: 'mintha Farkas Timi tudta volna, hogy figyelek rá'},
-				{id: '5', question: 'mintha Farkas Timi ismerte volna a reakcióimat'},
-				{id: '6', question: 'mintha Farkas Timi reagált volna a gondolataimra'}
+				{id: '1', question: '[influencer] úgy beszélt mintha én is ott lettem volna vele'},
+				{id: '2', question: 'mintha [influencer] érzékelte volna a jelenlétem'},
+				{id: '3', question: 'mintha [influencer] hozzám beszélt volna'},
+				{id: '4', question: 'mintha [influencer] tudta volna, hogy figyelek rá'},
+				{id: '5', question: 'mintha [influencer] ismerte volna a reakcióimat'},
+				{id: '6', question: 'mintha [influencer] reagált volna a gondolataimra'}
 			]
 		}),
 
 
 
-		'disclosure': new State({
+		// TODO: influencer
+		'disclosure1': new State('disclosure2', 'likert', {
+			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
+			next: "Következő",
+			random: true,
+			labels: [
+				'Egyáltalán nem értek egyet',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'Teljes mértékben egyetértek'
+			],
+			questions: [
+				{id: '1', question: '[influencer] mélyen és közvetlenül megnyílik arról, hogy ki ő valójában.'},
+				{id: '2', question: '[influencer] gyakran osztja meg a személyes dolgait, érzéseit.'}
+			]
+		}),
+		// TODO: influencer
+		'disclosure2': new State({
 			'post_congruent': results => lazyGroupCongruency(results.group),
 			'post_incongruent': results => !lazyGroupCongruency(results.group)
-		}, 'info_text', { // TODO: disclosure
-			title: "Disclosure",
-			next: "Következő"
+		}, 'likert', {
+			title: "[influencer] gyakran beszél…",
+			next: "Következő",
+			random: true,
+			labels: [
+				'Egyáltalán nem értek egyet',
+				'',
+				'',
+				'',
+				'',
+				'',
+				'Teljes mértékben egyetértek'
+			],
+			questions: [
+				{id: '3', question: 'a partneréről, szerelmi életéről'},
+				{id: '4', question: 'a barátairól'},
+				{id: '5', question: 'a családjáról'},
+				{id: '6', question: 'mind a pozitív és negatív személyes véleményéről'},
+				{id: '7', question: 'a személyes szokásairól'},
+				{id: '8', question: 'az élettörténetéről'},
+				{id: '9', question: 'a személyes nézeteiről, meggyőződéséről'}
+			]
 		}),
 		'post_congruent': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
