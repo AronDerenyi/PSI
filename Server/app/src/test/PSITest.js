@@ -176,8 +176,8 @@ module.exports = new Test(
 		'disclosure': new State({
 			'post_congruent': results => lazyGroupCongruency(results.group),
 			'post_incongruent': results => !lazyGroupCongruency(results.group)
-		}, 'info_text', { // TODO: baseline
-			title: "Baseline",
+		}, 'info_text', { // TODO: disclosure
+			title: "Disclosure",
 			next: "Következő"
 		}),
 		'post_congruent': new State('eng', 'info_image', {
