@@ -231,7 +231,7 @@ module.exports = new Test(
 				{id: '3', question: 'Ez a poszt valósághű.'}
 			]
 		}),
-		'ad_att': new State('ad_ethical', 'osgood', {
+		'ad_att': new State('rec', 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a poszttal kapcsolatos érzéseid!",
 			next: "Következő",
 			random: true,
