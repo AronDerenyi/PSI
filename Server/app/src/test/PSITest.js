@@ -15,7 +15,7 @@ function nextGroup() {
 
 module.exports = new Test(
 	{
-		'approval': new State('familiar', 'info_text', {
+		'approval': new State('fam', 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
 			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter és Szilágyi Sára Franciska az ELTE PPK mesterszakos pszichológus hallgatói.\n" +
 				"\n" +
@@ -37,9 +37,9 @@ module.exports = new Test(
 				"Kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom\n",
 			next: "Beleegyezem és elfogadom"
 		}),
-		'familiar': new State({
+		'fam': new State({
 			'video': results => results['familiar'].selected === '0',
-			'psr': results => results['familiar'].selected === '1',
+			'fam_scale': results => results['familiar'].selected === '1',
 		}, 'input_options', {
 			title: "Ismered Farkas Timit?",
 			next: "Következő",
@@ -48,20 +48,34 @@ module.exports = new Test(
 				{id: "0", label: "Nem"}
 			]
 		}),
+		'fam_scale': new State('following', 'input_slider', {
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered Farkas Timit!",
+			next: "Következő",
+			minValue: 0,
+			maxValue: 100
+		}),
+		'following': new State('PSR', 'input_options', {
+			title: "Követed valamilyen platformon Farkas Timit?",
+			next: "Következő",
+			options: [
+				{id: "1", label: "Igen"},
+				{id: "0", label: "Nem"}
+			]
+		}),
 
 
-		'video': new State('psi', 'info_video', {
+		'video': new State('EPSI', 'info_video', {
 			title: "Kérlek figyelmesen nézd végig a videót.",
 			next: "Következő",
 			source: "/res/farkas_timi.mp4"
 		}),
-		'psi': new State({
-			'insta_brand_none': results => results.group.covid === false && results.group.brand === 'none',
-			'insta_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
-			'insta_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
-			'insta_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
-			'insta_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
-			'insta_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
+		'EPSI': new State({
+			'post_brand_none': results => results.group.covid === false && results.group.brand === 'none',
+			'post_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
+			'post_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
+			'post_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
+			'post_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
+			'post_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
 		}, 'likert', {
 			title: "A videó nézése közben az az érzésem támadt, hogy…",
 			next: "Következő",
@@ -86,13 +100,13 @@ module.exports = new Test(
 		}),
 
 
-		'psr': new State({
-			'insta_brand_none': results => results.group.covid === false && results.group.brand === 'none',
-			'insta_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
-			'insta_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
-			'insta_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
-			'insta_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
-			'insta_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
+		'PSR': new State({
+			'post_brand_none': results => results.group.covid === false && results.group.brand === 'none',
+			'post_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
+			'post_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
+			'post_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
+			'post_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
+			'post_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
 		}, 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
@@ -105,7 +119,7 @@ module.exports = new Test(
 				'Inkább egyetértek',
 				'Teljes mértékben egyetértek'
 			],
-			control: '0',
+			control: 'control',
 			questions: [
 				{
 					id: '1',
@@ -139,42 +153,42 @@ module.exports = new Test(
 				{id: '18', question: 'Csak nagyon kicsit értem meg Farkas Timit, mint embert.'},
 				{id: '19', question: 'Előre várni szoktam, hogy Farkas Timi új videót vagy posztot töltsön fel.'},
 				{id: '20', question: 'Farkas Timi nem igazán érdekel engem.'},
-				{id: '0', question: 'Kérlek nyomd meg az ötös gombot.'}
+				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
 			]
 		}),
 
 
-		'insta_brand_none': new State('actions', 'info_image', {
+		'post_brand_none': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_none.png",
 			waitingTime: 10000
 		}),
-		'insta_brand_cong': new State('actions', 'info_image', {
+		'post_brand_cong': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_cong.png",
 			waitingTime: 10000
 		}),
-		'insta_brand_incong': new State('actions', 'info_image', {
+		'post_brand_incong': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_brand_incong.png",
 			waitingTime: 10000
 		}),
-		'insta_covid_brand_none': new State('actions', 'info_image', {
+		'post_covid_brand_none': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_none.png",
 			waitingTime: 10000
 		}),
-		'insta_covid_brand_cong': new State('actions', 'info_image', {
+		'post_covid_brand_cong': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_cong.png",
 			waitingTime: 10000
 		}),
-		'insta_covid_brand_incong': new State('actions', 'info_image', {
+		'post_covid_brand_incong': new State('eng', 'info_image', {
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
 			source: "/res/insta_covid_brand_incong.png",
@@ -182,7 +196,7 @@ module.exports = new Test(
 		}),
 
 
-		'actions': new State('trustworthy', 'likert', {
+		'eng': new State('ad_cred', 'likert', {
 			title: "Mennyire tartod valószínűnek, hogy poszt hatására elvégzed a következő aktivitásokat?",
 			next: "Következő",
 			random: true,
@@ -203,7 +217,7 @@ module.exports = new Test(
 				{id: '5', question: 'Megosztom a posztot.'},
 			]
 		}),
-		'trustworthy': new State('attractive', 'likert', {
+		'ad_cred': new State('ad_att', 'likert', {
 			title: "Mennyire értesz egyet az alábbi állításokkal?",
 			next: "Következő",
 			random: true,
@@ -220,9 +234,9 @@ module.exports = new Test(
 				{id: '3', question: 'Ez a poszt valósághű.'}
 			]
 		}),
-		'attractive': new State({
-			'ethics': results => results.group.brand !== 'none',
-			'covid_content': results => results.group.brand === 'none' && results.group.covid === true,
+		'ad_att': new State({
+			'ad_ethical': results => results.group.brand !== 'none',
+			'covid_cont': results => results.group.brand === 'none' && results.group.covid === true,
 			'creadibility': results => results.group.brand === 'none' && results.group.covid === false,
 		}, 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a poszttal kapcsolatos érzéseid!",
@@ -239,7 +253,7 @@ module.exports = new Test(
 		}),
 
 
-		'ethics': new State('brand', 'likert', {
+		'ad_ethical': new State('rec', 'likert', {
 			title: "Kérlek, válaszolj, az alábbi kérdésekre",
 			next: "Következő",
 			random: true,
@@ -263,7 +277,7 @@ module.exports = new Test(
 				},
 			]
 		}),
-		'brand': new State({
+		'rec': new State({
 			'debrief1_cong': results => results.group.brand === 'congruent',
 			'debrief1_incong': results => results.group.brand === 'incongruent'
 		}, 'input_text', {
@@ -274,16 +288,16 @@ module.exports = new Test(
 				{id: "brand", label: "Milyen márka szerepelt a posztban?"},
 			]
 		}),
-		'debrief1_cong': new State('congruency_cong', 'info_text', {
+		'debrief1_cong': new State('con_cong', 'info_text', {
 			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt látható, egy Coco WOW agyagmaszk szerepelt a képen.",
 			next: "Következő",
 		}),
-		'debrief1_incong': new State('congruency_incong', 'info_text', {
+		'debrief1_incong': new State('con_incong', 'info_text', {
 			title: "Az instagram bejegyzésben a PizzaForte volt látható, két PizzaFortés pizzadoboz szerepelt a képen.",
 			next: "Következő",
 		}),
-		'congruency_cong': new State({
-			'covid_content': results => results.group.covid === true,
+		'con_cong': new State({
+			'covid_cont': results => results.group.covid === true,
 			'creadibility': results => results.group.covid === false,
 		}, 'osgood', {
 			title: "Hogyan jellemeznéd az HelloBody márka és Farkas Timi kapcsolatát?",
@@ -297,8 +311,8 @@ module.exports = new Test(
 				{id: '4', first: 'Egymáshoz nem kötődő', second: 'Egymáshoz kötődő'}
 			]
 		}),
-		'congruency_incong': new State({
-			'covid_content': results => results.group.covid === true,
+		'con_incong': new State({
+			'covid_cont': results => results.group.covid === true,
 			'creadibility': results => results.group.covid === false,
 		}, 'osgood', {
 			title: "Hogyan jellemeznéd a PizzaForte márka és Farkas Timi kapcsolatát?",
@@ -314,7 +328,7 @@ module.exports = new Test(
 		}),
 
 
-		'covid_content': new State('debrief2', 'input_text', {
+		'covid_cont': new State('debrief2', 'input_text', {
 			title: "Milyen üzenetekre emlékszel a posztból?",
 			description: "Kérlek, töltsd ki az alábbi szövegdobozokat! Egy dobozba csak egy üzenet kerüljön! Ha nem emlékszel több üzenetre, akkor a hátralevő dobozokba írd, hogy N/A!",
 			next: "Következő",
@@ -326,12 +340,12 @@ module.exports = new Test(
 				{id: "5", label: ''}
 			]
 		}),
-		'debrief2': new State('covid_attractive', 'info_text', {
+		'debrief2': new State('covid_att', 'info_text', {
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
 			description: "Timi arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
 			next: "Következő",
 		}),
-		'covid_attractive': new State('third_person', 'osgood', {
+		'covid_att': new State('third_pers', 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a koronavírussal kapcsolatos üzenethez kapcsolódó érzéseidet!",
 			next: "Következő",
 			random: true,
@@ -344,13 +358,13 @@ module.exports = new Test(
 				{id: '5', first: 'Idegesítő', second: 'Nem idegesítő'}
 			]
 		}),
-		'third_person': new State('covid_congruency', 'input_slider', {
+		'third_pers': new State('covid_con', 'input_slider', {
 			title: "Szerinted mennyire találták meggyőzőnek mások a posztban található koronavírussal kapcsolatos üzenetet egy 0-tól 100-as skálán?",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
-		'covid_congruency': new State('creadibility', 'osgood', {
+		'covid_con': new State('creadibility', 'osgood', {
 			title: "Hogyan jellemeznéd a koronavírussal kapocsolatos üzenet és Farkas Timi kapcsolatát?",
 			next: "Következő",
 			random: true,
@@ -364,46 +378,46 @@ module.exports = new Test(
 		}),
 
 
-		'creadibility': new State('advertisement', 'osgood', {
+		'cred': new State('ad_perc', 'osgood', {
 			title: "A következő fogalmak segítségével jellemezd Farkas Timit!",
 			next: "Következő",
 			pageSize: 6,
 			random: true,
 			size: 5,
-			control: '0',
+			control: 'control',
 			pairs: [
-				{id: '1', first: 'taszító', second: 'vonzó'}, // attractiveness
-				{id: '2', first: 'közönséges', second: 'ízléses'},
-				{id: '3', first: 'csúnya', second: 'szép'},
-				{id: '4', first: 'hétköznapi', second: 'elegáns'},
-				{id: '5', first: 'nem szexi', second: 'szexi'},
-				{id: '6', first: 'megbízhatatlan', second: 'megbízható'}, // trustworthiness
-				{id: '7', first: 'becstelen', second: 'becsületes'},
-				{id: '8', first: 'hiteltelen', second: 'hiteles'},
-				{id: '9', first: 'őszintétlen', second: 'őszinte'},
-				{id: '10', first: 'tisztességtelen', second: 'tisztességes'},
-				{id: '11', first: 'nem szakértő', second: 'szakértő'}, // expertise
-				{id: '12', first: 'tapasztalatlan', second: 'tapasztalt'},
-				{id: '13', first: 'tudatlan', second: 'jól informált'},
-				{id: '14', first: 'hozzá nem értő', second: 'hozzáértő'},
-				{id: '15', first: 'kontár', second: 'profi'},
-				{id: '16', first: 'törődik velem', second: 'nem törődik velem'}, // goodwill
-				{id: '17', first: 'figyelembe veszi az érdekeimet', second: 'nem veszi figyelembe az érdekeimet'},
-				{id: '18', first: 'énközpontú', second: 'empatikus'},
-				{id: '19', first: 'foglalkozik velem', second: 'nem foglalkozik velem'},
-				{id: '20', first: 'érzéketlen', second: 'érzékeny'},
-				{id: '21', first: 'nem megértő', second: 'megértő'},
-				{id: '0', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
+				{id: 'att_1', first: 'taszító', second: 'vonzó'}, // attractiveness
+				{id: 'att_2', first: 'közönséges', second: 'ízléses'},
+				{id: 'att_3', first: 'csúnya', second: 'szép'},
+				{id: 'att_4', first: 'hétköznapi', second: 'elegáns'},
+				{id: 'att_5', first: 'nem szexi', second: 'szexi'},
+				{id: 'trust_1', first: 'megbízhatatlan', second: 'megbízható'}, // trustworthiness
+				{id: 'trust_2', first: 'becstelen', second: 'becsületes'},
+				{id: 'trust_3', first: 'hiteltelen', second: 'hiteles'},
+				{id: 'trust_4', first: 'őszintétlen', second: 'őszinte'},
+				{id: 'trust_5', first: 'tisztességtelen', second: 'tisztességes'},
+				{id: 'exp_1', first: 'nem szakértő', second: 'szakértő'}, // expertise
+				{id: 'exp_2', first: 'tapasztalatlan', second: 'tapasztalt'},
+				{id: 'exp_3', first: 'tudatlan', second: 'jól informált'},
+				{id: 'exp_4', first: 'hozzá nem értő', second: 'hozzáértő'},
+				{id: 'exp_5', first: 'kontár', second: 'profi'},
+				{id: 'good_1', first: 'nem törődik velem', second: 'törődik velem'}, // goodwill
+				{id: 'good_2', first: 'nem veszi figyelembe az érdekeimet', second: 'figyelembe veszi az érdekeimet'},
+				{id: 'good_3', first: 'énközpontú', second: 'empatikus'},
+				{id: 'good_4', first: 'nem foglalkozik velem', second: 'foglalkozik velem'},
+				{id: 'good_5', first: 'érzéketlen', second: 'érzékeny'},
+				{id: 'good_6', first: 'nem megértő', second: 'megértő'},
+				{id: 'control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
 			]
 		}),
-		'advertisement': new State('post_familiar', 'input_slider', {
+		'ad_perc': new State('fam_post', 'input_slider', {
 			title: "Értékeld, mennyire tekinthető reklámnak, amit láttál egy 0-tól 100-as skálán.",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
-		'post_familiar': new State({
-			'brand_familiar': results => results.group.brand !== 'none',
+		'fam_post': new State({
+			'fam_brand': results => results.group.brand !== 'none',
 			'sales_knowledge': results => results.group.brand === 'none'
 		}, 'input_slider', {
 			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a poszt, amit láttál.",
@@ -411,13 +425,13 @@ module.exports = new Test(
 			minValue: 0,
 			maxValue: 100
 		}),
-		'brand_familiar': new State('sales_knowledge', 'input_slider', {
+		'fam_brand': new State('sales_exp', 'input_slider', {
 			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a márka, amivel találkoztál.",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
-		'sales_knowledge': new State('age', 'likert', {
+		'sales_exp': new State('age', 'likert', {
 			title: "Mennyire ismerősek számodra az alábbi reklámeszközök?",
 			next: "Következő",
 			random: true,
@@ -440,7 +454,7 @@ module.exports = new Test(
 			next: "Következő",
 			inputs: [{id: "age", label: ""}]
 		}),
-		'gender': new State('education', 'input_options', {
+		'gender': new State('edu', 'input_options', {
 			title: "Mi a nemed?",
 			next: "Következő",
 			options: [
@@ -449,7 +463,7 @@ module.exports = new Test(
 				{id: "2", label: "Egyéb"}
 			]
 		}),
-		'education': new State('marketing_knowledge', 'input_options', {
+		'edu': new State('mkt_exp', 'input_options', {
 			title: "Mi a legmagasabb befejezett iskolai végzettséged?",
 			next: "Következő",
 			options: [
@@ -461,7 +475,7 @@ module.exports = new Test(
 				{id: "6", label: "Doktori vagy azzal egyenértékű fokozat"}
 			]
 		}),
-		'marketing_knowledge': new State('debrief', 'input_options', {
+		'mkt_exp': new State('debrief', 'input_options', {
 			title: "Hogyan jellemeznéd a reklám/marketing területtel kapcsolatos tudásod?",
 			next: "Következő",
 			options: [
@@ -483,5 +497,5 @@ module.exports = new Test(
 		}),
 	},
 	() => 'approval',
-	() => ({test: 'psi1', group: nextGroup()})
+	() => ({test: 'psi1-pgabo', group: nextGroup()})
 )
