@@ -41,7 +41,7 @@ module.exports = new Test(
 			'video': results => results['familiar'].selected === '0',
 			'fam_scale': results => results['familiar'].selected === '1',
 		}, 'input_options', {
-			title: "Ismered Farkas Timit?",
+			title: "Ismered Pumped Gabót?",
 			next: "Következő",
 			options: [
 				{id: "1", label: "Igen"},
@@ -49,13 +49,13 @@ module.exports = new Test(
 			]
 		}),
 		'fam_scale': new State('following', 'input_slider', {
-			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered Farkas Timit!",
+			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismered Gabót!",
 			next: "Következő",
 			minValue: 0,
 			maxValue: 100
 		}),
 		'following': new State('PSR', 'input_options', {
-			title: "Követed valamilyen platformon Farkas Timit?",
+			title: "Követed valamilyen platformon Gabót?",
 			next: "Következő",
 			options: [
 				{id: "1", label: "Igen"},
@@ -90,12 +90,12 @@ module.exports = new Test(
 				'Teljes mértékben egyetértek'
 			],
 			questions: [
-				{id: '1', question: 'Farkas Timi úgy beszélt mintha én is ott lettem volna vele'},
-				{id: '2', question: 'mintha Farkas Timi érzékelte volna a jelenlétem'},
-				{id: '3', question: 'mintha Farkas Timi hozzám beszélt volna'},
-				{id: '4', question: 'mintha Farkas Timi tudta volna, hogy figyelek rá'},
-				{id: '5', question: 'mintha Farkas Timi ismerte volna a reakcióimat'},
-				{id: '6', question: 'mintha Farkas Timi reagált volna a gondolataimra'}
+				{id: '1', question: 'Gabó úgy beszélt mintha én is ott lettem volna vele'},
+				{id: '2', question: 'mintha Gabó érzékelte volna a jelenlétem'},
+				{id: '3', question: 'mintha Gabó hozzám beszélt volna'},
+				{id: '4', question: 'mintha Gabó tudta volna, hogy figyelek rá'},
+				{id: '5', question: 'mintha Gabó ismerte volna a reakcióimat'},
+				{id: '6', question: 'mintha Gabó reagált volna a gondolataimra'}
 			]
 		}),
 
@@ -123,36 +123,36 @@ module.exports = new Test(
 			questions: [
 				{
 					id: '1',
-					question: 'Farkas Timit nézve olyan érzésem támad, mintha olyasvalaki lenne, akit jól ismerek.'
+					question: 'Gabót nézve olyan érzésem támad, mintha olyasvalaki lenne, akit jól ismerek.'
 				},
-				{id: '2', question: 'Ha Farkas Timi megjelenne egy műsorban, megnézném azt a műsort.'},
-				{id: '3', question: 'Farkas Timit egy természetes, szerény embernek látom.'},
-				{id: '4', question: 'Ha látnék egy cikket, melyben Farkas Timi szerepel, elolvasnám azt.'},
-				{id: '5', question: 'Szeretnék élőben is találkozni Farkas Timivel.'},
-				{id: '6', question: 'Úgy érzem, megértem Farkas Timi érzéseit.'},
-				{id: '7', question: 'Előfordul olykor, hogy Farkas Timire gondolok.'},
-				{id: '8', question: 'Nem érzek semmit Farkas Timivel kapcsolatban.'},
-				{id: '9', question: 'Szívesen nézem Farkas Timi videóit és posztjait a közösségi médiában.'},
+				{id: '2', question: 'Ha Gabó megjelenne egy műsorban, megnézném azt a műsort.'},
+				{id: '3', question: 'Gabót egy természetes, szerény embernek látom.'},
+				{id: '4', question: 'Ha látnék egy cikket, melyben Gabó szerepel, elolvasnám azt.'},
+				{id: '5', question: 'Szeretnék élőben is találkozni Gabóvel.'},
+				{id: '6', question: 'Úgy érzem, megértem Gabó érzéseit.'},
+				{id: '7', question: 'Előfordul olykor, hogy Gabóre gondolok.'},
+				{id: '8', question: 'Nem érzek semmit Gabóvel kapcsolatban.'},
+				{id: '9', question: 'Szívesen nézem Gabó videóit és posztjait a közösségi médiában.'},
 				{
 					id: '10',
-					question: 'Amikor nem jutok Farkas Timivel kapcsolatos hírekhez, hiányolom ezeket a híreket.'
+					question: 'Amikor nem jutok Gabóvel kapcsolatos hírekhez, hiányolom ezeket a híreket.'
 				},
-				{id: '11', question: 'Szeretnék minél több mindent megtudni Farkas Timiről.'},
+				{id: '11', question: 'Szeretnék minél több mindent megtudni Gabóről.'},
 				{
 					id: '12',
-					question: 'Előfordul, hogy információ után kutatok, hogy többet tudhassak meg Farkas Timiről.'
+					question: 'Előfordul, hogy információ után kutatok, hogy többet tudhassak meg Gabóről.'
 				},
-				{id: '13', question: 'Néha böngészek az interneten azért, hogy információt találjak Farkas Timiről.'},
-				{id: '14', question: 'Néha kedvem támad írásban reagálni Farkas Timi videójára vagy posztjára.'},
+				{id: '13', question: 'Néha böngészek az interneten azért, hogy információt találjak Gabóről.'},
+				{id: '14', question: 'Néha kedvem támad írásban reagálni Gabó videójára vagy posztjára.'},
 				{
 					id: '15',
-					question: 'Szerintem Farkas Timi ért azokhoz a dolgokhoz, amikről én is többet szeretnék tudni.'
+					question: 'Szerintem Gabó ért azokhoz a dolgokhoz, amikről én is többet szeretnék tudni.'
 				},
-				{id: '16', question: 'Néha kommentelek Farkas Timi posztjai alá.'},
-				{id: '17', question: 'Jól ismerem Farkas Timi életének részleteit.'},
-				{id: '18', question: 'Csak nagyon kicsit értem meg Farkas Timit, mint embert.'},
-				{id: '19', question: 'Előre várni szoktam, hogy Farkas Timi új videót vagy posztot töltsön fel.'},
-				{id: '20', question: 'Farkas Timi nem igazán érdekel engem.'},
+				{id: '16', question: 'Néha kommentelek Gabó posztjai alá.'},
+				{id: '17', question: 'Jól ismerem Gabó életének részleteit.'},
+				{id: '18', question: 'Csak nagyon kicsit értem meg Gabót, mint embert.'},
+				{id: '19', question: 'Előre várni szoktam, hogy Gabó új videót vagy posztot töltsön fel.'},
+				{id: '20', question: 'Gabó nem igazán érdekel engem.'},
 				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
 			]
 		}),
@@ -300,7 +300,7 @@ module.exports = new Test(
 			'covid_cont': results => results.group.covid === true,
 			'creadibility': results => results.group.covid === false,
 		}, 'osgood', {
-			title: "Hogyan jellemeznéd az HelloBody márka és Farkas Timi kapcsolatát?",
+			title: "Hogyan jellemeznéd az HelloBody márka és Gabó kapcsolatát?",
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -315,7 +315,7 @@ module.exports = new Test(
 			'covid_cont': results => results.group.covid === true,
 			'creadibility': results => results.group.covid === false,
 		}, 'osgood', {
-			title: "Hogyan jellemeznéd a PizzaForte márka és Farkas Timi kapcsolatát?",
+			title: "Hogyan jellemeznéd a PizzaForte márka és Gabó kapcsolatát?",
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -365,7 +365,7 @@ module.exports = new Test(
 			maxValue: 100
 		}),
 		'covid_con': new State('creadibility', 'osgood', {
-			title: "Hogyan jellemeznéd a koronavírussal kapocsolatos üzenet és Farkas Timi kapcsolatát?",
+			title: "Hogyan jellemeznéd a koronavírussal kapocsolatos üzenet és Gabó kapcsolatát?",
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -379,7 +379,7 @@ module.exports = new Test(
 
 
 		'cred': new State('ad_perc', 'osgood', {
-			title: "A következő fogalmak segítségével jellemezd Farkas Timit!",
+			title: "A következő fogalmak segítségével jellemezd Gabót!",
 			next: "Következő",
 			pageSize: 6,
 			random: true,
