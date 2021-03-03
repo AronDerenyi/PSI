@@ -17,25 +17,20 @@ module.exports = new Test(
 	{
 		'approval': new State('fam', 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
-			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter és Szilágyi Sára Franciska az ELTE PPK mesterszakos pszichológus hallgatói.\n" +
-				"\n" +
-				"Jelen vizsgálat célja a közösségi média használat közben tapasztalható, a közösségi médiatartalmak szereplőivel kialakított paraszociális interakciós folyamat mérése. \n" +
-				"\n" +
-				"A vizsgálat során egy influenszerrel kapcsolatban fogunk bemutatni vizuális ingereket, képeket és egy videót. Ezekkel kapcsolatban fogjuk kérni különböző kérdések megválaszolására.\n" +
-				"\n" +
-				"A vizsgálat mindössze kb. 20 percig tart.\n" +
-				"\n" +
-				"A kérdőív kitöltésének káros következménye nincs. A vizsgálatot bármikor indoklás nélkül akár végleg is megszakíthatja, vagy a kérdések megválaszolását megtagadhatja. A vizsgálatban történt részvételért anyagi javadalmazás nem jár. A kutatásban való részvétel teljesen önkéntes és anonim.\n" +
-				"\n" +
-				"A kutatás során azonosításra alkalmas személyes adatokat nem rögzítünk.\n" +
-				"Szigorúan bizalmasan kezelünk minden olyan információt, amit a kutatás keretén belül gyűjtünk össze. A kutatás során nyert adatokat kóddal ellátva biztonságos számítógépen őrizzük. Az egyéni kódot minden esetben a kutatásban résztvevő asszisztens adja, csak ő ismeri és ő fér hozzájuk. A kutatás során nyert adatokon csoportszinten végzünk statisztikai elemzéseket, amelyekből egyetlen résztvevő azonossága sem állapítható meg. A vizsgálat eredményéről orvosi jellegű zárójelentés, laborlelet nem készül. \n" +
-				"\n" +
-				"A kutatás során kapott eredményekről később publikáció jelenhet meg, és tudományos konferenciákon kerülhet ismertetésre. Ezekről a kívánságnak megfelelően szóbeli vagy írásos tájékoztatást adunk.\n" +
-				"\n" +
-				"A továbblépéssel hozzájárul ahhoz, hogy a vizsgálat során az Önről felvett, személye azonosítására nem alkalmas adatokat kutatási célra felhasználjuk, illetve, hogy más kutatók számára is hozzáférhetők legyenek. Fenntartom a jogot arra, hogy a vizsgálat során annak folytatásától bármikor elállhassak. Ilyen esetben a rólam addig felvett adatokat törölni kell.\n" +
-				"\n" +
-				"Kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom\n",
-			next: "Beleegyezem és elfogadom"
+			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter és Szilágyi Sára Franciska az ELTE PPK mesterszakos pszichológus hallgatói.\n\n" +
+				"Jelen vizsgálat célja a közösségi média használat közben tapasztalható, a közösségi médiatartalmak szereplőivel kialakított paraszociális interakciós folyamat mérése.\n\n" +
+				"A vizsgálat során egy influenszerrel kapcsolatban fogunk bemutatni vizuális ingereket, képeket és egy videót. Ezekkel kapcsolatban fogjuk kérni különböző kérdések megválaszolására.\n\n" +
+				"A vizsgálat mindössze kb. 20 percig tart.\n\n" +
+				"A kérdőív kitöltésének káros következménye nincs. A vizsgálatot bármikor indoklás nélkül akár végleg is megszakíthatja, vagy a kérdések megválaszolását megtagadhatja. A vizsgálatban történt részvételért minden 25. résztvevő 2000 forint jutalmat kap Dechatlon vagy Media Markt virtuális ajándékutalvány formájában. A kutatásban való részvétel teljesen önkéntes és anonim.\n\n" +
+				"A kutatás során azonosításra alkalmas személyes adatokat nem rögzítünk.\n\n" +
+				"Szigorúan bizalmasan kezelünk minden olyan információt, amit a kutatás keretén belül gyűjtünk össze. A kutatás során nyert adatokat kóddal ellátva biztonságos számítógépen őrizzük. Az egyéni kódot minden esetben a kutatásban résztvevő asszisztens adja, csak ő ismeri és ő fér hozzájuk. A kutatás során nyert adatokon csoportszinten végzünk statisztikai elemzéseket, amelyekből egyetlen résztvevő azonossága sem állapítható meg. A vizsgálat eredményéről orvosi jellegű zárójelentés, laborlelet nem készül.\n\n" +
+				"A kutatás során kapott eredményekről később publikáció jelenhet meg, és tudományos konferenciákon kerülhet ismertetésre. Ezekről a kívánságnak megfelelően szóbeli vagy írásos tájékoztatást adunk.\n\n" +
+				"A továbblépéssel hozzájárul ahhoz, hogy a vizsgálat során az Önről felvett, személye azonosítására nem alkalmas adatokat kutatási célra felhasználjuk, illetve, hogy más kutatók számára is hozzáférhetők legyenek. Fenntartom a jogot arra, hogy a vizsgálat során annak folytatásától bármikor elállhassak. Ilyen esetben a rólam addig felvett adatokat törölni kell.\n\n" +
+				"Amennyiben szeretne részt venni a jutalmazásban és elküldi részünkre a kérdőív során kapott hatjegyű kódot, kérjük engedélyezze személyes adatainak kezelését!\n\n" +
+				"Az ELTE PPK Ember-Környezet Tranzakció Intézet, mint adatkezelő, fenti adataimat bizalmasan kezeli, más adatkezelőnek, adatfeldolgozónak nem adja át. E tényállás részleteit a „Hozzájárulás adatkezeléshez” c. dokumentum tartalmazza.\n\n" +
+				"Az adatkezelésről szóló szabályozásról részletesebben pedig itt tájékozódhat (https://pgabo.madebyaron.com/res/policy.pdf)\n\n" +
+				"Beleegyezésemmel kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom.",
+			next: "Beleegyezem és elfogadom az adataim kezelését"
 		}),
 		'fam': new State({
 			'video': results => results['familiar'].selected === '0',
