@@ -33,8 +33,8 @@ module.exports = new Test(
 			next: "Beleegyezem és elfogadom az adataim kezelését"
 		}),
 		'fam': new State({
-			'video': results => results['familiar'].selected === '0',
-			'fam_scale': results => results['familiar'].selected === '1',
+			'video': results => results['fam'].selected === '0',
+			'fam_scale': results => results['fam'].selected === '1'
 		}, 'input_options', {
 			title: "Ismered Pumped Gabót?",
 			next: "Következő",
