@@ -15,8 +15,10 @@ module.exports = function State(
 	this.getScreenParameters = (env) => {
 		if (typeof screenParameterFactory === "object") {
 			return screenParameterFactory
-		} else {
+		} else if (typeof screenParameterFactory === "function") {
 			return screenParameterFactory(env)
+		} else {
+			throw "Couldn't generate screen parameters"
 		}
 	}
 
