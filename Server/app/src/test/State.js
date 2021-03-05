@@ -1,12 +1,26 @@
 module.exports = function State(
 	transitions,
 	screenType,
-	screenParameters
+	screenParameterFactory
 ) {
 
-	this.screenType = screenType
-	this.screenParameters = screenParameters
-	this.ending = !transitions
+	this.isEnding = () => {
+		return !transitions
+	}
+
+	this.getScreenType = () => {
+		return screenType
+	}
+
+	this.getScreenParameters = (env) => {
+		if (typeof screenParameterFactory === "object") {
+			return screenParameterFactory
+		} else if (typeof screenParameterFactory === "function") {
+			return screenParameterFactory(env)
+		} else {
+			throw "Couldn't generate screen parameters"
+		}
+	}
 
 	this.next = (env) => {
 		if (this.ending) {
