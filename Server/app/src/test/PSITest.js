@@ -13,6 +13,15 @@ function nextGroup() {
 	}
 }
 
+function nextCode() {
+	let code = ""
+	for (let i = 0; i < 8; i++) {
+		code += Math.floor(Math.random() * 10)
+	}
+
+	return code
+}
+
 module.exports = new Test(
 	{
 		'approval': new State('familiar', 'info_text', {
@@ -34,7 +43,7 @@ module.exports = new Test(
 				"\n" +
 				"A továbblépéssel hozzájárul ahhoz, hogy a vizsgálat során az Önről felvett, személye azonosítására nem alkalmas adatokat kutatási célra felhasználjuk, illetve, hogy más kutatók számára is hozzáférhetők legyenek. Fenntartom a jogot arra, hogy a vizsgálat során annak folytatásától bármikor elállhassak. Ilyen esetben a rólam addig felvett adatokat törölni kell.\n" +
 				"\n" +
-				"Kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom\n",
+				"Kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom",
 			next: "Beleegyezem és elfogadom"
 		}),
 		'familiar': new State({
@@ -473,15 +482,17 @@ module.exports = new Test(
 				{id: "6", label: "Soha nem tanultam reklámot vagy marketinget."}
 			]
 		}),
-		'debrief': new State(null, 'info_text', {
+		'debrief': new State(null, 'info_text', (env) => ({
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n" +
 				" \n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
 				"\n" +
+				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a " + env.code + " kódot a felmeres19@gmail.com e-mail címre.\n" +
+				"\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
-		}),
+		})),
 	},
 	() => 'approval',
-	() => ({test: 'psi1', group: nextGroup()})
+	() => ({test: 'psi1', group: nextGroup(), code: nextCode()})
 )
