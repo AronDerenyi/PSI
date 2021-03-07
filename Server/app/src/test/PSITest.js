@@ -483,7 +483,7 @@ module.exports = new Test(
 				" \n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
 				"\n" +
-				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a " + env.code + " kódot a felmeres19@gmail.com e-mail címre.\n" +
+				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + env.code + "** kódot a felmeres19@gmail.com e-mail címre.\n" +
 				"\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
 		})),
