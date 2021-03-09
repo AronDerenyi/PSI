@@ -58,8 +58,7 @@ module.exports = new Test(
 		}),
 		'fam': new State({
 			'fam_scale': results => results['fam'].selected === '1',
-			'vid_positive': results => results['fam'].selected === '0' && lazyGroupPositivity(results.group),
-			'vid_negative': results => results['fam'].selected === '0' && !lazyGroupPositivity(results.group),
+			'debrief_invalid': results => results['fam'].selected === '0',
 		}, 'input_options', {
 			title: "Ismered [influencer]?", // TODO: influencer
 			next: "Következő",
@@ -133,41 +132,6 @@ module.exports = new Test(
 				{id: '19', question: 'Előre várni szoktam, hogy [influencer] új videót vagy posztot töltsön fel.'},
 				{id: '20', question: '[influencer] nem igazán érdekel engem.'},
 				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
-			]
-		}),
-
-
-
-		'vid_positive': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót!",
-			next: "Következő",
-			source: "/res/vid_positive.mp4"
-		}),
-		'vid_negative': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót!",
-			next: "Következő",
-			source: "/res/vid_negative.mp4"
-		}),
-		'EPSI': new State('disclosure1', 'likert', {
-			title: "A videó nézése közben az az érzésem támadt, hogy…",
-			next: "Következő",
-			random: true,
-			labels: [
-				'Egyáltalán nem értek egyet',
-				'',
-				'',
-				'',
-				'',
-				'',
-				'Teljes mértékben egyetértek'
-			],
-			questions: [
-				{id: '1', question: '[influencer] úgy beszélt mintha én is ott lettem volna vele'},
-				{id: '2', question: 'mintha [influencer] érzékelte volna a jelenlétem'},
-				{id: '3', question: 'mintha [influencer] hozzám beszélt volna'},
-				{id: '4', question: 'mintha [influencer] tudta volna, hogy figyelek rá'},
-				{id: '5', question: 'mintha [influencer] ismerte volna a reakcióimat'},
-				{id: '6', question: 'mintha [influencer] reagált volna a gondolataimra'}
 			]
 		}),
 
@@ -328,7 +292,7 @@ module.exports = new Test(
 			minValue: 0,
 			maxValue: 100
 		}),
-		'con_congruent': new State('third_pers', 'osgood', {
+		'con_congruent': new State('cred', 'osgood', {
 			title: "Hogyan jellemeznéd [congruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
 			next: "Következő",
 			random: true,
@@ -384,7 +348,7 @@ module.exports = new Test(
 				{id: 'good_4', first: 'nem foglalkozik velem', second: 'foglalkozik velem'},
 				{id: 'good_5', first: 'érzéketlen', second: 'érzékeny'},
 				{id: 'good_6', first: 'nem megértő', second: 'megértő'},
-				{id: 'cred_control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
+				{id: 'control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
 			]
 		}),
 		'fam_post': new State('fam_brand', 'input_slider', {
@@ -446,7 +410,7 @@ module.exports = new Test(
 				{id: "6", label: "Doktori vagy azzal egyenértékű fokozat"}
 			]
 		}),
-		'mkt_exp': new State('debrief', 'input_options', {
+		'mkt_exp': new State('debrief_valid', 'input_options', {
 			title: "Hogyan jellemeznéd a reklám/marketing területtel kapcsolatos tudásod?",
 			next: "Következő",
 			options: [
@@ -461,7 +425,7 @@ module.exports = new Test(
 
 
 
-		'debrief': new State(null, 'info_text', {
+		'debrief_valid': new State(null, 'info_text', {
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n" +
 				"\n" +
@@ -469,6 +433,14 @@ module.exports = new Test(
 				"\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
 		}),
+		'debrief_invalid': new State(null, 'info_text', {
+			title: "Köszönjük a részvételed!",
+			description: "Egy olyan vizsgálatban vettél részt, amelyhez szükséges az influenszer ismerete, így ennek hiányában sajnos nem tudnál válaszolni a kérdésekre.\n" +
+				"\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
+				"\n" +
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
+		})
 	},
 	() => 'approval',
 	() => ({test: 'psi2', group: {positive: null, congruent: null}})
