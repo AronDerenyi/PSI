@@ -1,14 +1,28 @@
 module.exports = function State(
 	transitions,
 	screenType,
-	screenParameters
+	screenParameterFactory
 ) {
 
-	this.screenType = screenType
-	this.screenParameters = screenParameters
-	this.ending = !transitions
+	this.isEnding = () => {
+		return !transitions
+	}
 
-	this.next = (results) => {
+	this.getScreenType = () => {
+		return screenType
+	}
+
+	this.getScreenParameters = (env) => {
+		if (typeof screenParameterFactory === "object") {
+			return screenParameterFactory
+		} else if (typeof screenParameterFactory === "function") {
+			return screenParameterFactory(env)
+		} else {
+			throw "Couldn't generate screen parameters"
+		}
+	}
+
+	this.next = (env) => {
 		if (this.ending) {
 			throw "The state is an ending state."
 		} else if (typeof transitions === "string") {
@@ -17,7 +31,7 @@ module.exports = function State(
 			let nextStateId
 
 			for (let stateId in transitions) {
-				if (transitions[stateId](results)) {
+				if (transitions[stateId](env)) {
 					if (!nextStateId) {
 						nextStateId = stateId
 					} else {

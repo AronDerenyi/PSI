@@ -2,7 +2,7 @@
 	<div class="screen">
 		<div class="card title">
 			<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
-			<p v-if="viewModel.description">{{ viewModel.description }}</p>
+			<p class="info-text-description" v-if="description" v-html="description"></p>
 		</div>
 		<button
 			v-if="viewModel.nextLabel"
@@ -15,6 +15,8 @@
 <script lang="ts">
 import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import {InfoTextModel} from "src/viewmodel/InfoTextModel";
+import DOMPurify from "dompurify";
+import marked from "marked";
 
 @Component
 export default class InfoText extends Vue {
@@ -22,6 +24,14 @@ export default class InfoText extends Vue {
 	@Prop() readonly parameters: any
 
 	private viewModel = new InfoTextModel(this.parameters)
+
+	private get description() {
+		try {
+			return DOMPurify.sanitize(marked(this.viewModel.description, { breaks: true }))
+		} catch (error) {
+			return null
+		}
+	}
 
 	@Watch('viewModel.result')
 	private onResult(result: any) {
@@ -49,12 +59,17 @@ export default class InfoText extends Vue {
 .title p {
 	padding: 40px 40px;
 	text-align: justify;
-	white-space: pre-wrap;
 	color: var(--color_on_surface_variant);
 }
 
 button {
 	margin-top: 20px;
 	align-self: flex-end;
+}
+</style>
+
+<style>
+.info-text-description *:not(:last-child) {
+	margin-bottom: 16px;
 }
 </style>
