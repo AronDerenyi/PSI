@@ -58,8 +58,7 @@ module.exports = new Test(
 		}),
 		'fam': new State({
 			'fam_scale': results => results['fam'].selected === '1',
-			'vid_positive': results => results['fam'].selected === '0' && lazyGroupPositivity(results.group),
-			'vid_negative': results => results['fam'].selected === '0' && !lazyGroupPositivity(results.group),
+			'debrief_invalid': results => results['fam'].selected === '0',
 		}, 'input_options', {
 			title: "Ismered [influencer]?", // TODO: influencer
 			next: "Következő",
@@ -133,41 +132,6 @@ module.exports = new Test(
 				{id: '19', question: 'Előre várni szoktam, hogy [influencer] új videót vagy posztot töltsön fel.'},
 				{id: '20', question: '[influencer] nem igazán érdekel engem.'},
 				{id: 'control', question: 'Kérlek nyomd meg az ötös gombot.'}
-			]
-		}),
-
-
-
-		'vid_positive': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót!",
-			next: "Következő",
-			source: "/res/vid_positive.mp4"
-		}),
-		'vid_negative': new State('EPSI', 'info_video', {
-			title: "Kérlek figyelmesen nézd végig a videót!",
-			next: "Következő",
-			source: "/res/vid_negative.mp4"
-		}),
-		'EPSI': new State('disclosure', 'likert', {
-			title: "A videó nézése közben az az érzésem támadt, hogy…",
-			next: "Következő",
-			random: true,
-			labels: [
-				'Egyáltalán nem értek egyet',
-				'',
-				'',
-				'',
-				'',
-				'',
-				'Teljes mértékben egyetértek'
-			],
-			questions: [
-				{id: '1', question: 'Farkas Timi úgy beszélt mintha én is ott lettem volna vele'},
-				{id: '2', question: 'mintha Farkas Timi érzékelte volna a jelenlétem'},
-				{id: '3', question: 'mintha Farkas Timi hozzám beszélt volna'},
-				{id: '4', question: 'mintha Farkas Timi tudta volna, hogy figyelek rá'},
-				{id: '5', question: 'mintha Farkas Timi ismerte volna a reakcióimat'},
-				{id: '6', question: 'mintha Farkas Timi reagált volna a gondolataimra'}
 			]
 		}),
 
@@ -407,7 +371,7 @@ module.exports = new Test(
 				{id: "6", label: "Doktori vagy azzal egyenértékű fokozat"}
 			]
 		}),
-		'mkt_exp': new State('debrief', 'input_options', {
+		'mkt_exp': new State('debrief_valid', 'input_options', {
 			title: "Hogyan jellemeznéd a reklám/marketing területtel kapcsolatos tudásod?",
 			next: "Következő",
 			options: [
@@ -422,7 +386,7 @@ module.exports = new Test(
 
 
 
-		'debrief': new State(null, 'info_text', {
+		'debrief_valid': new State(null, 'info_text', {
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n" +
 				"\n" +
@@ -430,6 +394,14 @@ module.exports = new Test(
 				"\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
 		}),
+		'debrief_invalid': new State(null, 'info_text', {
+			title: "Köszönjük a részvételed!",
+			description: "Egy olyan vizsgálatban vettél részt, amelyhez szükséges az influenszer ismerete, így ennek hiányában sajnos nem tudnál válaszolni a kérdésekre.\n" +
+				"\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
+				"\n" +
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
+		})
 	},
 	() => 'approval',
 	() => ({test: 'psi2', group: {positive: null, congruent: null}})
