@@ -289,7 +289,7 @@ module.exports = new Test(
 			minValue: 0,
 			maxValue: 100
 		}),
-		'con_congruent': new State('third_pers', 'osgood', {
+		'con_congruent': new State('cred', 'osgood', {
 			title: "Hogyan jellemeznéd [congruent_brand] és [influencer] kapcsolatát?", // TODO: brand, influencer
 			next: "Következő",
 			random: true,
@@ -345,7 +345,7 @@ module.exports = new Test(
 				{id: 'good_4', first: 'nem foglalkozik velem', second: 'foglalkozik velem'},
 				{id: 'good_5', first: 'érzéketlen', second: 'érzékeny'},
 				{id: 'good_6', first: 'nem megértő', second: 'megértő'},
-				{id: 'cred_control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
+				{id: 'control', first: 'nyomd meg balról', second: 'a negyedik lehetőséget'}
 			]
 		}),
 		'fam_post': new State('fam_brand', 'input_slider', {
