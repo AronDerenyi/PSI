@@ -6,7 +6,7 @@ module.exports = new Test(
 		'inft': new State('infi', 'info_text', {
 			title: "Text Title",
 			description: "Some text that is here",
-			next: "Next"
+			positive: "Next"
 		}),
 		'infi': new State('infv', 'info_image', {
 			title: "Image Title",
