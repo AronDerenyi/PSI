@@ -1,20 +1,32 @@
 <template>
-	<div class="screen">
-		<div class="card title">
-			<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
-			<p class="info-text-description" v-if="description" v-html="description"></p>
-		</div>
-		<button
-			v-if="viewModel.nextLabel"
-			@click="viewModel.next()">
-			{{ viewModel.nextLabel }}
+<div class="screen">
+	<div class="card content">
+		<h1 v-if="viewModel.title">{{ viewModel.title }}</h1>
+		<p class="info-text-description" v-if="description" v-html="description"></p>
+	</div>
+	<div class="buttons">
+		<button v-if="viewModel.negativeLabel" @click="viewModel.next(viewModel.negativeId)">
+			{{ viewModel.negativeLabel }}
+		</button>
+		<button v-if="viewModel.positiveLabel" @click="viewModel.next(viewModel.positiveId)">
+			{{ viewModel.positiveLabel }}
 		</button>
 	</div>
+</div>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
-import {InfoTextModel} from "src/viewmodel/InfoTextModel";
+import {
+	Vue,
+	Component,
+	Prop,
+	Watch
+} from "vue-property-decorator";
+
+import {
+	InfoTextModel
+} from "src/viewmodel/InfoTextModel";
+
 import DOMPurify from "dompurify";
 import marked from "marked";
 
@@ -27,7 +39,9 @@ export default class InfoText extends Vue {
 
 	private get description() {
 		try {
-			return DOMPurify.sanitize(marked(this.viewModel.description, { breaks: true }))
+			return DOMPurify.sanitize(marked(this.viewModel.description, {
+				breaks: true
+			}))
 		} catch (error) {
 			return null
 		}
@@ -46,25 +60,31 @@ export default class InfoText extends Vue {
 	flex-direction: column;
 }
 
-.title {
+.content {
 	box-sizing: border-box;
 	width: 800px;
 }
 
-.title h1 {
+.content h1 {
 	padding: 20px 40px;
 	text-align: center;
 }
 
-.title p {
+.content p {
 	padding: 40px 40px;
 	text-align: justify;
 	color: var(--color_on_surface_variant);
 }
 
-button {
+.buttons {
 	margin-top: 20px;
-	align-self: flex-end;
+
+	display: flex;
+	justify-content: flex-end;
+}
+
+.buttons *:not(:first-child) {
+	margin-left: 20px;
 }
 </style>
 
