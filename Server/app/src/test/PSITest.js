@@ -13,6 +13,15 @@ function nextGroup() {
 	}
 }
 
+function nextCode() {
+	let code = ""
+	for (let i = 0; i < 8; i++) {
+		code += Math.floor(Math.random() * 10)
+	}
+
+	return code
+}
+
 module.exports = new Test(
 	{
 		'approval': new State('fam', 'info_text', {
@@ -30,7 +39,7 @@ module.exports = new Test(
 				"Az ELTE PPK Ember-Környezet Tranzakció Intézet, mint adatkezelő, fenti adataimat bizalmasan kezeli, más adatkezelőnek, adatfeldolgozónak nem adja át. E tényállás részleteit a „Hozzájárulás adatkezeléshez” c. dokumentum tartalmazza.\n\n" +
 				"Az adatkezelésről szóló szabályozásról részletesebben pedig itt tájékozódhat (https://pgabo.madebyaron.com/res/policy.pdf)\n\n" +
 				"Beleegyezésemmel kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom.",
-			next: "Beleegyezem és elfogadom az adataim kezelését"
+			positive: "Beleegyezem és elfogadom az adataim kezelését"
 		}),
 		'fam': new State({
 			'video': results => results['fam'].selected === '0',
@@ -285,11 +294,11 @@ module.exports = new Test(
 		}),
 		'debrief1_cong': new State('con_cong', 'info_text', {
 			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt látható, egy Coco WOW agyagmaszk szerepelt a képen.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'debrief1_incong': new State('con_incong', 'info_text', {
 			title: "Az instagram bejegyzésben a PizzaForte volt látható, két PizzaFortés pizzadoboz szerepelt a képen.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'con_cong': new State({
 			'covid_cont': results => results.group.covid === true,
@@ -338,7 +347,7 @@ module.exports = new Test(
 		'debrief2': new State('covid_att', 'info_text', {
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
 			description: "Timi arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'covid_att': new State('third_pers', 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a koronavírussal kapcsolatos üzenethez kapcsolódó érzéseidet!",
@@ -482,15 +491,17 @@ module.exports = new Test(
 				{id: "6", label: "Soha nem tanultam reklámot vagy marketinget."}
 			]
 		}),
-		'debrief': new State(null, 'info_text', {
+		'debrief': new State(null, 'info_text', (env) => ({
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n" +
 				" \n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
 				"\n" +
+				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + env.code + "** kódot a felmeres19@gmail.com e-mail címre.\n" +
+				"\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
-		}),
+		})),
 	},
 	() => 'approval',
-	() => ({test: 'psi1-pgabo', group: nextGroup()})
+	() => ({test: 'psi1-pgabo', group: nextGroup(), code: nextCode()})
 )
