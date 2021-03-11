@@ -39,7 +39,7 @@ module.exports = new Test(
 				"Az ELTE PPK Ember-Környezet Tranzakció Intézet, mint adatkezelő, fenti adataimat bizalmasan kezeli, más adatkezelőnek, adatfeldolgozónak nem adja át. E tényállás részleteit a „Hozzájárulás adatkezeléshez” c. dokumentum tartalmazza.\n\n" +
 				"Az adatkezelésről szóló szabályozásról részletesebben pedig itt tájékozódhat (https://pgabo.madebyaron.com/res/policy.pdf)\n\n" +
 				"Beleegyezésemmel kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom.",
-			next: "Beleegyezem és elfogadom az adataim kezelését"
+			positive: "Beleegyezem és elfogadom az adataim kezelését"
 		}),
 		'familiar': new State({
 			'video': results => results['familiar'].selected === '0',
@@ -280,11 +280,11 @@ module.exports = new Test(
 		}),
 		'debrief1_cong': new State('congruency_cong', 'info_text', {
 			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt látható, egy Coco WOW agyagmaszk szerepelt a képen.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'debrief1_incong': new State('congruency_incong', 'info_text', {
 			title: "Az instagram bejegyzésben a PizzaForte volt látható, két PizzaFortés pizzadoboz szerepelt a képen.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'congruency_cong': new State({
 			'covid_content': results => results.group.covid === true,
@@ -333,7 +333,7 @@ module.exports = new Test(
 		'debrief2': new State('covid_attractive', 'info_text', {
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
 			description: "Timi arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
-			next: "Következő",
+			positive: "Következő",
 		}),
 		'covid_attractive': new State('third_person', 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a koronavírussal kapcsolatos üzenethez kapcsolódó érzéseidet!",
