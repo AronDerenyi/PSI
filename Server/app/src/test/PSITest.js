@@ -54,7 +54,7 @@ module.exports = new Test(
 				"A továbblépéssel hozzájárul ahhoz, hogy a vizsgálat során az Önről felvett, személye azonosítására nem alkalmas adatokat kutatási célra felhasználjuk, illetve, hogy más kutatók számára is hozzáférhetők legyenek. Fenntartom a jogot arra, hogy a vizsgálat során annak folytatásától bármikor elállhassak. Ilyen esetben a rólam addig felvett adatokat törölni kell.\n" +
 				"\n" +
 				"Kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom\n",
-			next: "Beleegyezem és elfogadom"
+			positive: "Beleegyezem és elfogadom"
 		}),
 		'fam': new State({
 			'fam_scale': results => results['fam'].selected === '1',
