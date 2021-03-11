@@ -3,6 +3,10 @@ module.exports = (test) => (req, res) => {
 	const results = req.session.results
 	const state = test.states[stateId]
 
+	if (!state) {
+		throw "State '" + stateId + "' doesn't exist"
+	}
+
 	res.json({
 		stateId: stateId,
 		screenType: state.getScreenType(),
