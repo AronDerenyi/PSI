@@ -487,7 +487,7 @@ module.exports = new Test(
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
-				(results['approval'].selected === '1' ? "Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + env.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" : "") +
+				(results['approval'].selected === '1' ? "Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + results.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" : "") +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
 		})),
 	},
