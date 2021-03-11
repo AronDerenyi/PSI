@@ -24,7 +24,10 @@ function nextCode() {
 
 module.exports = new Test(
 	{
-		'approval': new State('familiar', 'info_text', {
+		'approval': new State({
+			'debrief': results => results['approval'].selected === '0',
+			'familiar': results => results['approval'].selected === '1'
+		}, 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
 			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter és Szilágyi Sára Franciska az ELTE PPK mesterszakos pszichológus hallgatói.\n\n" +
 				"Jelen vizsgálat célja a közösségi média használat közben tapasztalható, a közösségi médiatartalmak szereplőivel kialakított paraszociális interakciós folyamat mérése.\n\n" +
@@ -39,7 +42,10 @@ module.exports = new Test(
 				"Az ELTE PPK Ember-Környezet Tranzakció Intézet, mint adatkezelő, fenti adataimat bizalmasan kezeli, más adatkezelőnek, adatfeldolgozónak nem adja át. E tényállás részleteit a „Hozzájárulás adatkezeléshez” c. dokumentum tartalmazza.\n\n" +
 				"Az adatkezelésről szóló szabályozásról részletesebben pedig itt tájékozódhat (https://pgabo.madebyaron.com/res/policy.pdf)\n\n" +
 				"Beleegyezésemmel kijelentem, hogy 18 éves elmúltam, a kutatásban való részvételem körülményeiről részletes tájékoztatást kaptam, a feltételekkel egyetértek, a részvételt vállalom.",
-			positive: "Beleegyezem és elfogadom az adataim kezelését"
+			positive: "Beleegyezem és elfogadom",
+			positiveId: "1",
+			negative: "Elutasítom",
+			negativeId: "0"
 		}),
 		'familiar': new State({
 			'video': results => results['familiar'].selected === '0',
@@ -477,15 +483,12 @@ module.exports = new Test(
 				{id: "6", label: "Soha nem tanultam reklámot vagy marketinget."}
 			]
 		}),
-		'debrief': new State(null, 'info_text', (env) => ({
+		'debrief': new State(null, 'info_text', results => ({
 			title: "Köszönjük a részvételed!",
-			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n" +
-				" \n" +
-				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n" +
-				"\n" +
-				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + env.code + "** kódot a felmeres19@gmail.com e-mail címre.\n" +
-				"\n" +
-				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n"
+			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
+				(results['approval'].selected === '1' ? "Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + env.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" : "") +
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
 		})),
 	},
 	() => 'approval',
