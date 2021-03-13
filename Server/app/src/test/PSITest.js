@@ -1,15 +1,15 @@
 const Test = require('./Test')
 const State = require('./State')
 
-const groupCount = 2 * 3
+const groupCount = 4 * 3
 let currentGroup = Math.floor(Math.random() * groupCount)
 
 function nextGroup() {
 	let group = currentGroup
 	currentGroup = (currentGroup + 1) % groupCount
 	return {
-		covid: [false, true][group % 2],
-		brand: ['none', 'congruent', 'incongruent'][Math.floor(group / 2)]
+		covid: ['none', 'neutral', 'positive', 'negative'][group % 4],
+		brand: ['none', 'congruent', 'incongruent'][Math.floor(group / 4)]
 	}
 }
 
@@ -77,16 +77,9 @@ module.exports = new Test(
 		'video': new State('EPSI', 'info_video', {
 			title: "Kérlek figyelmesen nézd végig a videót.",
 			next: "Következő",
-			source: "/res/farkas_timi.mp4"
+			source: "/res/video.mp4"
 		}),
-		'EPSI': new State({
-			'post_brand_none': results => results.group.covid === false && results.group.brand === 'none',
-			'post_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
-			'post_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
-			'post_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
-			'post_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
-			'post_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
-		}, 'likert', {
+		'EPSI': new State('post', 'likert', {
 			title: "A videó nézése közben az az érzésem támadt, hogy…",
 			next: "Következő",
 			random: true,
@@ -110,14 +103,7 @@ module.exports = new Test(
 		}),
 
 
-		'PSR': new State({
-			'post_brand_none': results => results.group.covid === false && results.group.brand === 'none',
-			'post_brand_cong': results => results.group.covid === false && results.group.brand === 'congruent',
-			'post_brand_incong': results => results.group.covid === false && results.group.brand === 'incongruent',
-			'post_covid_brand_none': results => results.group.covid === true && results.group.brand === 'none',
-			'post_covid_brand_cong': results => results.group.covid === true && results.group.brand === 'congruent',
-			'post_covid_brand_incong': results => results.group.covid === true && results.group.brand === 'incongruent'
-		}, 'likert', {
+		'PSR': new State('post', 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
@@ -168,42 +154,12 @@ module.exports = new Test(
 		}),
 
 
-		'post_brand_none': new State('eng', 'info_image', {
+		'post': new State('eng', 'info_image', results => ({
 			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
 			next: "Következő",
-			source: "/res/insta_brand_none.png",
+			source: "/res/post_" + results.group.covid + "_" + results.group.brand + ".png",
 			waitingTime: 10000
-		}),
-		'post_brand_cong': new State('eng', 'info_image', {
-			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
-			next: "Következő",
-			source: "/res/insta_brand_cong.png",
-			waitingTime: 10000
-		}),
-		'post_brand_incong': new State('eng', 'info_image', {
-			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
-			next: "Következő",
-			source: "/res/insta_brand_incong.png",
-			waitingTime: 10000
-		}),
-		'post_covid_brand_none': new State('eng', 'info_image', {
-			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
-			next: "Következő",
-			source: "/res/insta_covid_brand_none.png",
-			waitingTime: 10000
-		}),
-		'post_covid_brand_cong': new State('eng', 'info_image', {
-			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
-			next: "Következő",
-			source: "/res/insta_covid_brand_cong.png",
-			waitingTime: 10000
-		}),
-		'post_covid_brand_incong': new State('eng', 'info_image', {
-			title: "Tanulmányozd az alábbi Instagram posztot minimum tíz másodpercig!",
-			next: "Következő",
-			source: "/res/insta_covid_brand_incong.png",
-			waitingTime: 10000
-		}),
+		})),
 
 
 		'eng': new State('ad_cred', 'likert', {
