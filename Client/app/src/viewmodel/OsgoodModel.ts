@@ -16,6 +16,7 @@ export class OsgoodModel {
 
 	readonly result: {
 		elapsedTime: number,
+		nextEvents: number[],
 		questions: {
 			id: string,
 			value: number,
@@ -43,6 +44,7 @@ export class OsgoodModel {
 	private currentPage = -1
 
 	private readonly startTime = Date.now()
+	private nextEvents: number[] = []
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
@@ -104,9 +106,12 @@ export class OsgoodModel {
 	}
 
 	next() {
+		this.nextEvents.push(Date.now() - this.startTime)
+		
 		if (this.nextPage()) return
 		Vue.set(this, 'result', {
 			elapsedTime: Date.now() - this.startTime,
+			nextEvents: this.nextEvents,
 			inputs: this.internalPairs.map(pair => ({
 				id: pair.id,
 				answer: pair.value,

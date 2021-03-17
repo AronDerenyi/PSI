@@ -14,7 +14,8 @@ export class LikertModel {
 	}
 
 	readonly result: {
-		elapsedTime: number,
+		elapsedTime: number[],
+		nextEvents: number[],
 		questions: {
 			id: string,
 			answer: number,
@@ -41,6 +42,7 @@ export class LikertModel {
 	private currentPage = -1
 
 	private readonly startTime = Date.now()
+	private nextEvents: number[] = []
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
@@ -104,9 +106,12 @@ export class LikertModel {
 	}
 
 	next() {
+		this.nextEvents.push(Date.now() - this.startTime)
+
 		if (this.nextPage()) return
 		Vue.set(this, 'result', {
 			elapsedTime: Date.now() - this.startTime,
+			nextEvents: this.nextEvents,
 			inputs: this.internalQuestions.map(question => ({
 				id: question.id,
 				answer: question.answer,
