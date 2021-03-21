@@ -246,10 +246,7 @@ module.exports = new Test(
 				},
 			]
 		}),
-		'rec': new State({
-			'debrief1_cong': results => results.group.brand === 'congruent',
-			'debrief1_incong': results => results.group.brand === 'incongruent'
-		}, 'input_text', {
+		'rec': new State('debrief1', 'input_text', {
 			title: "Kérlek, válaszolj, az alábbi kérdésekre",
 			next: "Következő",
 			inputs: [
@@ -257,19 +254,19 @@ module.exports = new Test(
 				{id: "brand", label: "Milyen márka szerepelt a posztban?"},
 			]
 		}),
-		'debrief1_cong': new State('con_cong', 'info_text', {
-			title: "Az instagram bejegyzésben egy HelloBody kozmetikum volt látható, egy Coco WOW agyagmaszk szerepelt a képen.",
+		'debrief1': new State('con', 'info_text', results => ({
+			title: results.group.brand === 'congruent' ?
+				"Az instagram bejegyzésben egy MYPROTEIN termék volt látható, egy shaker szerepelt a képen." :
+				"Az instagram bejegyzésben két csomag NaturAqua ásványvíz volt látható.",
 			positive: "Következő",
-		}),
-		'debrief1_incong': new State('con_incong', 'info_text', {
-			title: "Az instagram bejegyzésben a PizzaForte volt látható, két PizzaFortés pizzadoboz szerepelt a képen.",
-			positive: "Következő",
-		}),
-		'con_cong': new State({
+		})),
+		'con': new State({
 			'covid_cont': results => results.group.covid !== 'none',
 			'cred': results => results.group.covid === 'none',
-		}, 'osgood', {
-			title: "Hogyan jellemeznéd az HelloBody márka és Gabó kapcsolatát?",
+		}, 'osgood', results => ({
+			title: results.group.brand === 'congruent' ?
+				"Hogyan jellemeznéd a MYPROTEIN márka és Gabó kapcsolatát?" :
+				"Hogyan jellemeznéd a NaturAqua márka és Gabó kapcsolatát?",
 			next: "Következő",
 			random: true,
 			size: 7,
@@ -279,22 +276,7 @@ module.exports = new Test(
 				{id: '3', first: 'Valószínűtlen párosítás', second: 'Valószínű párosítás'},
 				{id: '4', first: 'Egymáshoz nem kötődő', second: 'Egymáshoz kötődő'}
 			]
-		}),
-		'con_incong': new State({
-			'covid_cont': results => results.group.covid !== 'none',
-			'cred': results => results.group.covid === 'none',
-		}, 'osgood', {
-			title: "Hogyan jellemeznéd a PizzaForte márka és Gabó kapcsolatát?",
-			next: "Következő",
-			random: true,
-			size: 7,
-			pairs: [
-				{id: '1', first: 'Nem megfelelő', second: 'Megfelelő'},
-				{id: '2', first: 'Összeférhetetlen', second: 'Összeegyeztethető'},
-				{id: '3', first: 'Valószínűtlen párosítás', second: 'Valószínű párosítás'},
-				{id: '4', first: 'Egymáshoz nem kötődő', second: 'Egymáshoz kötődő'}
-			]
-		}),
+		})),
 
 
 		'covid_cont': new State('debrief2', 'input_text', {
