@@ -29,7 +29,7 @@ module.exports = new Test(
 			'fam': results => results['approval'].selected === '1'
 		}, 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
-			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter és Szilágyi Sára Franciska az ELTE PPK mesterszakos pszichológus hallgatói.\n\n" +
+			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter az ELTE PPK mesterszakos pszichológus hallgatói.\n\n" +
 				"Jelen vizsgálat célja a közösségi média használat közben tapasztalható, a közösségi médiatartalmak szereplőivel kialakított paraszociális interakciós folyamat mérése.\n\n" +
 				"A vizsgálat során egy influenszerrel kapcsolatban fogunk bemutatni vizuális ingereket, képeket és egy videót. Ezekkel kapcsolatban fogjuk kérni különböző kérdések megválaszolására.\n\n" +
 				"A vizsgálat mindössze kb. 20 percig tart.\n\n" +
