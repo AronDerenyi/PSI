@@ -25,7 +25,7 @@ function nextCode() {
 module.exports = new Test(
 	{
 		'approval': new State({
-			'debrief': results => results['approval'].selected === '0',
+			'debrief_nocode': results => results['approval'].selected === '0',
 			'fam': results => results['approval'].selected === '1'
 		}, 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
@@ -103,7 +103,10 @@ module.exports = new Test(
 		}),
 
 
-		'PSR': new State('post', 'likert', {
+		'PSR': new State({
+			'debrief_nocode': results => results['PSR'].inputs.find(input => input.id === 'control').answer !== 5,
+			'post': results => results['PSR'].inputs.find(input => input.id === 'control').answer === 5
+		}, 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
 			next: "Következő",
 			pageSize: 7,
@@ -202,8 +205,8 @@ module.exports = new Test(
 		}),
 		'ad_att': new State({
 			'ad_ethical': results => results.group.brand !== 'none',
-			'covid_cont': results => results.group.brand === 'none' && results.group.covid === true,
-			'creadibility': results => results.group.brand === 'none' && results.group.covid === false,
+			'covid_cont': results => results.group.brand === 'none' && results.group.covid !== 'none',
+			'cred': results => results.group.brand === 'none' && results.group.covid === 'none',
 		}, 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a poszttal kapcsolatos érzéseid!",
 			next: "Következő",
@@ -263,8 +266,8 @@ module.exports = new Test(
 			positive: "Következő",
 		}),
 		'con_cong': new State({
-			'covid_cont': results => results.group.covid === true,
-			'creadibility': results => results.group.covid === false,
+			'covid_cont': results => results.group.covid !== 'none',
+			'cred': results => results.group.covid === 'none',
 		}, 'osgood', {
 			title: "Hogyan jellemeznéd az HelloBody márka és Gabó kapcsolatát?",
 			next: "Következő",
@@ -278,8 +281,8 @@ module.exports = new Test(
 			]
 		}),
 		'con_incong': new State({
-			'covid_cont': results => results.group.covid === true,
-			'creadibility': results => results.group.covid === false,
+			'covid_cont': results => results.group.covid !== 'none',
+			'cred': results => results.group.covid === 'none',
 		}, 'osgood', {
 			title: "Hogyan jellemeznéd a PizzaForte márka és Gabó kapcsolatát?",
 			next: "Következő",
@@ -308,7 +311,7 @@ module.exports = new Test(
 		}),
 		'debrief2': new State('covid_att', 'info_text', {
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
-			description: "Timi arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
+			description: "Gabó arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
 			positive: "Következő",
 		}),
 		'covid_att': new State('third_pers', 'osgood', {
@@ -330,7 +333,7 @@ module.exports = new Test(
 			minValue: 0,
 			maxValue: 100
 		}),
-		'covid_con': new State('creadibility', 'osgood', {
+		'covid_con': new State('cred', 'osgood', {
 			title: "Hogyan jellemeznéd a koronavírussal kapocsolatos üzenet és Gabó kapcsolatát?",
 			next: "Következő",
 			random: true,
@@ -344,7 +347,10 @@ module.exports = new Test(
 		}),
 
 
-		'cred': new State('ad_perc', 'osgood', {
+		'cred': new State({
+			'debrief_nocode': results => results['cred'].inputs.find(input => input.id === 'control').answer !== 4,
+			'ad_perc': results => results['cred'].inputs.find(input => input.id === 'control').answer === 4
+		}, 'osgood', {
 			title: "A következő fogalmak segítségével jellemezd Gabót!",
 			next: "Következő",
 			pageSize: 6,
@@ -384,7 +390,7 @@ module.exports = new Test(
 		}),
 		'fam_post': new State({
 			'fam_brand': results => results.group.brand !== 'none',
-			'sales_knowledge': results => results.group.brand === 'none'
+			'sales_exp': results => results.group.brand === 'none'
 		}, 'input_slider', {
 			title: "Értékeld egy 0-tól 100-as skálán, mennyire ismerős számodra a poszt, amit láttál.",
 			next: "Következő",
@@ -457,9 +463,15 @@ module.exports = new Test(
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
-				(results['approval'].selected === '1' ? "Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + results.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" : "") +
+				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + results.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
 		})),
+		'debrief_nocode': new State(null, 'info_text', results => ({
+			title: "Köszönjük a részvételed!",
+			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
+		}))
 	},
 	() => 'approval',
 	() => ({test: 'psi1-pgabo', group: nextGroup(), code: nextCode()})
