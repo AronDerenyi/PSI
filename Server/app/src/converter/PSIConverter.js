@@ -250,4 +250,12 @@ properties.push(new Property('edu', results => results['education'].selected))
 // Marketing knowledge
 properties.push(new Property('mkt_exp', results => results['marketing_knowledge'].selected))
 
+// Source
+properties.push(new Property('source', results =>
+	results['source']
+		.inputs
+		.find(input => input.id === 'source')
+		.value
+))
+
 module.exports = new Converter(properties)
