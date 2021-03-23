@@ -104,7 +104,7 @@ module.exports = new Test(
 
 
 		'PSR': new State({
-			'debrief_nocode': results => results['PSR'].inputs.find(input => input.id === 'control').answer !== 5,
+			'debrief_rejected': results => results['PSR'].inputs.find(input => input.id === 'control').answer !== 5,
 			'post': results => results['PSR'].inputs.find(input => input.id === 'control').answer === 5
 		}, 'likert', {
 			title: "Mennyire értesz egyet az alábbi kijelentésekkel?",
@@ -291,11 +291,15 @@ module.exports = new Test(
 				{id: "5", label: ''}
 			]
 		}),
-		'debrief2': new State('covid_att', 'info_text', {
+		'debrief2': new State('covid_att', 'info_text', results => ({
 			title: "A posztban koronavírushoz kapcsolódó tartalom szerepelt.",
-			description: "Gabó arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra.",
+			description: {
+				'neutral': "Gabó arról írt, hogy a koronavírus miatt otthon edz.",
+				'positive': "Gabó arra biztatott, hogy maradjunk otthon és vigyázzunk magunkra és a szeretteinkre.",
+				'negative': "Gabó arról írt, hogy milyen nehézségei adódtak a koronavírus miatt."
+			}[results.group.covid],
 			positive: "Következő",
-		}),
+		})),
 		'covid_att': new State('third_pers', 'osgood', {
 			title: "A következő kérdésekre adott válaszok segítségével jellemezd a koronavírussal kapcsolatos üzenethez kapcsolódó érzéseidet!",
 			next: "Következő",
@@ -330,7 +334,7 @@ module.exports = new Test(
 
 
 		'cred': new State({
-			'debrief_nocode': results => results['cred'].inputs.find(input => input.id === 'control').answer !== 4,
+			'debrief_rejected': results => results['cred'].inputs.find(input => input.id === 'control').answer !== 4,
 			'ad_perc': results => results['cred'].inputs.find(input => input.id === 'control').answer === 4
 		}, 'osgood', {
 			title: "A következő fogalmak segítségével jellemezd Gabót!",
@@ -452,6 +456,13 @@ module.exports = new Test(
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
+		})),
+		'debrief_rejected': new State(null, 'info_text', results => ({
+			title: "Köszönjük a részvételed!",
+			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
+				"Rossz választ adtál meg egy ellenőrző kérdésünkre, emiatt nem tudod befejezni a tesztet és sajnos a jutalom sorsolásban sem tudsz részt venni. Az adataidat nem tároljuk és nem fogjuk felhasználni.\n\n" +
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
 		}))
 	},
