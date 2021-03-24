@@ -26,7 +26,7 @@ module.exports = new Test(
 	{
 		'approval': new State({
 			'debrief_nocode': results => results['approval'].selected === '0',
-			'fam': results => results['approval'].selected === '1'
+			'warning': results => results['approval'].selected === '1'
 		}, 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
 			description: "Ön egy tudományos kutatásban vesz részt, amelynek vezetője Buvár Ágnes, az ELTE PPK adjunktusa, illetve Balogh Eszter az ELTE PPK mesterszakos pszichológus hallgatói.\n\n" +
@@ -46,6 +46,11 @@ module.exports = new Test(
 			positiveId: "1",
 			negative: "Elutasítom",
 			negativeId: "0"
+		}),
+		'warning': new State('fam', 'info_text', {
+			title: "Figyelmeztetés",
+			description: "A továbbiakban teszt kérdésekre kell majd választ adnod. Kérlek, hogy a kérdéseket figyelmesen olvasd el. **Lesznek ellenörző kérdések is.** Amennyiben ezekre rosszul válaszolsz, úgy a kitöltést nem folytathatod és a nyereményjátékban sem vehetsz részt.",
+			positive: "Megértettem és folytatom"
 		}),
 		'fam': new State({
 			'video': results => results['fam'].selected === '0',
