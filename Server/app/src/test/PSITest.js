@@ -124,6 +124,7 @@ module.exports = new Test(
 				'Teljes mértékben egyetértek'
 			],
 			control: 'control',
+			controlIndex: 17,
 			questions: [
 				{
 					id: '1',
@@ -348,6 +349,7 @@ module.exports = new Test(
 			random: true,
 			size: 5,
 			control: 'control',
+			controlIndex: 19,
 			pairs: [
 				{id: 'att_1', first: 'taszító', second: 'vonzó'}, // attractiveness
 				{id: 'att_2', first: 'közönséges', second: 'ízléses'},
