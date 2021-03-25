@@ -49,7 +49,7 @@ module.exports = new Test(
 		}),
 		'warning': new State('fam', 'info_text', {
 			title: "Figyelmeztetés",
-			description: "A továbbiakban teszt kérdésekre kell majd választ adnod. Kérlek, hogy a kérdéseket figyelmesen olvasd el. **Lesznek ellenörző kérdések is.** Amennyiben ezekre rosszul válaszolsz, úgy a kitöltést nem folytathatod és a nyereményjátékban sem vehetsz részt.",
+			description: "Kérlek, hogy a kérdéseket figyelmesen olvasd el. Általánosságban nincsnek jó és rossz válaszok, a véleményeddre vagyunk kíváncsiak. **Viszont lesznek ellenőrző kérdések is.** Amennyiben ezekre rosszul válaszolsz, úgy a kitöltést nem folytathatod és a nyereményjátékban sem vehetsz részt.",
 			positive: "Megértettem és folytatom"
 		}),
 		'fam': new State({
@@ -462,15 +462,13 @@ module.exports = new Test(
 		'debrief_nocode': new State(null, 'info_text', results => ({
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
-				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
-				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban."
 		})),
 		'debrief_rejected': new State(null, 'info_text', results => ({
 			title: "Köszönjük a részvételed!",
-			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
-				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
-				"Rossz választ adtál meg egy ellenőrző kérdésünkre, emiatt nem tudod befejezni a tesztet és sajnos a jutalom sorsolásban sem tudsz részt venni. Az adataidat nem tároljuk és nem fogjuk felhasználni.\n\n" +
-				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
+			description: "#### **Rossz választ adtál meg egy ellenőrző kérdésünkre, emiatt nem tudod befejezni a tesztet és sajnos a jutalom sorsolásban sem tudsz részt venni. Az adataidat nem tároljuk és nem fogjuk felhasználni.**\n\n" +
+				"Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban."
 		}))
 	},
 	() => 'approval',
