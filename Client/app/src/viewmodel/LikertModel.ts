@@ -14,7 +14,8 @@ export class LikertModel {
 	}
 
 	readonly result: {
-		elapsedTime: number,
+		elapsedTime: number[],
+		nextEvents: number[],
 		questions: {
 			id: string,
 			answer: number,
@@ -41,6 +42,7 @@ export class LikertModel {
 	private currentPage = -1
 
 	private readonly startTime = Date.now()
+	private nextEvents: number[] = []
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
@@ -84,12 +86,18 @@ export class LikertModel {
 		}
 
 		if (typeof parameters.control !== 'undefined' && parameters.control !== null) {
-			const centerIndex = Math.floor(this.internalQuestions.length / 2)
-			const controlIndex = this.internalQuestions.findIndex(question => question.id === parameters.control)
-			if (controlIndex >= 0) {
-				const control = this.internalQuestions[controlIndex]
-				this.internalQuestions[controlIndex] = this.internalQuestions[centerIndex]
-				this.internalQuestions[centerIndex] = control
+			let controlIndex = Math.floor(this.internalQuestions.length / 2)
+			if (typeof parameters.controlIndex === 'number') {
+				controlIndex = Math.floor(parameters.controlIndex)
+				if (controlIndex < 0) controlIndex = 0
+				if (controlIndex > this.internalQuestions.length) controlIndex = this.internalQuestions.length
+			}
+
+			const originalIndex = this.internalQuestions.findIndex(question => question.id === parameters.control)
+			if (originalIndex >= 0) {
+				const control = this.internalQuestions[originalIndex]
+				this.internalQuestions[originalIndex] = this.internalQuestions[controlIndex]
+				this.internalQuestions[controlIndex] = control
 			}
 		}
 
@@ -104,9 +112,12 @@ export class LikertModel {
 	}
 
 	next() {
+		this.nextEvents.push(Date.now() - this.startTime)
+
 		if (this.nextPage()) return
 		Vue.set(this, 'result', {
 			elapsedTime: Date.now() - this.startTime,
+			nextEvents: this.nextEvents,
 			inputs: this.internalQuestions.map(question => ({
 				id: question.id,
 				answer: question.answer,

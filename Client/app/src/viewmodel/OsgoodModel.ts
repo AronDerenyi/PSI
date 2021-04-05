@@ -16,6 +16,7 @@ export class OsgoodModel {
 
 	readonly result: {
 		elapsedTime: number,
+		nextEvents: number[],
 		questions: {
 			id: string,
 			value: number,
@@ -43,6 +44,7 @@ export class OsgoodModel {
 	private currentPage = -1
 
 	private readonly startTime = Date.now()
+	private nextEvents: number[] = []
 
 	constructor(parameters: any) {
 		if (typeof parameters.title === 'string') this.title = parameters.title
@@ -84,12 +86,18 @@ export class OsgoodModel {
 		}
 
 		if (typeof parameters.control !== 'undefined' && parameters.control !== null) {
-			const centerIndex = Math.floor(this.internalPairs.length / 2)
-			const controlIndex = this.internalPairs.findIndex(pair => pair.id === parameters.control)
-			if (controlIndex >= 0) {
-				const control = this.internalPairs[controlIndex]
-				this.internalPairs[controlIndex] = this.internalPairs[centerIndex]
-				this.internalPairs[centerIndex] = control
+			let controlIndex = Math.floor(this.internalPairs.length / 2)
+			if (typeof parameters.controlIndex === 'number') {
+				controlIndex = Math.floor(parameters.controlIndex)
+				if (controlIndex < 0) controlIndex = 0
+				if (controlIndex > this.internalPairs.length) controlIndex = this.internalPairs.length
+			}
+
+			const originalIndex = this.internalPairs.findIndex(pair => pair.id === parameters.control)
+			if (originalIndex >= 0) {
+				const control = this.internalPairs[originalIndex]
+				this.internalPairs[originalIndex] = this.internalPairs[controlIndex]
+				this.internalPairs[controlIndex] = control
 			}
 		}
 
@@ -104,9 +112,12 @@ export class OsgoodModel {
 	}
 
 	next() {
+		this.nextEvents.push(Date.now() - this.startTime)
+
 		if (this.nextPage()) return
 		Vue.set(this, 'result', {
 			elapsedTime: Date.now() - this.startTime,
+			nextEvents: this.nextEvents,
 			inputs: this.internalPairs.map(pair => ({
 				id: pair.id,
 				answer: pair.value,
