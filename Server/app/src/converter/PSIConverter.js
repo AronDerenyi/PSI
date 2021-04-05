@@ -1,179 +1,118 @@
 const Converter = require('./Converter')
 const Property = require('./Property')
 
-const fromAnswers = (name, state, id) => new Property(name + '_' + id, results =>
+const fromAnswer = (state, id, name) => new Property(name, results =>
 	results[state]
 		.inputs
-		.find(input => input.id === id.toString())
+		.find(input => input.id == id)
 		.answer
 )
 
-const fromValues = (name, state, id) => new Property(name + '_' + id, results =>
+const fromValue = (state, id, name) => new Property(name, results =>
 	results[state]
 		.inputs
-		.find(input => input.id === id.toString())
+		.find(input => input.id == id)
 		.value
 )
 
 const properties = [
-	new Property('group_covid', results => results.group.covid ? 1 : 0),
+	new Property('group_covid', results => results.group.covid),
 	new Property('group_brand', results => results.group.brand),
-	new Property('fam_T', results => results['familiar'].selected)
+	new Property('code', results => results.code),
+	new Property('fam', results => results['fam'].selected),
+	new Property('fam_scale', results => results['fam_scale'].selected),
+	new Property('following', results => results['following'].selected)
 ]
 
-// PSI
+// EPSI
 for (let id = 1; id <= 6; id++) {
-	properties.push(fromAnswers('EPSI', 'psi', id.toString()))
+	properties.push(fromAnswer('EPSI', id, `EPSI_${id}`))
 }
 
 // PSR
-properties.push(
-	new Property('PSR_control', results =>
-		results['psr']
-			.inputs
-			.find(input => input.id === '0')
-			.answer
-	)
-)
+properties.push(fromAnswer('PSR', 'control', 'PSR_control'))
 for (let id = 1; id <= 20; id++) {
-	properties.push(fromAnswers('PSR', 'psr', id.toString()))
+	properties.push(fromAnswer('PSR', id, `PSR_${id}`))
 }
 
-// Image view duration
+// View durations
 properties.push(
-	new Property('post_view', results => (
-		results['insta_brand_none'] ||
-		results['insta_brand_cong'] ||
-		results['insta_brand_incong'] ||
-		results['insta_covid_brand_none'] ||
-		results['insta_covid_brand_cong'] ||
-		results['insta_covid_brand_incong']
-	).elapsedTime / 1000)
+	new Property('video_view', results => results['video'].elapsedTime / 1000)
+)
+properties.push(
+	new Property('post_view', results => results['post'].elapsedTime / 1000)
 )
 
-// Actions
+// Engagement
 for (let id = 1; id <= 5; id++) {
-	properties.push(fromAnswers('eng', 'actions', id.toString()))
+	properties.push(fromAnswer('eng', id, `eng_${id}`))
 }
 
-// Trustworthy
+// Ad
 for (let id = 1; id <= 3; id++) {
-	properties.push(fromAnswers('ad_cred', 'trustworthy', id.toString()))
+	properties.push(fromAnswer('ad_cred', id, `ad_cred_${id}`))
 }
-
-// Attractive
 for (let id = 1; id <= 5; id++) {
-	properties.push(fromAnswers('ad_att', 'attractive', id.toString()))
+	properties.push(fromAnswer('ad_att', id, `ad_att_${id}`))
 }
-
-// Ethics
 for (let id = 1; id <= 2; id++) {
-	properties.push(fromAnswers('ad_ethical', 'ethics', id.toString()))
+	properties.push(fromAnswer('ad_ethical', id, `ad_ethical_${id}`))
 }
 
-// Brand recognition
-properties.push(
-	new Property('product_rec', results =>
-		results['brand']
-			.inputs
-			.find(input => input.id === 'product')
-			.value
-	)
-)
-properties.push(
-	new Property('brand_rec', results =>
-		results['brand']
-			.inputs
-			.find(input => input.id === 'brand')
-			.value
-	)
-)
+// Recognition
+properties.push(fromValue('rec', 'product', 'product_rec'))
+properties.push(fromValue('rec', 'brand', 'brand_rec'))
 
 // Congruency
 for (let id = 1; id <= 4; id++) {
-	properties.push(new Property('con_' + id, results => {
-		const congruency = results['congruency_cong'] || results['congruency_incong']
-		return congruency
-			.inputs
-			.find(input => input.id === id.toString())
-			.answer
-	}))
+	properties.push(fromAnswer('con', id, `con_${id}`))
 }
 
 // Covid content
 for (let id = 1; id <= 5; id++) {
-	properties.push(fromValues('covid_cont', 'covid_content', id.toString()))
+	properties.push(fromValue('covid_cont', id, `covid_cont_${id}`))
 }
 
 // Covid attractive
 for (let id = 1; id <= 5; id++) {
-	properties.push(fromAnswers('covid_att', 'covid_attractive', id.toString()))
+	properties.push(fromAnswer('covid_att', id, `covid_att_${id}`))
 }
 
 // Third person
-properties.push(new Property('third_pers', results => results['third_person'].selected))
+properties.push(new Property('third_pers', results => results['third_pers'].selected))
 
 // Covid congruency
 for (let id = 1; id <= 4; id++) {
-	properties.push(fromAnswers('covid_con', 'covid_congruency', id.toString()))
+	properties.push(fromAnswer('covid_con', id, `covid_con_${id}`))
 }
 
 // Credibility
-properties.push(new Property('cred_control', results =>
-	results['creadibility']
-		.inputs
-		.find(input => input.id === '0')
-		.answer
-))
+properties.push(fromAnswer('cred', 'control', 'cred_control'))
 for (let id = 1; id <= 5; id++) {
-	properties.push(new Property('att_' + id.toString(), results =>
-		results['creadibility']
-			.inputs
-			.find(input => input.id === id.toString())
-			.answer
-	))
+	properties.push(fromAnswer('cred', id, `att_${id}`))
 }
 for (let id = 1; id <= 5; id++) {
-	properties.push(new Property('trust_' + id.toString(), results =>
-		results['creadibility']
-			.inputs
-			.find(input => input.id === (id + 5).toString())
-			.answer
-	))
+	properties.push(fromAnswer('cred', id + 5, `trust_${id}`))
 }
 for (let id = 1; id <= 5; id++) {
-	properties.push(new Property('exp_' + id.toString(), results =>
-		results['creadibility']
-			.inputs
-			.find(input => input.id === (id + 10).toString())
-			.answer
-	))
+	properties.push(fromAnswer('cred', id + 10, `exp_${id}`))
 }
 for (let id = 1; id <= 6; id++) {
-	properties.push(new Property('good_' + id.toString(), results => {
-		const answer = results['creadibility']
-			.inputs
-			.find(input => input.id === (id + 15).toString())
-			.answer
-
-		return [1, 2, 4].includes(id) ? 6 - answer : answer
-	}))
+	properties.push(fromAnswer('cred', id + 15, `good_${id}`))
 }
-properties.push(new Property('credibility_sum', results =>
-	results['creadibility']
+properties.push(new Property('cred_sum', results =>
+	results['cred']
 		.inputs
 		.reduce((sum, input) => {
-			if (input.id === '0') {
+			if (input.id == 'control') {
 				return sum
-			} else if (['16', '17', '19'].includes(input.id)) {
-				return sum + 6 - input.answer
 			} else {
 				return sum + input.answer
 			}
 		}, 0)
 ))
 properties.push(new Property('cred_att', results =>
-	results['creadibility']
+	results['cred']
 		.inputs
 		.reduce((sum, input) => {
 			if (['1', '2', '3', '4', '5'].includes(input.id)) {
@@ -184,7 +123,7 @@ properties.push(new Property('cred_att', results =>
 		}, 0)
 ))
 properties.push(new Property('cred_trust', results =>
-	results['creadibility']
+	results['cred']
 		.inputs
 		.reduce((sum, input) => {
 			if (['6', '7', '8', '9', '10'].includes(input.id)) {
@@ -195,7 +134,7 @@ properties.push(new Property('cred_trust', results =>
 		}, 0)
 ))
 properties.push(new Property('cred_exp', results =>
-	results['creadibility']
+	results['cred']
 		.inputs
 		.reduce((sum, input) => {
 			if (['11', '12', '13', '14', '15'].includes(input.id)) {
@@ -206,13 +145,11 @@ properties.push(new Property('cred_exp', results =>
 		}, 0)
 ))
 properties.push(new Property('cred_good', results =>
-	results['creadibility']
+	results['cred']
 		.inputs
 		.reduce((sum, input) => {
-			if (['18', '20', '21'].includes(input.id)) {
+			if (['16', '17', '18', '19', '20', '21'].includes(input.id)) {
 				return sum + input.answer
-			} else if (['16', '17', '19'].includes(input.id)) {
-				return sum + 6 - input.answer
 			} else {
 				return sum
 			}
@@ -220,34 +157,28 @@ properties.push(new Property('cred_good', results =>
 ))
 
 // Advertisement
-properties.push(new Property('ad_perc', results => results['advertisement'].selected))
+properties.push(new Property('ad_perc', results => results['ad_perc'].selected))
 
 // Post familiar
-properties.push(new Property('fam_post', results => results['post_familiar'].selected))
+properties.push(new Property('fam_post', results => results['fam_post'].selected))
 
 // Brand familiar
-properties.push(new Property('fam_brand', results => results['brand_familiar'].selected))
+properties.push(new Property('fam_brand', results => results['fam_brand'].selected))
 
 // Sales knowledge
-for (let id = 1; id <= 2; id++) {
-	properties.push(fromAnswers('sales_exp', 'sales_knowledge', id.toString()))
-}
+properties.push(fromAnswer('sales_exp', 1, 'sales_exp_1'))
+properties.push(fromAnswer('sales_exp', 2, 'sales_exp_2'))
 
 // Age
-properties.push(new Property('age', results =>
-	results['age']
-		.inputs
-		.find(input => input.id === 'age')
-		.value
-))
+properties.push(fromValue('age', 'age', `age`))
 
 // Gender
 properties.push(new Property('gender', results => results['gender'].selected))
 
 // Education
-properties.push(new Property('edu', results => results['education'].selected))
+properties.push(new Property('edu', results => results['edu'].selected))
 
 // Marketing knowledge
-properties.push(new Property('mkt_exp', results => results['marketing_knowledge'].selected))
+properties.push(new Property('mkt_exp', results => results['mkt_exp'].selected))
 
 module.exports = new Converter(properties)

@@ -31,10 +31,9 @@ app.use('/res', express.static('app/res'))
 const test = require('./test/PSITest')
 const converter = require('./converter/PSIConverter')
 const resultFilter = results =>
-	results.test === 'psi1' &&
-	(results['familiar'].selected === '0' || results['psr'].inputs.find(input => input.id === '0').answer === 5) &&
-	results['creadibility'].inputs.find(input => input.id === '0').answer === 4 &&
-	results['actions']
+	results.test === 'psi1-pgabo' &&
+	(results['fam'].selected === '0' || results['PSR'].inputs.find(input => input.id == 'control').answer === 5) &&
+	results['cred'].inputs.find(input => input.id == 'control').answer === 4
 
 // Setting up the routes
 
