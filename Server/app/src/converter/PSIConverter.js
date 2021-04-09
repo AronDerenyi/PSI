@@ -16,6 +16,8 @@ const fromValues = (name, state, id) => new Property(name + '_' + id, results =>
 )
 
 const properties = [
+	new Property('date_first', results => results.created),
+	new Property('date_last', results => results.updated),
 	new Property('group_covid', results => results.group.covid ? 1 : 0),
 	new Property('group_brand', results => results.group.brand),
 	new Property('fam_T', results => results['familiar'].selected)
