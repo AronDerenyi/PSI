@@ -1,11 +1,11 @@
-# WebStorm
-.idea
-
 # Node
 Client/node_modules
 Server/node_modules
 npm-debug.log
 .env
+
+# Shell scripts
+*.sh
 
 # Build
 Client/dist

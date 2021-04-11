@@ -86,12 +86,18 @@ export class LikertModel {
 		}
 
 		if (typeof parameters.control !== 'undefined' && parameters.control !== null) {
-			const centerIndex = Math.floor(this.internalQuestions.length / 2)
-			const controlIndex = this.internalQuestions.findIndex(question => question.id === parameters.control)
-			if (controlIndex >= 0) {
-				const control = this.internalQuestions[controlIndex]
-				this.internalQuestions[controlIndex] = this.internalQuestions[centerIndex]
-				this.internalQuestions[centerIndex] = control
+			let controlIndex = Math.floor(this.internalQuestions.length / 2)
+			if (typeof parameters.controlIndex === 'number') {
+				controlIndex = Math.floor(parameters.controlIndex)
+				if (controlIndex < 0) controlIndex = 0
+				if (controlIndex > this.internalQuestions.length) controlIndex = this.internalQuestions.length
+			}
+
+			const originalIndex = this.internalQuestions.findIndex(question => question.id === parameters.control)
+			if (originalIndex >= 0) {
+				const control = this.internalQuestions[originalIndex]
+				this.internalQuestions[originalIndex] = this.internalQuestions[controlIndex]
+				this.internalQuestions[controlIndex] = control
 			}
 		}
 
