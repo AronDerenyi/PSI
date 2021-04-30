@@ -37,7 +37,7 @@ module.exports = new Test(
 		}),
 		'warning': new State('fam', 'info_text', {
 			title: "Figyelmeztetés",
-			description: "Kérlek, hogy a kérdéseket figyelmesen olvasd el. Általánosságban nincsnek jó és rossz válaszok, a véleményeddre vagyunk kíváncsiak. **Viszont lesznek ellenőrző kérdések is.** Amennyiben ezekre rosszul válaszolsz, úgy a kitöltést nem folytathatod és a nyereményjátékban sem vehetsz részt.",
+			description: "Kérlek, hogy a kérdéseket figyelmesen olvasd el. Általánosságban nincsnek jó és rossz válaszok, a véleményeddre vagyunk kíváncsiak. **Viszont lesznek ellenőrző kérdések is.** Amennyiben ezekre rosszul válaszolsz, úgy a kitöltést nem folytathatod.",
 			positive: "Megértettem és folytatom"
 		}),
 		'fam': new State({
