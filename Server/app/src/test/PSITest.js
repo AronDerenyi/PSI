@@ -13,15 +13,6 @@ function nextGroup() {
 	}
 }
 
-function nextCode() {
-	let code = ""
-	for (let i = 0; i < 8; i++) {
-		code += Math.floor(Math.random() * 10)
-	}
-
-	return code
-}
-
 module.exports = new Test(
 	{
 		'approval': new State({
@@ -456,8 +447,8 @@ module.exports = new Test(
 			title: "Köszönjük a részvételed!",
 			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban.\n\n" +
-				"Ha részt szeretnél venni a nyereményjátékunkban, kérjük küldd el a **" + results.code + "** kódot a felmeres19@gmail.com e-mail címre.\n\n" +
-				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n"
+				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n" +
+				"Amennyiben a kérdőívet az ELTE PPK Ember–környezet pszichológiai kapcsolatkutatásban történő részvétel (PPK-EKTI:2) c. kurzusának hallgatójaként, vagy a kurzus hallgatója által toborzott személyként töltötte ki, kérem, a kurzuskövetelmény teljesítésének regisztrálása érdekében látogasson el erre a [linkre](https://docs.google.com/forms/d/e/1FAIpQLSfia4B6iIHV0IuuWCSqknDQmT0rIeEgNwLZzmvKnaLjazep8Q/viewform)."
 		})),
 		'debrief_nocode': new State(null, 'info_text', results => ({
 			title: "Köszönjük a részvételed!",
@@ -466,11 +457,11 @@ module.exports = new Test(
 		})),
 		'debrief_rejected': new State(null, 'info_text', results => ({
 			title: "Köszönjük a részvételed!",
-			description: "#### **Rossz választ adtál meg egy ellenőrző kérdésünkre, emiatt nem tudod befejezni a tesztet és sajnos a jutalom sorsolásban sem tudsz részt venni. Az adataidat nem tároljuk és nem fogjuk felhasználni.**\n\n" +
+			description: "#### **Rossz választ adtál meg egy ellenőrző kérdésünkre, emiatt nem tudod befejezni a tesztet. Az adataidat nem tároljuk és nem fogjuk felhasználni.**\n\n" +
 				"Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
 				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban."
 		}))
 	},
 	() => 'approval',
-	() => ({test: 'psi1-pgabo', group: nextGroup(), code: nextCode()})
+	() => ({test: 'psi1-pgabo', group: nextGroup()})
 )
