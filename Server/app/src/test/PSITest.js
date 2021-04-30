@@ -16,7 +16,7 @@ function nextGroup() {
 module.exports = new Test(
 	{
 		'approval': new State({
-			'debrief': results => results['approval'].selected === '0',
+			'debrief_nocode': results => results['approval'].selected === '0',
 			'familiar': results => results['approval'].selected === '1'
 		}, 'info_text', {
 			title: "Tájékoztató és Beleegyező Nyilatkozat",
@@ -483,6 +483,11 @@ module.exports = new Test(
 				"Még egyszer köszönjük a részvételt! Legyen szép napod!\n\n" +
 				"Amennyiben a kérdőívet az ELTE PPK Ember–környezet pszichológiai kapcsolatkutatásban történő részvétel (PPK-EKTI:2) c. kurzusának hallgatójaként, vagy a kurzus hallgatója által toborzott személyként töltötte ki, kérem, a kurzuskövetelmény teljesítésének regisztrálása érdekében látogasson el erre a [linkre](https://docs.google.com/forms/d/e/1FAIpQLSfia4B6iIHV0IuuWCSqknDQmT0rIeEgNwLZzmvKnaLjazep8Q/viewform)."
 		})),
+		'debrief_nocode': new State(null, 'info_text', results => ({
+			title: "Köszönjük a részvételed!",
+			description: "Egy olyan vizsgálatban vettél részt, amelynek célja a lehetséges kapcsolatok feltárása az influenszerhez való viszony, az influenszer és a reklámozott márka összeillése, az üzenetben található koronavírussal kapcsolatos üzenet, valamint a bemutatott poszt értékelése között.\n\n" +
+				"Amennyiben bármilyen további kérdésed van a vizsgálattal kapcsolatban, a buvar.agnes@ppk.elte.hu címen tudsz kapcsolatba lépni a vizsgálatot lebonyolító kollégánkkal, aki készséggel válaszol. Ugyanezen az e-mail címen tudsz felvilágosítást kérni a vizsgálat eredményeivel és azok közzétételével kapcsolatban."
+		}))
 	},
 	() => 'approval',
 	() => ({test: 'psi1', group: nextGroup()})
